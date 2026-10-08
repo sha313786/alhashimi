@@ -1,0 +1,140 @@
+/**
+ * Al Hashimi Electrical Installation Works LLC
+ * RTL & Arabic Language Stylesheet
+ * Applied dynamically when lang="ar" and dir="rtl"
+ */
+
+html[dir="rtl"] {
+  font-family: 'Noto Naskh Arabic', 'Plus Jakarta Sans', system-ui, sans-serif;
+  direction: rtl;
+  text-align: right;
+}
+
+html[dir="rtl"] body {
+  direction: rtl;
+  text-align: right;
+}
+
+html[dir="rtl"] h1,
+html[dir="rtl"] h2,
+html[dir="rtl"] h3,
+html[dir="rtl"] h4,
+html[dir="rtl"] h5,
+html[dir="rtl"] h6 {
+  font-family: 'Noto Naskh Arabic', 'Cinzel', serif;
+}
+
+html[dir="rtl"] .top-bar-inner {
+  flex-direction: row-reverse;
+}
+
+html[dir="rtl"] .top-bar-left,
+html[dir="rtl"] .top-bar-right {
+  flex-direction: row-reverse;
+}
+
+html[dir="rtl"] .header-inner {
+  flex-direction: row-reverse;
+}
+
+html[dir="rtl"] .brand-logo {
+  flex-direction: row-reverse;
+}
+
+html[dir="rtl"] .logo-text {
+  text-align: right;
+}
+
+html[dir="rtl"] .main-nav ul {
+  flex-direction: row-reverse;
+}
+
+html[dir="rtl"] .gold-rule-left {
+  margin-right: 0;
+  margin-left: auto;
+}
+
+html[dir="rtl"] .hero-title,
+html[dir="rtl"] .hero-subtitle,
+html[dir="rtl"] .section-header {
+  text-align: right;
+}
+
+html[dir="rtl"] .hero-content {
+  text-align: right;
+}
+
+html[dir="rtl"] .hero-cta-group {
+  justify-content: flex-start;
+}
+
+html[dir="rtl"] .hero-golden-spotlight {
+  flex-direction: row-reverse;
+}
+
+html[dir="rtl"] .spotlight-info {
+  text-align: right;
+}
+
+html[dir="rtl"] .stat-card {
+  text-align: right;
+}
+
+html[dir="rtl"] .form-group label,
+html[dir="rtl"] .calc-group label {
+  text-align: right;
+}
+
+html[dir="rtl"] input,
+html[dir="rtl"] select,
+html[dir="rtl"] textarea {
+  text-align: right;
+  direction: rtl;
+}
+
+html[dir="rtl"] .project-tag {
+  left: 14px;
+  right: auto;
+}
+
+html[dir="rtl"] .project-load-pill {
+  right: 14px;
+  left: auto;
+}
+
+html[dir="rtl"] .modal-header {
+  flex-direction: row-reverse;
+}
+
+html[dir="rtl"] .floating-contact-stack {
+  left: 24px;
+  right: auto;
+}
+
+html[dir="rtl"] .lang-switch-btn {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 700;
+}
+
+html[dir="rtl"] .icon-arrow {
+  transform: rotate(180deg);
+}
+
+html[dir="rtl"] .footer-inner {
+  direction: rtl;
+  text-align: right;
+}
+
+html[dir="rtl"] .footer-address,
+html[dir="rtl"] .footer-nav ul,
+html[dir="rtl"] .footer-creds-list {
+  text-align: right;
+}
+
+html[dir="rtl"] .partner-card {
+  text-align: right;
+}
+
+html[dir="rtl"] .partner-card-header {
+  flex-direction: row-reverse;
+}

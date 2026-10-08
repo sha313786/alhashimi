@@ -1,0 +1,128 @@
+/* Print Styles */
+@media print {
+  body * {
+    visibility: hidden;
+  }
+  #printableProfileDoc, #printableProfileDoc * {
+    visibility: visible;
+  }
+  #printableProfileDoc {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    color: #000;
+    background: #fff;
+  }
+}
+
+/* Media Queries */
+@media (max-width: 1140px) {
+  .top-bar {
+    display: block;
+    padding-block: 8px;
+  }
+  .top-bar-inner {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .top-bar-left, .top-bar-right {
+    flex-wrap: wrap;
+  }
+
+  .main-nav {
+    position: fixed;
+    top: 73px;
+    left: 0;
+    width: 100%;
+    background: #090e18;
+    border-bottom: 1px solid var(--border-highlight);
+    padding: 24px;
+    display: none;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
+    max-height: calc(100vh - 73px);
+    overflow-y: auto;
+  }
+
+  .main-nav.open {
+    display: block;
+  }
+
+  .main-nav ul {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+
+  .mobile-toggle {
+    display: block;
+  }
+
+  .about-grid,
+  .awards-container,
+  .contact-wrapper,
+  .golden-holder-showcase,
+  .projects-gallery-grid,
+  .awards-details-banner,
+  .calc-wrapper,
+  .location-wrapper {
+    grid-template-columns: 1fr;
+  }
+
+  .testimonials-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .holder-spotlight-card .photo-wrapper,
+  .ceremony-spotlight-card .photo-wrapper {
+    height: 380px;
+  }
+
+  .panel-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .footer-inner {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .safety-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+
+  .checkbox-cluster {
+    grid-template-columns: 1fr;
+  }
+
+  .footer-inner {
+    grid-template-columns: 1fr;
+  }
+
+  .personnel-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .results-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .golden-perks-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .map-embed-wrapper {
+    height: 280px;
+  }
+
+  .floating-contact-stack {
+    bottom: 20px;
+    right: 20px;
+  }
+}
+

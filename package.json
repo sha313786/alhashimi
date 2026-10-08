@@ -1,0 +1,10 @@
+{
+  "name": "alhashimi-electrical-website",
+  "version": "1.0.0",
+  "description": "Al Hashimi Electrical Installation Works LLC - Corporate Website",
+  "scripts": {
+    "dev": "npx --yes serve . --listen 3000",
+    "start": "npx --yes serve . --listen 3000",
+    "build:showcase": "node build-showcase.js"
+  }
+}

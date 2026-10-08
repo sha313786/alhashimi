@@ -1,0 +1,303 @@
+/* Awards & DEWA Golden Category Section */
+.awards-section {
+  background: radial-gradient(circle at 50% 20%, rgba(223, 155, 36, 0.12) 0%, transparent 65%),
+              var(--bg-secondary);
+  border-top: 1px solid var(--border-subtle);
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.golden-holder-ribbon {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--gold-gradient);
+  color: #0b0f19;
+  font-size: 0.82rem;
+  font-weight: 800;
+  letter-spacing: 2px;
+  padding: 6px 20px;
+  border-radius: var(--radius-full);
+  margin-bottom: 16px;
+  box-shadow: 0 4px 18px rgba(223, 155, 36, 0.35);
+}
+
+.ribbon-star {
+  font-size: 1rem;
+}
+
+.gold-nav-link {
+  color: var(--gold-light) !important;
+  font-weight: 700 !important;
+  background: rgba(223, 155, 36, 0.12);
+  border: 1px solid var(--border-highlight);
+  padding: 5px 12px !important;
+  border-radius: var(--radius-full);
+  box-shadow: 0 0 12px rgba(223, 155, 36, 0.15);
+  white-space: nowrap;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  transition: all var(--transition-fast);
+}
+
+.gold-nav-link:hover {
+  background: rgba(223, 155, 36, 0.22);
+  border-color: var(--gold-light);
+  box-shadow: 0 0 18px rgba(223, 155, 36, 0.35);
+  color: #fff !important;
+  transform: translateY(-1px);
+}
+
+.gold-nav-link::after {
+  display: none !important;
+}
+
+/* Dual Photo Showcase Grid */
+.golden-holder-showcase {
+  display: grid;
+  grid-template-columns: 1fr 1.25fr;
+  gap: 36px;
+  margin-bottom: 50px;
+}
+
+.award-photo-card {
+  background: var(--bg-card);
+  border: 2px solid var(--border-highlight);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6), 0 0 30px rgba(223, 155, 36, 0.15);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  transition: transform var(--transition-normal), box-shadow var(--transition-normal), border-color var(--transition-normal);
+}
+
+.award-photo-card:hover {
+  transform: translateY(-5px);
+  border-color: var(--gold-light);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7), 0 0 40px rgba(223, 155, 36, 0.35);
+}
+
+.photo-badge-tag {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  z-index: 10;
+  background: rgba(11, 15, 25, 0.9);
+  border: 1px solid var(--gold-primary);
+  color: var(--gold-light);
+  font-size: 0.8rem;
+  font-weight: 700;
+  padding: 6px 14px;
+  border-radius: var(--radius-full);
+  backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.tag-gold-star {
+  color: var(--gold-primary);
+}
+
+.photo-badge-tag.ceremony-tag {
+  border-color: #3b82f6;
+  color: #93c5fd;
+}
+
+.photo-wrapper {
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  background: #080c14;
+}
+
+.holder-spotlight-card .photo-wrapper {
+  height: 440px;
+}
+
+.ceremony-spotlight-card .photo-wrapper {
+  height: 440px;
+}
+
+.award-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  transition: transform 0.5s ease;
+}
+
+.photo-wrapper:hover .award-img {
+  transform: scale(1.04);
+}
+
+.photo-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(0deg, rgba(7, 10, 16, 0.8) 0%, transparent 60%);
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding: 20px;
+  opacity: 0;
+  transition: opacity var(--transition-fast);
+}
+
+.photo-wrapper:hover .photo-overlay {
+  opacity: 1;
+}
+
+.zoom-btn {
+  background: rgba(223, 155, 36, 0.95);
+  color: #0b0f19;
+  font-weight: 700;
+  font-size: 0.85rem;
+  padding: 8px 18px;
+  border-radius: var(--radius-full);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+}
+
+.photo-card-body {
+  padding: 28px;
+  background: var(--bg-card);
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.trophy-verified-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--gold-light);
+  font-size: 0.95rem;
+  margin-bottom: 8px;
+}
+
+.verified-icon {
+  background: var(--gold-primary);
+  color: #0b0f19;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  font-weight: 900;
+}
+
+.photo-caption {
+  color: var(--text-secondary);
+  font-size: 0.92rem;
+  line-height: 1.6;
+  margin-bottom: 18px;
+}
+
+.trophy-quote-box {
+  background: rgba(10, 15, 25, 0.7);
+  border-left: 3px solid var(--gold-primary);
+  padding: 14px 16px;
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+  margin-top: auto;
+}
+
+.trophy-quote-box em {
+  display: block;
+  color: #fff;
+  margin-bottom: 6px;
+}
+
+.quote-source {
+  display: block;
+  font-size: 0.75rem;
+  color: var(--gold-light);
+  font-style: normal;
+}
+
+.award-stats-summary {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-top: auto;
+  padding-top: 16px;
+  border-top: 1px solid var(--border-subtle);
+}
+
+.award-stat-item {
+  text-align: center;
+}
+
+.as-val {
+  display: block;
+  font-family: var(--font-serif);
+  font-weight: 700;
+  font-size: 1.2rem;
+  color: var(--gold-light);
+}
+
+.as-lbl {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+}
+
+.awards-details-banner {
+  background: linear-gradient(135deg, rgba(22, 32, 54, 0.8) 0%, rgba(13, 19, 31, 0.9) 100%);
+  border: 1px solid var(--border-highlight);
+  border-radius: var(--radius-lg);
+  padding: 36px 40px;
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 40px;
+  align-items: center;
+}
+
+.details-col h3 {
+  font-family: var(--font-serif);
+  font-size: 1.5rem;
+  color: #fff;
+  margin-bottom: 12px;
+}
+
+.details-col p {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  line-height: 1.7;
+}
+
+.details-badges {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.d-badge {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  background: rgba(8, 12, 20, 0.6);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: 14px 18px;
+}
+
+.d-icon {
+  font-size: 1.8rem;
+  color: var(--gold-primary);
+}
+
+.d-badge strong {
+  display: block;
+  font-size: 0.95rem;
+  color: #fff;
+  margin-bottom: 2px;
+}
+
+.d-badge span {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}

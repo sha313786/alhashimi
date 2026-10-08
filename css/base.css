@@ -1,0 +1,238 @@
+/* Reset & Base Typography */
+/* Reset & Base */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-family: var(--font-sans);
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  line-height: 1.6;
+}
+
+body {
+  overflow-x: hidden;
+  position: relative;
+  background-image: 
+    radial-gradient(circle at 10% 20%, rgba(223, 155, 36, 0.04) 0%, transparent 40%),
+    radial-gradient(circle at 90% 80%, rgba(13, 19, 31, 0.8) 0%, transparent 50%);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+img, svg {
+  display: block;
+  max-width: 100%;
+}
+
+button, input, select, textarea {
+  font-family: inherit;
+  font-size: inherit;
+}
+
+:focus-visible {
+  outline: 2px solid var(--gold-light);
+  outline-offset: 3px;
+}
+
+.container {
+  width: 100%;
+  max-width: 1300px;
+  margin-inline: auto;
+  padding-inline: 24px;
+}
+
+/* Typography Helpers */
+.gold-gradient-text {
+  background: var(--gold-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
+}
+
+.text-muted {
+  color: var(--text-muted);
+}
+
+.text-sm {
+  font-size: 0.9rem;
+}
+
+.text-xs {
+  font-size: 0.8rem;
+}
+
+/* Common Section Headers */
+.section {
+  padding-block: 90px;
+  position: relative;
+}
+
+.section-header {
+  text-align: center;
+  max-width: 800px;
+  margin-inline: auto;
+  margin-bottom: 56px;
+}
+
+.section-sub {
+  display: inline-block;
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2.5px;
+  color: var(--gold-primary);
+  margin-bottom: 12px;
+}
+
+.section-title {
+  font-family: var(--font-serif);
+  font-size: clamp(2rem, 3.5vw, 2.75rem);
+  color: #fff;
+  line-height: 1.25;
+  margin-bottom: 16px;
+  font-weight: 700;
+}
+
+.section-desc {
+  font-size: 1.05rem;
+  color: var(--text-secondary);
+  line-height: 1.7;
+}
+
+.gold-rule {
+  width: 70px;
+  height: 3px;
+  background: var(--gold-gradient);
+  margin: 20px auto 0;
+  border-radius: 2px;
+}
+
+.gold-rule-left {
+  width: 70px;
+  height: 3px;
+  background: var(--gold-gradient);
+  margin: 16px 0 24px;
+  border-radius: 2px;
+}
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 11px 22px;
+  font-weight: 600;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: all var(--transition-normal);
+  border: 1px solid transparent;
+  font-size: 0.92rem;
+  white-space: nowrap;
+  flex-shrink: 0;
+  line-height: 1.2;
+}
+
+.btn-gold {
+  background: var(--gold-gradient);
+  color: #0b0f19;
+  border-color: var(--gold-light);
+  box-shadow: 0 4px 15px rgba(223, 155, 36, 0.3);
+}
+
+.btn-gold:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(223, 155, 36, 0.45);
+  filter: brightness(1.08);
+}
+
+.btn-outline {
+  background: transparent;
+  color: var(--text-primary);
+  border-color: rgba(223, 155, 36, 0.5);
+  backdrop-filter: blur(8px);
+}
+
+.btn-outline:hover {
+  background: rgba(223, 155, 36, 0.1);
+  border-color: var(--gold-light);
+  color: var(--gold-light);
+  transform: translateY(-2px);
+}
+
+.btn-sm {
+  padding: 7px 16px;
+  font-size: 0.84rem;
+  gap: 6px;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.btn-lg {
+  padding: 14px 32px;
+  font-size: 1.05rem;
+}
+
+.btn-block {
+  width: 100%;
+}
+
+
+/* Arabic & Extended Typography */
+/* Arabic Typography */
+.company-arabic, .company-arabic-ftr, .arabic-doc-title {
+  font-family: 'Noto Naskh Arabic', serif;
+  direction: rtl;
+  display: block;
+}
+.company-arabic {
+  font-size: 0.8rem;
+  color: var(--gold-light);
+  margin-top: 1px;
+}
+.company-arabic-ftr {
+  font-size: 0.95rem;
+  color: var(--gold-primary);
+  margin-bottom: 8px;
+}
+
+
+/* Glass & Action Buttons */
+/* Glass & Action Buttons */
+.btn-glass {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  color: #fff;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 24px;
+  border-radius: var(--radius-sm);
+  font-weight: 600;
+}
+.btn-glass:hover {
+  background: rgba(223, 155, 36, 0.15);
+  border-color: var(--gold-primary);
+  color: var(--gold-light);
+}
+.hero-glow-sphere {
+  position: absolute;
+  top: 20%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(223, 155, 36, 0.12) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 1;
+}

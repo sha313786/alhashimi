@@ -1,0 +1,39 @@
+/**
+ * Al Hashimi Electrical Installation Works LLC
+ * Master Stylesheet Manifest
+ * 
+ * Modular architecture for easy maintenance and future expansions.
+ * To edit or add new styles:
+ * - Theme colors & variables: css/variables.css
+ * - Base reset & typography:  css/base.css
+ * - Sticky header & navbar:   css/header.css
+ * - Hero & statistics:        css/hero.css
+ * - Executive about & team:   css/about.css
+ * - Scope & engineering:      css/scope.css
+ * - DEWA Golden Category:     css/awards.css
+ * - Electrical load calc:     css/calculator.css
+ * - Projects portfolio:       css/projects.css
+ * - Partners & testimonials:  css/partners.css
+ * - Safety HSE & QA/QC & FAQ: css/safety-faq.css
+ * - Contact, Map & RFQ Form:  css/contact.css
+ * - Modals & Lightbox:        css/modals.css
+ * - Footer & Floating icons:  css/footer.css
+ * - Responsive breakpoints:   css/responsive.css
+ */
+
+@import url('css/variables.css');
+@import url('css/base.css');
+@import url('css/header.css');
+@import url('css/hero.css');
+@import url('css/about.css');
+@import url('css/scope.css');
+@import url('css/awards.css');
+@import url('css/calculator.css');
+@import url('css/projects.css');
+@import url('css/partners.css');
+@import url('css/safety-faq.css');
+@import url('css/contact.css');
+@import url('css/modals.css');
+@import url('css/footer.css');
+@import url('css/responsive.css');
+@import url('css/rtl.css');

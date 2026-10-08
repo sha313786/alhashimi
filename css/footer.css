@@ -1,0 +1,181 @@
+/* Footer */
+.site-footer {
+  background: #030508;
+  border-top: 1px solid var(--border-subtle);
+  padding-top: 70px;
+}
+
+.footer-inner {
+  display: grid;
+  grid-template-columns: 1.3fr 0.9fr 1fr 1fr;
+  gap: 40px;
+  padding-bottom: 50px;
+}
+
+.footer-col h4 {
+  font-family: var(--font-serif);
+  font-size: 1.25rem;
+  color: #fff;
+  letter-spacing: 1px;
+  margin-block: 14px 10px;
+}
+
+.footer-col h5 {
+  font-family: var(--font-serif);
+  font-size: 1rem;
+  color: var(--gold-light);
+  margin-bottom: 18px;
+  letter-spacing: 0.5px;
+}
+
+.company-desc {
+  font-size: 0.86rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+  margin-bottom: 16px;
+}
+
+.footer-award-badge {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--gold-light);
+  background: rgba(223, 155, 36, 0.12);
+  border: 1px solid var(--border-subtle);
+  padding: 6px 12px;
+  border-radius: var(--radius-full);
+}
+
+.footer-nav, .footer-legal {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  font-size: 0.88rem;
+}
+
+.footer-nav a {
+  color: var(--text-secondary);
+}
+
+.footer-nav a:hover {
+  color: var(--gold-light);
+  padding-left: 4px;
+}
+
+.footer-legal li {
+  color: var(--text-muted);
+}
+
+.footer-legal strong {
+  color: #fff;
+}
+
+.footer-address {
+  font-style: normal;
+  font-size: 0.88rem;
+  color: var(--text-secondary);
+  line-height: 1.7;
+}
+
+.footer-address a:hover {
+  color: var(--gold-light);
+}
+
+.footer-bottom {
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  padding-block: 22px;
+  background: #020305;
+}
+
+.bottom-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  font-size: 0.82rem;
+  color: var(--text-muted);
+}
+
+
+/* Floating Widgets (WhatsApp & Back-to-Top) */
+/* ==========================================================================
+   Floating Widgets (WhatsApp & Back-to-Top)
+   ========================================================================== */
+.floating-contact-stack {
+  position: fixed;
+  bottom: 28px;
+  right: 28px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  z-index: 999;
+}
+.float-wa-btn {
+  position: relative;
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  background: #25d366;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 25px rgba(37, 211, 102, 0.5);
+  transition: transform var(--transition-fast);
+}
+.float-wa-btn:hover {
+  transform: scale(1.1);
+}
+.wa-icon {
+  width: 32px;
+  height: 32px;
+}
+.wa-tooltip {
+  position: absolute;
+  right: 68px;
+  background: #090e18;
+  border: 1px solid var(--gold-primary);
+  color: #fff;
+  padding: 6px 12px;
+  border-radius: var(--radius-sm);
+  font-size: 0.78rem;
+  font-weight: 700;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--transition-fast);
+  box-shadow: var(--shadow-sm);
+}
+.float-wa-btn:hover .wa-tooltip {
+  opacity: 1;
+}
+.back-to-top-btn {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: rgba(13, 19, 31, 0.9);
+  border: 1px solid var(--border-highlight);
+  color: var(--gold-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  opacity: 0;
+  visibility: hidden;
+  transition: all var(--transition-fast);
+}
+.back-to-top-btn.visible {
+  opacity: 1;
+  visibility: visible;
+}
+.back-to-top-btn:hover {
+  background: var(--gold-gradient);
+  color: #000;
+}
+.top-icon {
+  width: 20px;
+  height: 20px;
+}

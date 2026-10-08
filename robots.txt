@@ -1,0 +1,5 @@
+# Robots.txt for Al Hashimi Electrical Installation Works LLC
+User-agent: *
+Allow: /
+
+Sitemap: https://alhashimidxb.com/sitemap.xml
