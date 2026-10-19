@@ -1,12 +1,13 @@
 /**
  * Al Hashimi Electrical Installation Works LLC
  * Module: Interactive Dubai Electrical Load & DEWA Connection Estimator
- * Computes TCL, MD, Breaker Rating, and Substation Room Threshold
+ * Computes TCL, MD, Breaker Rating, Substation Threshold & Updates Live SLD
  */
 
 function initLoadCalculator() {
   const propType = document.getElementById('calcPropType');
   const areaInput = document.getElementById('calcArea');
+  const areaSlider = document.getElementById('calcAreaSlider');
   const unitSelect = document.getElementById('calcUnit');
   const coolingSelect = document.getElementById('calcCooling');
   const diversitySelect = document.getElementById('calcDiversity');
@@ -20,7 +21,53 @@ function initLoadCalculator() {
   const resTimeline = document.getElementById('resTimeline');
   const transferBtn = document.getElementById('transferCalcBtn');
 
+  // SLD Nodes
+  const sldIncomerNode = document.getElementById('sldIncomerNode');
+  const sldSubstationNode = document.getElementById('sldSubstationNode');
+  const sldMdbNode = document.getElementById('sldMdbNode');
+
   if (!propType || !areaInput || !resTcl) return;
+
+  // Preset Configurations
+  const presets = {
+    villa: { prop: 'villa', area: 5000, unit: 'sqft', cooling: 'dx', div: '0.70' },
+    commercial: { prop: 'commercial', area: 25000, unit: 'sqft', cooling: 'district', div: '0.80' },
+    warehouse: { prop: 'warehouse', area: 50000, unit: 'sqft', cooling: 'dx', div: '0.90' },
+    mosque: { prop: 'mosque', area: 15000, unit: 'sqft', cooling: 'dx', div: '0.80' },
+    hotel: { prop: 'hotel', area: 100000, unit: 'sqft', cooling: 'chiller', div: '0.80' }
+  };
+
+  document.querySelectorAll('.preset-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.preset-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      const presetKey = btn.getAttribute('data-preset');
+      const p = presets[presetKey];
+      if (p) {
+        propType.value = p.prop;
+        areaInput.value = p.area;
+        if (areaSlider) areaSlider.value = p.area;
+        unitSelect.value = p.unit;
+        coolingSelect.value = p.cooling;
+        diversitySelect.value = p.div;
+        calculate();
+      }
+    });
+  });
+
+  // Sync slider and input
+  if (areaSlider && areaInput) {
+    areaSlider.addEventListener('input', () => {
+      areaInput.value = areaSlider.value;
+      calculate();
+    });
+
+    areaInput.addEventListener('input', () => {
+      if (areaSlider) areaSlider.value = areaInput.value;
+      calculate();
+    });
+  }
 
   function calculate() {
     const rawArea = parseFloat(areaInput.value) || 0;
@@ -30,7 +77,7 @@ function initLoadCalculator() {
 
     // Base VA per sq.m
     const selectedOption = propType.options[propType.selectedIndex];
-    const baseVA = parseFloat(selectedOption.getAttribute('data-va')) || 180;
+    const baseVA = parseFloat(selectedOption ? selectedOption.getAttribute('data-va') : 200) || 200;
 
     // Cooling factor
     let coolingMultiplier = 1.0;
@@ -49,14 +96,15 @@ function initLoadCalculator() {
     const diversity = parseFloat(diversitySelect.value) || 0.80;
     const maximumDemandKVA = totalKVA * diversity;
 
-    // Incomer breaker sizing (Amperes): I = (kVA * 1000) / (sqrt(3) * 400)
+    // Incomer breaker sizing (Amperes): I = (kVA * 1000) / (sqrt(3) * 415)
     const fullLoadAmps = (maximumDemandKVA * 1000) / (1.732 * 415);
     const standardBreakers = [63, 100, 125, 160, 200, 250, 315, 400, 500, 630, 800, 1000, 1250, 1600, 2000, 2500, 3200, 4000];
     let recommendedBreaker = standardBreakers.find(b => b >= fullLoadAmps) || 4000;
+    const breakerType = recommendedBreaker >= 800 ? '4-Pole ACB' : '4-Pole MCCB';
 
-    // DEWA Substation threshold: Typically > 400 kVA requires dedicated 11kV Substation Room
+    // DEWA Substation threshold
     let substationText = "Direct LV Feeder";
-    let substationDesc = "Standard DEWA distribution pillar feeder (No Substation required)";
+    let substationDesc = "Standard DEWA distribution pillar feeder (No Substation room required)";
     if (maximumDemandKVA > 1500) {
       substationText = "2x Dedicated 11kV Substations";
       substationDesc = "Requires 2x 1500kVA Transformers & 11kV Switchgear Room";
@@ -69,21 +117,42 @@ function initLoadCalculator() {
     resTcl.textContent = `${totalKW.toLocaleString('en-US', { maximumFractionDigits: 1 })} kW`;
     resKva.textContent = `${totalKVA.toLocaleString('en-US', { maximumFractionDigits: 1 })} kVA (at 0.90 PF)`;
     resMd.textContent = `${maximumDemandKVA.toLocaleString('en-US', { maximumFractionDigits: 1 })} kVA`;
-    resBreaker.textContent = `${recommendedBreaker}A (${recommendedBreaker >= 800 ? '4-Pole ACB' : '4-Pole MCCB'})`;
+    resBreaker.textContent = `${recommendedBreaker}A (${breakerType})`;
     resSubstation.textContent = substationText;
     resSubstationDesc.textContent = substationDesc;
 
     if (maximumDemandKVA > 380) {
-      resTimeline.innerHTML = `<strong>10 - 14 Business Days</strong> for Substation civil layout & equipment approval under Al Hashimi’s Golden Category priority channel.`;
+      resTimeline.innerHTML = `<strong>10 - 14 Business Days</strong> for Substation civil layout & equipment approval under Al Hashimi’s Golden Category priority channel (vs. 45+ days standard).`;
     } else {
       resTimeline.innerHTML = `<strong>5 - 7 Business Days</strong> for final inspection & meter installation under our Golden Category priority channel (vs. 25+ days standard).`;
+    }
+
+    // Update Live SLD Diagram Nodes
+    if (sldIncomerNode) {
+      sldIncomerNode.querySelector('.node-sub').textContent = maximumDemandKVA > 380 ? '11kV Grid Incomer' : 'LV 415V Pillar';
+    }
+    if (sldSubstationNode) {
+      if (maximumDemandKVA > 380) {
+        sldSubstationNode.classList.add('active');
+        sldSubstationNode.querySelector('.node-name').textContent = maximumDemandKVA > 1500 ? '2x 1500kVA TR' : '11kV/415V TR';
+        sldSubstationNode.querySelector('.node-sub').textContent = 'Substation Active';
+      } else {
+        sldSubstationNode.classList.remove('active');
+        sldSubstationNode.querySelector('.node-name').textContent = 'LV Direct Tap';
+        sldSubstationNode.querySelector('.node-sub').textContent = 'No Substation';
+      }
+    }
+    if (sldMdbNode) {
+      sldMdbNode.querySelector('.node-sub').textContent = `${recommendedBreaker}A ${breakerType}`;
     }
   }
 
   // Bind calculation events
   [propType, areaInput, unitSelect, coolingSelect, diversitySelect].forEach(el => {
-    el.addEventListener('input', calculate);
-    el.addEventListener('change', calculate);
+    if (el) {
+      el.addEventListener('input', calculate);
+      el.addEventListener('change', calculate);
+    }
   });
 
   calculate();
@@ -101,18 +170,38 @@ function initLoadCalculator() {
       }
 
       if (projectType) {
-        if (propType.value === 'villa') projectType.value = 'luxury-villa';
-        else if (propType.value === 'commercial') projectType.value = 'commercial-highrise';
-        else if (propType.value === 'warehouse') projectType.value = 'industrial-warehouse';
-        else if (propType.value === 'mosque') projectType.value = 'mosque-public';
-        else if (propType.value === 'hotel') projectType.value = 'hotel-hospital';
+        const valMap = {
+          'villa': 'luxury-villa',
+          'commercial': 'commercial-highrise',
+          'warehouse': 'industrial-warehouse',
+          'mosque': 'mosque-public',
+          'hotel': 'hotel-hospital'
+        };
+        if (valMap[propType.value]) {
+          projectType.value = valMap[propType.value];
+        }
       }
 
       if (projectDetails) {
-        projectDetails.value = `Estimated Load from Al Hashimi Calculator: ${resTcl.textContent} / ${resMd.textContent} Max Demand. Breaker: ${resBreaker.textContent}. Area: ${areaInput.value} ${unitSelect.value}. Cooling: ${coolingSelect.value}.`;
+        const currentVal = projectDetails.value;
+        const calcSummary = `Estimated Load: ${resTcl.textContent} TCL, ${resMd.textContent} MD, Incomer: ${resBreaker.textContent}, DEWA Status: ${resSubstation.textContent}. Area: ${areaInput.value} ${unitSelect.value}.`;
+        if (!currentVal.includes('Estimated Load:')) {
+          projectDetails.value = currentVal ? `${currentVal}\n\n[DEWA Calc Parameters]\n${calcSummary}` : `[DEWA Calc Parameters]\n${calcSummary}`;
+        }
       }
 
-      contactSection.scrollIntoView({ behavior: 'smooth' });
+      if (contactSection) {
+        contactSection.scrollIntoView({ behavior: 'smooth' });
+        if (loadInput) {
+          loadInput.focus();
+          loadInput.style.borderColor = 'var(--gold-primary)';
+          loadInput.style.boxShadow = '0 0 15px rgba(223, 155, 36, 0.4)';
+          setTimeout(() => {
+            loadInput.style.borderColor = '';
+            loadInput.style.boxShadow = '';
+          }, 2500);
+        }
+      }
     });
   }
 }

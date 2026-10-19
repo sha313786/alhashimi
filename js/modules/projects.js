@@ -37,9 +37,19 @@ function initProjectPortfolio() {
       if (!data || !modal) return;
 
       csTitle.textContent = data.title;
+
+      const mediaHeader = data.image 
+        ? `<div class="cs-img-wrap"><img src="${data.image}" alt="${data.title}" class="cs-img"></div>`
+        : `<div class="cs-img-wrap" style="height:180px; background:linear-gradient(135deg, #091220 0%, #15243e 100%); display:flex; align-items:center; justify-content:center; border:1px solid var(--gold-border);">
+            <div style="text-align:center;">
+              <span style="font-size:2.8rem; display:block;">&#128736;</span>
+              <span style="font-family:var(--font-serif); font-size:1rem; color:var(--gold-light); font-weight:700;">DEWA Approved Architectural CAD Schematic</span>
+            </div>
+           </div>`;
+
       csBody.innerHTML = `
         <div class="cs-modal-content">
-          ${data.image ? `<div class="cs-img-wrap"><img src="${data.image}" alt="${data.title}" class="cs-img"></div>` : ''}
+          ${mediaHeader}
           <div class="cs-details-grid">
             <div class="cs-item"><strong>Location:</strong> <span>${data.location}</span></div>
             <div class="cs-item"><strong>Connected Load:</strong> <span class="gold-text">${data.powerLoad}</span></div>

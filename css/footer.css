@@ -1,48 +1,55 @@
-/* Footer */
+/* ==========================================================================
+   Footer, Floating WhatsApp & Mobile Action Stack
+   ========================================================================== */
+
 .site-footer {
-  background: #030508;
+  background: #020306;
   border-top: 1px solid var(--border-subtle);
-  padding-top: 70px;
+  padding-top: 80px;
+  position: relative;
+  z-index: 10;
 }
 
 .footer-inner {
   display: grid;
-  grid-template-columns: 1.3fr 0.9fr 1fr 1fr;
+  grid-template-columns: 1.35fr 0.85fr 1fr 1fr;
   gap: 40px;
-  padding-bottom: 50px;
+  padding-bottom: 60px;
 }
 
 .footer-col h4 {
   font-family: var(--font-serif);
-  font-size: 1.25rem;
+  font-size: 1.3rem;
   color: #fff;
   letter-spacing: 1px;
-  margin-block: 14px 10px;
+  margin-block: 16px 12px;
 }
 
 .footer-col h5 {
   font-family: var(--font-serif);
-  font-size: 1rem;
+  font-size: 1.05rem;
   color: var(--gold-light);
-  margin-bottom: 18px;
+  margin-bottom: 20px;
   letter-spacing: 0.5px;
 }
 
 .company-desc {
-  font-size: 0.86rem;
+  font-size: 0.88rem;
   color: var(--text-muted);
-  line-height: 1.6;
-  margin-bottom: 16px;
+  line-height: 1.7;
+  margin-bottom: 18px;
 }
 
 .footer-award-badge {
-  display: inline-block;
-  font-size: 0.75rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.78rem;
   font-weight: 700;
   color: var(--gold-light);
   background: rgba(223, 155, 36, 0.12);
-  border: 1px solid var(--border-subtle);
-  padding: 6px 12px;
+  border: 1px solid var(--gold-border);
+  padding: 6px 14px;
   border-radius: var(--radius-full);
 }
 
@@ -50,21 +57,23 @@
   list-style: none;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 12px;
   font-size: 0.88rem;
 }
 
 .footer-nav a {
   color: var(--text-secondary);
+  transition: all var(--transition-fast);
 }
 
 .footer-nav a:hover {
   color: var(--gold-light);
-  padding-left: 4px;
+  padding-left: 6px;
 }
 
 .footer-legal li {
   color: var(--text-muted);
+  line-height: 1.5;
 }
 
 .footer-legal strong {
@@ -75,17 +84,21 @@
   font-style: normal;
   font-size: 0.88rem;
   color: var(--text-secondary);
-  line-height: 1.7;
+  line-height: 1.75;
 }
 
 .footer-address a:hover {
   color: var(--gold-light);
 }
 
+.footer-cta-wrap {
+  margin-top: 18px;
+}
+
 .footer-bottom {
   border-top: 1px solid rgba(255, 255, 255, 0.06);
-  padding-block: 22px;
-  background: #020305;
+  padding-block: 24px;
+  background: #010204;
 }
 
 .bottom-inner {
@@ -93,89 +106,159 @@
   justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
-  gap: 12px;
+  gap: 14px;
   font-size: 0.82rem;
   color: var(--text-muted);
 }
 
-
-/* Floating Widgets (WhatsApp & Back-to-Top) */
-/* ==========================================================================
-   Floating Widgets (WhatsApp & Back-to-Top)
-   ========================================================================== */
+/* Floating Actions Stack */
 .floating-contact-stack {
   position: fixed;
   bottom: 28px;
   right: 28px;
+  z-index: 99;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 14px;
-  z-index: 999;
 }
+
 .float-wa-btn {
-  position: relative;
   width: 58px;
   height: 58px;
   border-radius: 50%;
   background: #25d366;
-  color: #fff;
+  color: #060911;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 8px 25px rgba(37, 211, 102, 0.5);
-  transition: transform var(--transition-fast);
+  box-shadow: 0 8px 25px rgba(37, 211, 102, 0.45);
+  transition: all var(--transition-normal);
+  position: relative;
 }
+
 .float-wa-btn:hover {
   transform: scale(1.1);
+  box-shadow: 0 12px 30px rgba(37, 211, 102, 0.6);
 }
+
 .wa-icon {
   width: 32px;
   height: 32px;
 }
+
 .wa-tooltip {
   position: absolute;
-  right: 68px;
-  background: #090e18;
-  border: 1px solid var(--gold-primary);
+  right: 70px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(6, 9, 17, 0.95);
+  border: 1px solid var(--gold-border);
   color: #fff;
-  padding: 6px 12px;
-  border-radius: var(--radius-sm);
   font-size: 0.78rem;
   font-weight: 700;
+  padding: 6px 14px;
+  border-radius: var(--radius-sm);
   white-space: nowrap;
   opacity: 0;
   pointer-events: none;
   transition: opacity var(--transition-fast);
-  box-shadow: var(--shadow-sm);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
 }
+
 .float-wa-btn:hover .wa-tooltip {
   opacity: 1;
 }
+
 .back-to-top-btn {
   width: 44px;
   height: 44px;
   border-radius: 50%;
-  background: rgba(13, 19, 31, 0.9);
-  border: 1px solid var(--border-highlight);
+  background: rgba(15, 23, 42, 0.85);
+  border: 1px solid var(--border-subtle);
   color: var(--gold-light);
   display: flex;
   align-items: center;
   justify-content: center;
-  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
   opacity: 0;
   visibility: hidden;
-  transition: all var(--transition-fast);
+  transition: all var(--transition-normal);
+  cursor: pointer;
+  backdrop-filter: blur(8px);
 }
+
 .back-to-top-btn.visible {
   opacity: 1;
   visibility: visible;
 }
+
 .back-to-top-btn:hover {
   background: var(--gold-gradient);
-  color: #000;
+  color: #060911;
+  border-color: var(--gold-light);
+  transform: translateY(-3px);
 }
+
 .top-icon {
   width: 20px;
   height: 20px;
+}
+
+/* Mobile Bottom Fixed Action Bar */
+.mobile-action-bar {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .mobile-action-bar {
+    display: flex;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(6, 9, 17, 0.95);
+    border-top: 1px solid var(--border-highlight);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    z-index: 100;
+    box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.6);
+  }
+
+  .mob-action-item {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    padding: 10px 4px;
+    font-size: 0.70rem;
+    font-weight: 700;
+    color: var(--text-secondary);
+    text-decoration: none;
+    border-right: 1px solid rgba(255, 255, 255, 0.06);
+    transition: all var(--transition-fast);
+  }
+
+  .mob-action-item:last-child {
+    border-right: none;
+  }
+
+  .mob-action-item.active,
+  .mob-action-item:active {
+    color: var(--gold-light);
+    background: rgba(223, 155, 36, 0.12);
+  }
+
+  .mob-action-icon {
+    font-size: 1.2rem;
+    line-height: 1;
+  }
+
+  /* Offset floating button on mobile */
+  .floating-contact-stack {
+    bottom: 74px;
+    right: 16px;
+  }
 }

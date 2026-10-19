@@ -1,112 +1,330 @@
 /* ==========================================================================
-   Electrical Load Calculator Section
+   Dubai Electrical Load & DEWA Connection Estimator
    ========================================================================== */
+
 .calc-section {
-  background: linear-gradient(180deg, #090e18 0%, #0d1424 100%);
+  background: 
+    radial-gradient(circle at 15% 30%, rgba(223, 155, 36, 0.08) 0%, transparent 50%),
+    linear-gradient(180deg, #090e1b 0%, #0d1527 100%);
   border-block: 1px solid var(--border-subtle);
+  position: relative;
 }
+
+/* Presets Bar */
+.calc-presets-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 32px;
+}
+
+.calc-preset-label {
+  font-size: 0.82rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--text-muted);
+  margin-right: 6px;
+}
+
+.preset-btn {
+  background: rgba(15, 23, 42, 0.7);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-secondary);
+  font-size: 0.82rem;
+  font-weight: 600;
+  padding: 6px 14px;
+  border-radius: var(--radius-full);
+  transition: all var(--transition-fast);
+}
+
+.preset-btn:hover {
+  background: rgba(223, 155, 36, 0.15);
+  border-color: var(--gold-border);
+  color: #fff;
+  transform: translateY(-1px);
+}
+
+.preset-btn.active {
+  background: var(--gold-gradient);
+  color: #060911;
+  border-color: var(--gold-light);
+  font-weight: 700;
+  box-shadow: 0 2px 10px rgba(223, 155, 36, 0.3);
+}
+
+/* Calculator Wrapper */
 .calc-wrapper {
   display: grid;
-  grid-template-columns: 1.1fr 1fr;
+  grid-template-columns: 1.05fr 1fr;
   gap: 36px;
+  align-items: stretch;
 }
+
 .calc-form-card, .calc-results-card {
   background: var(--bg-card);
   border: 1px solid var(--border-subtle);
-  border-radius: var(--radius-md);
-  padding: 32px;
+  border-radius: var(--radius-lg);
+  padding: 36px;
   box-shadow: var(--shadow-md);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  display: flex;
+  flex-direction: column;
 }
+
 .calc-heading {
   font-family: var(--font-serif);
-  font-size: 1.25rem;
+  font-size: 1.35rem;
   color: #fff;
   margin-bottom: 24px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-  padding-bottom: 12px;
+  padding-bottom: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
+
+.calc-form-card .form-group {
+  margin-bottom: 20px;
+}
+
+.calc-form-card label {
+  display: block;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  margin-bottom: 8px;
+}
+
 .calc-input {
   width: 100%;
-  background: rgba(8, 12, 20, 0.8);
+  background: rgba(7, 11, 20, 0.85);
   border: 1px solid rgba(223, 155, 36, 0.25);
   border-radius: var(--radius-sm);
-  padding: 12px 14px;
+  padding: 12px 16px;
   color: #fff;
   outline: none;
-  transition: border-color var(--transition-fast);
+  font-size: 0.95rem;
+  transition: all var(--transition-fast);
 }
+
 .calc-input:focus {
   border-color: var(--gold-primary);
-  box-shadow: 0 0 10px rgba(223, 155, 36, 0.2);
+  box-shadow: 0 0 14px rgba(223, 155, 36, 0.25);
 }
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  gap: 16px;
+}
+
+/* Range Slider */
+.calc-slider-wrap {
+  margin-top: 8px;
+}
+
+.calc-range-slider {
+  width: 100%;
+  height: 6px;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.12);
+  outline: none;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.calc-range-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--gold-gradient);
+  border: 2px solid #fff;
+  cursor: pointer;
+  box-shadow: 0 0 10px rgba(223, 155, 36, 0.6);
+}
+
 .calc-tip-box {
   display: flex;
-  gap: 10px;
+  gap: 12px;
   background: rgba(223, 155, 36, 0.08);
-  border: 1px solid rgba(223, 155, 36, 0.2);
-  padding: 12px 14px;
+  border: 1px solid var(--gold-border);
+  padding: 14px 16px;
   border-radius: var(--radius-sm);
   font-size: 0.82rem;
   color: var(--text-secondary);
-  margin-top: 16px;
+  margin-top: auto;
+  align-items: flex-start;
 }
+
 .tip-icon {
   color: var(--gold-primary);
-  font-size: 1.1rem;
+  font-size: 1.15rem;
+  flex-shrink: 0;
+  line-height: 1;
 }
+
+/* Results Grid */
 .results-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 16px;
   margin-bottom: 24px;
 }
+
 .res-item {
-  background: rgba(7, 10, 16, 0.7);
+  background: rgba(6, 9, 17, 0.8);
   border: 1px solid rgba(255, 255, 255, 0.06);
-  border-radius: var(--radius-sm);
-  padding: 16px;
+  border-radius: var(--radius-md);
+  padding: 18px;
   display: flex;
   flex-direction: column;
+  transition: all var(--transition-fast);
 }
+
+.res-item:hover {
+  border-color: var(--gold-border);
+  background: rgba(11, 17, 32, 0.9);
+}
+
 .res-lbl {
-  font-size: 0.78rem;
+  font-size: 0.74rem;
   color: var(--text-muted);
   text-transform: uppercase;
-  font-weight: 600;
+  font-weight: 700;
   letter-spacing: 0.5px;
   margin-bottom: 6px;
 }
+
 .res-val {
-  font-size: 1.45rem;
-  font-weight: 800;
+  font-size: 1.55rem;
+  font-weight: 900;
   color: #fff;
   line-height: 1.2;
 }
+
 .res-sub {
   font-size: 0.75rem;
   color: var(--text-secondary);
   margin-top: 4px;
 }
-.golden-advantage-box {
-  background: linear-gradient(135deg, rgba(223, 155, 36, 0.15) 0%, rgba(13, 19, 31, 0.8) 100%);
-  border: 1px solid var(--border-highlight);
-  border-radius: var(--radius-sm);
+
+/* Interactive Single-Line Diagram (SLD) Visualizer */
+.sld-visualizer-card {
+  background: rgba(6, 9, 17, 0.85);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
   padding: 18px;
   margin-bottom: 24px;
 }
+
+.sld-title-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 14px;
+}
+
+.sld-title-row strong {
+  font-size: 0.85rem;
+  color: var(--gold-light);
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.sld-badge {
+  font-size: 0.70rem;
+  background: rgba(223, 155, 36, 0.15);
+  border: 1px solid var(--gold-border);
+  color: var(--gold-light);
+  padding: 2px 8px;
+  border-radius: var(--radius-full);
+  font-weight: 700;
+}
+
+.sld-flow-track {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  position: relative;
+  overflow-x: auto;
+  padding-block: 6px;
+}
+
+.sld-node {
+  background: rgba(17, 26, 46, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-sm);
+  padding: 10px 12px;
+  text-align: center;
+  flex: 1;
+  min-width: 90px;
+  transition: all var(--transition-fast);
+}
+
+.sld-node.active {
+  border-color: var(--gold-primary);
+  background: rgba(223, 155, 36, 0.12);
+  box-shadow: 0 0 12px rgba(223, 155, 36, 0.2);
+}
+
+.sld-node .node-icon {
+  font-size: 1.2rem;
+  margin-bottom: 4px;
+}
+
+.sld-node .node-name {
+  display: block;
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: #fff;
+  white-space: nowrap;
+}
+
+.sld-node .node-sub {
+  font-size: 0.65rem;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+
+.sld-connector {
+  color: var(--gold-primary);
+  font-size: 0.90rem;
+  font-weight: 900;
+  flex-shrink: 0;
+}
+
+/* Golden Advantage Callout */
+.golden-advantage-box {
+  background: linear-gradient(135deg, rgba(223, 155, 36, 0.16) 0%, rgba(13, 21, 39, 0.85) 100%);
+  border: 1px solid var(--border-highlight);
+  border-radius: var(--radius-md);
+  padding: 18px 20px;
+  margin-bottom: 24px;
+}
+
 .adv-badge {
   font-size: 0.72rem;
   font-weight: 800;
   color: var(--gold-light);
   letter-spacing: 1px;
-  margin-bottom: 6px;
-}
-.golden-advantage-box h4 {
-  color: #fff;
-  font-size: 1.05rem;
   margin-bottom: 4px;
 }
+
+.golden-advantage-box h4 {
+  font-size: 1.02rem;
+  color: #fff;
+  margin-bottom: 6px;
+}
+
 .golden-advantage-box p {
   font-size: 0.85rem;
   color: var(--text-secondary);
+  line-height: 1.5;
 }

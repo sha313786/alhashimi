@@ -1,11 +1,10 @@
-/**
- * Al Hashimi Electrical Installation Works LLC
- * RTL & Arabic Language Stylesheet
- * Applied dynamically when lang="ar" and dir="rtl"
- */
+/* ==========================================================================
+   RTL & Arabic Language Stylesheet
+   Applied dynamically when lang="ar" and dir="rtl"
+   ========================================================================== */
 
 html[dir="rtl"] {
-  font-family: 'Noto Naskh Arabic', 'Plus Jakarta Sans', system-ui, sans-serif;
+  font-family: var(--font-arabic);
   direction: rtl;
   text-align: right;
 }
@@ -20,8 +19,12 @@ html[dir="rtl"] h2,
 html[dir="rtl"] h3,
 html[dir="rtl"] h4,
 html[dir="rtl"] h5,
-html[dir="rtl"] h6 {
-  font-family: 'Noto Naskh Arabic', 'Cinzel', serif;
+html[dir="rtl"] h6,
+html[dir="rtl"] .company-name,
+html[dir="rtl"] .section-title,
+html[dir="rtl"] .hero-title {
+  font-family: var(--font-arabic);
+  letter-spacing: normal;
 }
 
 html[dir="rtl"] .top-bar-inner {
@@ -70,6 +73,7 @@ html[dir="rtl"] .hero-cta-group {
 
 html[dir="rtl"] .hero-golden-spotlight {
   flex-direction: row-reverse;
+  text-align: right;
 }
 
 html[dir="rtl"] .spotlight-info {
@@ -81,7 +85,7 @@ html[dir="rtl"] .stat-card {
 }
 
 html[dir="rtl"] .form-group label,
-html[dir="rtl"] .calc-group label {
+html[dir="rtl"] .calc-form-card label {
   text-align: right;
 }
 
@@ -93,48 +97,66 @@ html[dir="rtl"] textarea {
 }
 
 html[dir="rtl"] .project-tag {
-  left: 14px;
+  left: 16px;
   right: auto;
 }
 
 html[dir="rtl"] .project-load-pill {
-  right: 14px;
+  right: 16px;
   left: auto;
 }
 
-html[dir="rtl"] .modal-header {
-  flex-direction: row-reverse;
+html[dir="rtl"] .quote-icon {
+  left: 32px;
+  right: auto;
+  transform: scaleX(-1);
 }
 
-html[dir="rtl"] .floating-contact-stack {
-  left: 24px;
+html[dir="rtl"] .trophy-quote-box {
+  border-left: none;
+  border-right: 3px solid var(--gold-primary);
+  border-radius: var(--radius-sm) 0 0 var(--radius-sm);
+}
+
+html[dir="rtl"] .search-box input {
+  padding: 10px 18px 10px 42px;
+}
+
+html[dir="rtl"] .search-icon {
+  left: 16px;
   right: auto;
 }
 
-html[dir="rtl"] .lang-switch-btn {
-  font-family: 'Plus Jakarta Sans', sans-serif;
-  font-weight: 700;
-}
-
-html[dir="rtl"] .icon-arrow {
-  transform: rotate(180deg);
-}
-
-html[dir="rtl"] .footer-inner {
-  direction: rtl;
+html[dir="rtl"] .policy-item summary {
   text-align: right;
 }
 
-html[dir="rtl"] .footer-address,
-html[dir="rtl"] .footer-nav ul,
-html[dir="rtl"] .footer-creds-list {
-  text-align: right;
+html[dir="rtl"] .features-checklist li:hover {
+  transform: translateX(-4px);
 }
 
-html[dir="rtl"] .partner-card {
-  text-align: right;
+html[dir="rtl"] .btn-link-details:hover {
+  transform: translateX(-4px);
 }
 
-html[dir="rtl"] .partner-card-header {
-  flex-direction: row-reverse;
+html[dir="rtl"] .footer-nav a:hover {
+  padding-left: 0;
+  padding-right: 6px;
+}
+
+html[dir="rtl"] .floating-contact-stack {
+  left: 28px;
+  right: auto;
+}
+
+html[dir="rtl"] .wa-tooltip {
+  left: 70px;
+  right: auto;
+}
+
+@media (max-width: 768px) {
+  html[dir="rtl"] .floating-contact-stack {
+    left: 16px;
+    right: auto;
+  }
 }

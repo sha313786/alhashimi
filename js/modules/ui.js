@@ -1,6 +1,6 @@
 /**
  * Al Hashimi Electrical Installation Works LLC
- * Module: UI Interactions (Navigation, Tabs, Modals, Lightbox, Counters, Back-to-Top)
+ * Module: UI Interactions (Scroll-Spy, Navigation, Tabs, Modals, Lightbox, Counters, Back-to-Top)
  */
 
 function initScopeTabs() {
@@ -71,8 +71,13 @@ function initRfqModal() {
     quickForm.addEventListener('submit', (e) => {
       e.preventDefault();
       const name = document.getElementById('quickName').value;
+      const contact = document.getElementById('quickContact').value;
       
-      alert(`Thank you, ${name}! Your pre-qualification callback request has been prioritized directly to Managing Director Mr. Binoji K. Varghese. He will reach out shortly.`);
+      const waMsg = encodeURIComponent(`Hello Mr. Binoji, callback request from ${name} (${contact}) regarding MEP subcontract prequalification.`);
+      const waLink = `https://wa.me/971528974123?text=${waMsg}`;
+
+      alert(`Thank you, ${name}! Your callback request has been prioritized directly to Managing Director Mr. Binoji K. Varghese.`);
+      window.open(waLink, '_blank');
       quickForm.reset();
       modal.close();
     });
@@ -151,7 +156,7 @@ function initStatCounters() {
       statNumbers.forEach(numEl => {
         const target = parseInt(numEl.getAttribute('data-target'), 10);
         let count = 0;
-        const speed = target > 500 ? 15 : 50;
+        const speed = target > 500 ? 15 : 45;
 
         const updateCount = () => {
           const step = Math.ceil(target / 35);
@@ -176,18 +181,60 @@ function initStatCounters() {
 
 function initBackToTop() {
   const btn = document.getElementById('backToTopBtn');
-  if (!btn) return;
+  const header = document.getElementById('header');
 
   window.addEventListener('scroll', () => {
-    if (window.scrollY > 450) {
-      btn.classList.add('visible');
-    } else {
-      btn.classList.remove('visible');
+    const scrollPos = window.scrollY;
+    if (btn) {
+      if (scrollPos > 450) {
+        btn.classList.add('visible');
+      } else {
+        btn.classList.remove('visible');
+      }
+    }
+
+    if (header) {
+      if (scrollPos > 60) {
+        header.classList.add('scrolled');
+      } else {
+        header.classList.remove('scrolled');
+      }
     }
   });
 
-  btn.addEventListener('click', () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+  if (btn) {
+    btn.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
+}
+
+// Scroll-Spy for Navigation
+function initScrollSpy() {
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav-link');
+
+  if (!sections.length || !navLinks.length) return;
+
+  window.addEventListener('scroll', () => {
+    let current = '';
+    const scrollPosition = window.scrollY + 120;
+
+    sections.forEach(section => {
+      const sectionTop = section.offsetTop;
+      const sectionHeight = section.offsetHeight;
+      if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+        current = section.getAttribute('id');
+      }
+    });
+
+    navLinks.forEach(link => {
+      link.classList.remove('active');
+      const href = link.getAttribute('href');
+      if (href === `#${current}`) {
+        link.classList.add('active');
+      }
+    });
   });
 }
 
@@ -198,6 +245,7 @@ if (typeof module !== 'undefined' && module.exports) {
     initPhotoLightbox,
     initMobileMenu,
     initStatCounters,
-    initBackToTop
+    initBackToTop,
+    initScrollSpy
   };
 }
