@@ -1,11 +1,11 @@
 /* ==========================================================================
    Header, Corporate Announcement Bar & Navigation
-   Authentic Corporate Architecture
+   Authentic Executive Corporate Architecture
    ========================================================================== */
 
 /* Top Corporate Utility Bar */
 .top-bar {
-  background: var(--navy-darkest);
+  background: #040914;
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   font-size: 0.80rem;
   padding-block: 7px;
@@ -83,14 +83,14 @@
   color: #ffffff;
 }
 
-/* Site Sticky Header */
+/* Site Sticky Header - Cohesive Executive Navy */
 .site-header {
   position: sticky;
   top: 0;
   z-index: 100;
-  background: #ffffff;
-  border-bottom: 1px solid var(--border-light);
-  box-shadow: var(--shadow-xs);
+  background: var(--navy-darkest);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.10);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.35);
   transition: all var(--transition-normal);
 }
 
@@ -114,7 +114,7 @@
   width: 44px;
   height: 44px;
   border-radius: var(--radius-xs);
-  background: var(--navy-darkest);
+  background: #040914;
   border: 1.5px solid var(--gold-primary);
   display: flex;
   align-items: center;
@@ -122,7 +122,7 @@
 }
 
 .emblem-crescent {
-  font-family: var(--font-serif);
+  font-family: var(--font-sans);
   font-weight: 800;
   font-size: 1.15rem;
   color: var(--gold-light);
@@ -135,10 +135,10 @@
 }
 
 .company-name {
-  font-family: var(--font-serif);
+  font-family: var(--font-sans);
   font-size: 1.25rem;
   font-weight: 800;
-  color: var(--navy-darkest);
+  color: #ffffff;
   letter-spacing: 1px;
   line-height: 1.1;
 }
@@ -146,14 +146,14 @@
 .company-sub {
   font-size: 0.65rem;
   font-weight: 700;
-  color: var(--gold-primary);
+  color: var(--gold-light);
   letter-spacing: 0.8px;
   margin-top: 1px;
 }
 
 .company-est {
   font-size: 0.62rem;
-  color: var(--text-muted);
+  color: #94a3b8;
 }
 
 /* Navigation Links */
@@ -167,7 +167,7 @@
 .nav-link {
   font-size: 0.88rem;
   font-weight: 600;
-  color: var(--text-body);
+  color: #cbd5e1;
   padding: 6px 2px;
   position: relative;
   transition: color var(--transition-fast);
@@ -175,7 +175,7 @@
 
 .nav-link:hover,
 .nav-link.active {
-  color: var(--navy-darkest);
+  color: #ffffff;
 }
 
 .nav-link.active::after {
@@ -189,8 +189,19 @@
 }
 
 .gold-nav-link {
-  color: var(--gold-primary) !important;
+  color: var(--gold-light) !important;
   font-weight: 700 !important;
+}
+
+.highlight-nav-link {
+  color: #e2e8f0 !important;
+}
+
+/* Header Right Actions */
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
 }
 
 /* Mobile Toggle Hamburger */
@@ -198,8 +209,8 @@
   display: none;
   width: 38px;
   height: 38px;
-  background: var(--bg-muted);
-  border: 1px solid var(--border-light);
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
   border-radius: var(--radius-xs);
   cursor: pointer;
   padding: 8px;
@@ -209,7 +220,7 @@
   display: block;
   width: 20px;
   height: 2px;
-  background: var(--navy-dark);
+  background: #ffffff;
   margin: 4px auto;
   transition: all var(--transition-fast);
 }
@@ -224,4 +235,41 @@
 
 .mobile-toggle[aria-expanded="true"] span:nth-child(3) {
   transform: translateY(-6px) rotate(-45deg);
+}
+
+@media (max-width: 1140px) {
+  .main-nav {
+    position: fixed;
+    top: 72px;
+    left: 0;
+    width: 100%;
+    background: var(--navy-darkest);
+    border-bottom: 2px solid var(--gold-primary);
+    padding: 24px;
+    display: none;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+    max-height: calc(100vh - 72px);
+    overflow-y: auto;
+  }
+
+  .main-nav.open {
+    display: block;
+  }
+
+  .main-nav ul {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+
+  .main-nav .nav-link {
+    font-size: 1rem;
+    padding-block: 8px;
+    width: 100%;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  }
+
+  .mobile-toggle {
+    display: block;
+  }
 }

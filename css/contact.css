@@ -108,11 +108,22 @@
 }
 
 .loc-icon {
-  font-size: 1.25rem;
+  width: 24px;
+  height: 24px;
   color: var(--navy-primary);
-  line-height: 1;
   flex-shrink: 0;
   margin-top: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.loc-icon svg {
+  width: 20px;
+  height: 20px;
+  stroke: currentColor;
+  stroke-width: 2;
+  fill: none;
 }
 
 .loc-details-list strong {
@@ -259,8 +270,17 @@
 .p-phone, .p-wa {
   font-size: 0.76rem;
   font-weight: 700;
-  padding: 3px 8px;
+  padding: 4px 10px;
   border-radius: var(--radius-xs);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.p-phone svg, .p-wa svg {
+  width: 13px;
+  height: 13px;
+  flex-shrink: 0;
 }
 
 .p-phone {
@@ -295,9 +315,21 @@
 }
 
 .em-icon {
-  font-size: 1.6rem;
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-xs);
+  background: rgba(184, 134, 11, 0.15);
   color: var(--gold-dark);
   flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.em-icon svg {
+  width: 20px;
+  height: 20px;
+  fill: currentColor;
 }
 
 .emergency-callout-box strong {
@@ -423,11 +455,29 @@
   display: none;
 }
 
+.drop-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
 .drop-icon {
-  font-size: 1.8rem;
-  line-height: 1;
-  margin-bottom: 6px;
+  width: 44px;
+  height: 44px;
+  margin: 0 auto 10px;
   color: var(--navy-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.drop-icon svg {
+  width: 36px;
+  height: 36px;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  fill: none;
 }
 
 .drop-prompt {
@@ -491,9 +541,18 @@
 }
 
 .fb-icon {
-  font-size: 1.2rem;
+  width: 22px;
+  height: 22px;
   color: #16a34a;
   flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.fb-icon svg {
+  width: 18px;
+  height: 18px;
 }
 
 .feedback-actions {

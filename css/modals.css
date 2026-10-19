@@ -57,6 +57,21 @@
   color: var(--navy-darkest);
 }
 
+.modal-body {
+  margin-top: 14px;
+}
+
+.modal-footer {
+  margin-top: 20px;
+  padding-top: 14px;
+  border-top: 1px solid var(--border-light);
+}
+
+.cert-body {
+  position: relative;
+  z-index: 1;
+}
+
 .quick-form {
   display: flex;
   flex-direction: column;

@@ -113,11 +113,40 @@
 }
 
 .ph-icon {
-  font-size: 2.8rem;
-  line-height: 1;
+  width: 56px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   position: relative;
   z-index: 2;
   color: var(--gold-light);
+  background: rgba(184, 134, 11, 0.12);
+  border: 1px solid var(--gold-border);
+  border-radius: var(--radius-xs);
+  padding: 10px;
+}
+
+.ph-icon svg {
+  width: 100%;
+  height: 100%;
+  fill: currentColor;
+}
+
+.industrial-bg {
+  background: radial-gradient(circle at center, #10213d 0%, #070e1e 100%);
+}
+
+.mosque-bg {
+  background: radial-gradient(circle at center, #0f2638 0%, #061520 100%);
+}
+
+.villa-bg {
+  background: radial-gradient(circle at center, #182236 0%, #0a1120 100%);
+}
+
+.commercial-bg {
+  background: radial-gradient(circle at center, #13243f 0%, #081022 100%);
 }
 
 .ph-blueprint-badge {
@@ -161,6 +190,15 @@
   border-radius: var(--radius-xs);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
   z-index: 3;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.project-load-pill svg {
+  width: 13px;
+  height: 13px;
+  fill: currentColor;
 }
 
 /* Project Card Info */
@@ -183,6 +221,15 @@
 .p-loc {
   font-size: 0.80rem;
   color: var(--text-secondary);
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.p-loc svg {
+  width: 14px;
+  height: 14px;
+  color: var(--gold-dark);
 }
 
 .p-status.energized {
@@ -193,6 +240,15 @@
   border: 1px solid #bbf7d0;
   padding: 3px 8px;
   border-radius: var(--radius-xs);
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.p-status.energized svg {
+  width: 12px;
+  height: 12px;
+  fill: currentColor;
 }
 
 .project-card-info h4 {

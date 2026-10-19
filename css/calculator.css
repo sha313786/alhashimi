@@ -280,9 +280,25 @@
 }
 
 .sld-node .node-icon {
-  font-size: 1.15rem;
-  margin-bottom: 4px;
+  width: 28px;
+  height: 28px;
+  margin: 0 auto 4px;
   color: var(--navy-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sld-node .node-icon svg {
+  width: 20px;
+  height: 20px;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  fill: none;
+}
+
+.sld-node.active .node-icon {
+  color: var(--gold-dark);
 }
 
 .sld-node .node-name {

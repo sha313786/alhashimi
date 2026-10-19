@@ -42,8 +42,8 @@ function initProjectPortfolio() {
         ? `<div class="cs-img-wrap"><img src="${data.image}" alt="${data.title}" class="cs-img"></div>`
         : `<div class="cs-img-wrap" style="height:180px; background:linear-gradient(135deg, #091220 0%, #15243e 100%); display:flex; align-items:center; justify-content:center; border:1px solid var(--gold-border);">
             <div style="text-align:center;">
-              <span style="font-size:2.8rem; display:block;">&#128736;</span>
-              <span style="font-family:var(--font-serif); font-size:1rem; color:var(--gold-light); font-weight:700;">DEWA Approved Architectural CAD Schematic</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" style="width:44px; height:44px; margin:0 auto 10px; color:var(--gold-light); display:block;"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+              <span style="font-family:var(--font-sans); font-size:0.95rem; color:var(--gold-light); font-weight:700; letter-spacing:0.5px;">DEWA Approved Architectural CAD Schematic</span>
             </div>
            </div>`;
 

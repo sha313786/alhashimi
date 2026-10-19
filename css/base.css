@@ -260,3 +260,52 @@ h1, h2, h3, h4, h5, h6 {
 .gold-star {
   color: var(--gold-primary);
 }
+
+/* Icon & Helper Utilities */
+.icon-arrow {
+  width: 14px;
+  height: 14px;
+  transition: transform var(--transition-fast);
+}
+
+.btn:hover .icon-arrow {
+  transform: translateX(3px);
+}
+
+.avatar-badge {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  background: var(--gold-primary);
+  color: #ffffff;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.65rem;
+  border: 2px solid #ffffff;
+}
+
+.designed-tag {
+  font-size: 0.76rem;
+  color: #64748b;
+  margin-top: 4px;
+}
+
+/* Button Submit Spinner */
+.btn-loader {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  border-top-color: #ffffff;
+  animation: btn-spin 0.8s linear infinite;
+  margin-left: 8px;
+}
+
+@keyframes btn-spin {
+  to { transform: rotate(360deg); }
+}

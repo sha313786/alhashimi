@@ -16,12 +16,14 @@
   --bg-surface: #ffffff;
   --bg-subtle: #f8fafc;
   --bg-muted: #f1f5f9;
-  --bg-dark-section: #0b1528;
-  --bg-dark-card: #121f3a;
+  --bg-dark-section: #070e1e;
+  --bg-dark-card: #0d172e;
   
   /* Text Colors */
-  --text-heading: #0f172a;
+  --text-heading: #070e1e;
+  --text-primary: #070e1e;
   --text-body: #334155;
+  --text-secondary: #475569;
   --text-muted: #64748b;
   --text-light: #94a3b8;
   --text-white: #ffffff;
@@ -41,8 +43,8 @@
   --border-medium: #cbd5e1;
   --border-dark: rgba(255, 255, 255, 0.12);
   
-  /* Typography */
-  --font-serif: 'Cinzel', 'Times New Roman', Georgia, serif;
+  /* Typography - Clean Modern Architectural Sans */
+  --font-serif: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   --font-arabic: 'Noto Naskh Arabic', 'Cairo', system-ui, sans-serif;
   --font-mono: 'JetBrains Mono', 'SFMono-Regular', Consolas, monospace;

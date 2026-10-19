@@ -36,6 +36,15 @@
 .trust-item .trust-icon {
   color: var(--gold-primary);
   font-size: 1.1rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.trust-item .trust-icon svg {
+  width: 18px;
+  height: 18px;
+  fill: currentColor;
 }
 
 /* Filter Bar & Search */
@@ -112,6 +121,17 @@
   color: var(--text-secondary);
   pointer-events: none;
   font-size: 0.95rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.search-icon svg {
+  width: 16px;
+  height: 16px;
+  stroke: currentColor;
+  stroke-width: 2;
+  fill: none;
 }
 
 /* Partner Cards Grid */
@@ -154,6 +174,9 @@
   border-radius: var(--radius-xs);
   text-transform: uppercase;
   letter-spacing: 0.5px;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
 }
 
 .pt-badge.consultant {

@@ -256,3 +256,163 @@
 .details-actions {
   flex-shrink: 0;
 }
+
+/* Regulatory Advantage Comparison Grid */
+.awards-comparison-matrix {
+  margin-top: 48px;
+  margin-bottom: 48px;
+  background: var(--bg-dark-card);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: var(--radius-md);
+  padding: 36px;
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.35);
+}
+
+.comparison-matrix-header {
+  text-align: center;
+  max-width: 680px;
+  margin: 0 auto 36px;
+}
+
+.comparison-matrix-header h3 {
+  font-family: var(--font-sans);
+  font-size: 1.45rem;
+  font-weight: 800;
+  color: #ffffff;
+  margin-bottom: 8px;
+  letter-spacing: -0.3px;
+}
+
+.comparison-matrix-header p {
+  color: #94a3b8;
+  font-size: 0.90rem;
+  line-height: 1.6;
+}
+
+.comparison-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+.comp-item {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius-sm);
+  padding: 24px 20px;
+  display: flex;
+  flex-direction: column;
+  transition: all var(--transition-fast);
+}
+
+.comp-item:hover {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: var(--gold-border-strong);
+  transform: translateY(-2px);
+}
+
+.comp-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-xs);
+  background: rgba(184, 134, 11, 0.15);
+  border: 1px solid var(--gold-border);
+  color: var(--gold-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 16px;
+}
+
+.comp-icon svg {
+  width: 22px;
+  height: 22px;
+}
+
+.comp-title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 16px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  padding-bottom: 10px;
+}
+
+.comp-stat-gold {
+  background: rgba(184, 134, 11, 0.12);
+  border: 1px solid var(--gold-border);
+  border-radius: var(--radius-xs);
+  padding: 12px;
+  margin-bottom: 10px;
+}
+
+.comp-stat-gold strong {
+  display: block;
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: var(--gold-light);
+  margin-bottom: 2px;
+}
+
+.comp-stat-gold span {
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: #e2e8f0;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.comp-stat-std {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: var(--radius-xs);
+  padding: 10px 12px;
+}
+
+.comp-stat-std strong {
+  display: block;
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: #94a3b8;
+  margin-bottom: 2px;
+}
+
+.comp-stat-std span {
+  font-size: 0.70rem;
+  color: #64748b;
+}
+
+/* Badges & Accents in Awards */
+.ribbon-star,
+.tag-gold-star {
+  color: var(--gold-light);
+  display: inline-flex;
+}
+
+.ceremony-tag {
+  background: rgba(15, 23, 42, 0.95);
+  border-color: rgba(255, 255, 255, 0.25);
+  color: #ffffff;
+}
+
+@media (max-width: 1024px) {
+  .golden-holder-showcase {
+    grid-template-columns: 1fr;
+  }
+  .comparison-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .awards-details-banner {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+@media (max-width: 640px) {
+  .comparison-grid {
+    grid-template-columns: 1fr;
+  }
+  .golden-perks-grid {
+    grid-template-columns: 1fr;
+  }
+}
