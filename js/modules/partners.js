@@ -104,15 +104,20 @@ function initPartnerDirectory() {
       const fragment = document.createDocumentFragment();
       displayList.forEach(item => {
         const card = document.createElement('div');
-        card.className = `partner-card ${item.type}`;
+        const isFeatured = !!item.featured;
+        card.className = `partner-card ${item.type}${isFeatured ? ' featured-tier1' : ''}`;
         
         const typeInfo = getTypeDetails(item.type);
         const monogram = resolveMonogram(item);
+        const premierBadge = isFeatured 
+          ? `<span class="f-premier-badge" title="Tier-1 Sovereign / Landmark Partner"><svg viewBox="0 0 24 24" fill="currentColor" style="width:10px;height:10px;"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg> Premier</span>` 
+          : '';
 
         card.innerHTML = `
           <div class="partner-card-header">
             <div class="partner-monogram ${item.type}">${escapeHtml(monogram)}</div>
             <div class="partner-meta-top">
+              ${premierBadge}
               <span class="pt-badge ${item.type}">
                 ${typeInfo.icon}
                 <span>${escapeHtml(typeInfo.label)}</span>

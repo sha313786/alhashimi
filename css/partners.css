@@ -507,6 +507,33 @@
   box-shadow: 0 8px 20px rgba(15, 23, 42, 0.08);
 }
 
+.partner-card.featured-tier1 {
+  border: 1.5px solid var(--gold-border-strong);
+  background: linear-gradient(180deg, #ffffff 0%, #fdfbf7 100%);
+  box-shadow: 0 4px 14px rgba(184, 134, 11, 0.08);
+}
+
+.partner-card.featured-tier1:hover {
+  border-color: var(--gold-primary);
+  box-shadow: 0 8px 24px rgba(184, 134, 11, 0.18);
+  transform: translateY(-3px);
+}
+
+.f-premier-badge {
+  font-size: 0.65rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  background: rgba(184, 134, 11, 0.12);
+  color: var(--gold-dark);
+  border: 1px solid var(--gold-border);
+  padding: 2px 7px;
+  border-radius: var(--radius-xs);
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+}
+
 .partner-card-header {
   display: flex;
   align-items: center;
