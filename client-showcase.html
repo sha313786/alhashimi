@@ -2485,8 +2485,8 @@ h1, h2, h3, h4, h5, h6 {
 
 
 /* ==========================================================================
-   Partners, Consultants & Contractors Directory (79+ Entities)
-   Authentic Corporate Architecture Style
+   Partners, Consultants & Contractors Directory (80+ Entities)
+   Authentic Executive Corporate Architecture Style
    ========================================================================== */
 
 .partners-section {
@@ -2496,107 +2496,398 @@ h1, h2, h3, h4, h5, h6 {
   padding-block: 80px;
 }
 
-/* Featured Authority Trust Strip */
-.partners-trust-strip {
-  background: var(--bg-subtle);
-  border: 1px solid var(--border-light);
-  border-radius: var(--radius-sm);
-  padding: 18px 24px;
-  margin-bottom: 40px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
+/* ==========================================================================
+   1. Authority & Regulatory Accreditation Plaque Matrix
+   ========================================================================== */
+
+.partners-accreditation-matrix {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
   gap: 16px;
+  margin-bottom: 48px;
 }
 
-.trust-item {
+.accreditation-card {
+  background: #ffffff;
+  border: 1px solid var(--border-medium);
+  border-radius: var(--radius-sm);
+  padding: 16px 20px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  box-shadow: var(--shadow-xs);
+  transition: all var(--transition-fast);
+}
+
+.accreditation-card:hover {
+  transform: translateY(-2px);
+  border-color: var(--gold-border-strong);
+  box-shadow: 0 6px 18px rgba(184, 134, 11, 0.1);
+}
+
+.acc-icon-wrap {
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-xs);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.acc-icon-wrap svg {
+  width: 22px;
+  height: 22px;
+}
+
+.acc-icon-wrap.gold-trophy {
+  background: rgba(184, 134, 11, 0.12);
+  color: var(--gold-dark);
+  border: 1px solid var(--gold-border);
+}
+
+.acc-icon-wrap.emerald-seal {
+  background: rgba(16, 185, 129, 0.12);
+  color: #059669;
+  border: 1px solid rgba(16, 185, 129, 0.25);
+}
+
+.acc-icon-wrap.sapphire-blueprint {
+  background: rgba(14, 116, 144, 0.12);
+  color: #0e7490;
+  border: 1px solid rgba(14, 116, 144, 0.25);
+}
+
+.acc-icon-wrap.safety-shield {
+  background: rgba(30, 41, 59, 0.08);
+  color: var(--navy-darkest);
+  border: 1px solid var(--border-medium);
+}
+
+.acc-content {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.acc-title {
+  font-size: 0.92rem;
+  font-weight: 800;
+  color: var(--navy-darkest);
+  line-height: 1.25;
+}
+
+.acc-sub {
+  font-size: 0.76rem;
+  color: var(--text-secondary);
+  line-height: 1.3;
+}
+
+/* ==========================================================================
+   2. Featured Authorities & Key Master Partners Showcase
+   ========================================================================== */
+
+.featured-partners-block {
+  background: linear-gradient(135deg, #070e1b 0%, #0c182c 50%, #08101f 100%);
+  border: 1px solid var(--gold-border);
+  border-radius: var(--radius-md);
+  padding: 36px 32px;
+  margin-bottom: 56px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.25);
+}
+
+.featured-partners-block::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, transparent 0%, var(--gold-primary) 50%, transparent 100%);
+}
+
+.featured-block-header {
+  margin-bottom: 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.featured-badge-pill {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  font-size: 0.86rem;
-  font-weight: 700;
-  color: var(--navy-darkest);
+  background: rgba(184, 134, 11, 0.18);
+  border: 1px solid var(--gold-border);
+  color: var(--gold-light);
+  padding: 6px 14px;
+  border-radius: var(--radius-full);
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  width: fit-content;
 }
 
-.trust-item .trust-icon {
-  color: var(--gold-primary);
-  font-size: 1.1rem;
-  display: inline-flex;
+.featured-badge-sub {
+  font-size: 0.90rem;
+  color: rgba(226, 232, 240, 0.85);
+  max-width: 720px;
+}
+
+.featured-partners-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 20px;
+}
+
+.featured-partner-card {
+  background: rgba(15, 23, 42, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-sm);
+  padding: 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  transition: all var(--transition-fast);
+  backdrop-filter: blur(8px);
+}
+
+.featured-partner-card:hover {
+  border-color: var(--gold-primary);
+  transform: translateY(-3px);
+  background: rgba(18, 30, 54, 0.85);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4), 0 0 16px rgba(184, 134, 11, 0.2);
+}
+
+.f-card-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.f-monogram {
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius-xs);
+  display: flex;
   align-items: center;
   justify-content: center;
+  font-size: 0.84rem;
+  font-weight: 900;
+  letter-spacing: 0.5px;
+  flex-shrink: 0;
+  text-transform: uppercase;
 }
 
-.trust-item .trust-icon svg {
-  width: 18px;
-  height: 18px;
-  fill: currentColor;
+.f-monogram.dewa {
+  background: linear-gradient(135deg, #1e3a5f 0%, #0d1e33 100%);
+  color: #fbbf24;
+  border: 1.5px solid #d97706;
 }
 
-/* Filter Bar & Search */
-.partner-filter-bar {
+.f-monogram.dm {
+  background: linear-gradient(135deg, #064e3b 0%, #022c22 100%);
+  color: #34d399;
+  border: 1.5px solid #059669;
+}
+
+.f-monogram.emaar {
+  background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+  color: #e2e8f0;
+  border: 1.5px solid var(--gold-primary);
+}
+
+.f-monogram.ka,
+.f-monogram.ha,
+.f-monogram.by,
+.f-monogram.as {
+  background: linear-gradient(135deg, #172554 0%, #0f172a 100%);
+  color: #60a5fa;
+  border: 1.5px solid #2563eb;
+}
+
+.f-monogram.asgc {
+  background: linear-gradient(135deg, #451a03 0%, #1c0a00 100%);
+  color: #f59e0b;
+  border: 1.5px solid #b45309;
+}
+
+.f-tags {
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 4px;
+}
+
+.f-type-badge {
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  padding: 3px 8px;
+  border-radius: var(--radius-xs);
+}
+
+.f-type-badge.authority {
+  background: rgba(217, 119, 6, 0.2);
+  color: #fcd34d;
+  border: 1px solid rgba(217, 119, 6, 0.4);
+}
+
+.f-type-badge.municipal {
+  background: rgba(5, 150, 105, 0.2);
+  color: #6ee7b7;
+  border: 1px solid rgba(5, 150, 105, 0.4);
+}
+
+.f-type-badge.developer {
+  background: rgba(184, 134, 11, 0.2);
+  color: var(--gold-light);
+  border: 1px solid var(--gold-border);
+}
+
+.f-type-badge.consultant {
+  background: rgba(37, 99, 235, 0.2);
+  color: #93c5fd;
+  border: 1px solid rgba(37, 99, 235, 0.4);
+}
+
+.f-type-badge.contractor {
+  background: rgba(245, 158, 11, 0.2);
+  color: #fde68a;
+  border: 1px solid rgba(245, 158, 11, 0.4);
+}
+
+.f-standing-badge {
+  font-size: 0.68rem;
+  font-weight: 700;
+  color: #a7f3d0;
+  display: inline-flex;
   align-items: center;
-  gap: 20px;
-  margin-bottom: 32px;
-  flex-wrap: wrap;
+  gap: 4px;
 }
 
-.filter-buttons {
+.f-standing-badge svg {
+  width: 10px;
+  height: 10px;
+  color: #10b981;
+}
+
+.f-partner-name {
+  font-family: var(--font-serif);
+  font-size: 1.12rem;
+  color: #ffffff;
+  font-weight: 700;
+  line-height: 1.35;
+  margin: 0;
+}
+
+.f-partner-desc {
+  font-size: 0.80rem;
+  color: #94a3b8;
+  line-height: 1.5;
+  margin: 0;
+  flex-grow: 1;
+}
+
+.f-card-footer {
   display: flex;
-  gap: 10px;
-  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 10px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  font-size: 0.74rem;
 }
 
-.filter-btn {
+.f-scope-pill {
+  color: var(--gold-light);
+  font-weight: 600;
+}
+
+.f-loc {
+  color: #64748b;
+  font-weight: 500;
+}
+
+/* ==========================================================================
+   3. Complete Pre-Approved Directory & Registry Block
+   ========================================================================== */
+
+.partner-directory-block {
   background: #ffffff;
   border: 1px solid var(--border-medium);
-  color: var(--navy-primary);
-  padding: 9px 18px;
-  border-radius: var(--radius-xs);
-  font-size: 0.86rem;
-  font-weight: 700;
-  cursor: pointer;
-  transition: all var(--transition-fast);
-  box-shadow: var(--shadow-xs);
+  border-radius: var(--radius-md);
+  padding: 36px 32px;
+  box-shadow: var(--shadow-sm);
 }
 
-.filter-btn:hover {
-  background: var(--bg-subtle);
-  border-color: var(--navy-primary);
+.directory-block-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 24px;
+  margin-bottom: 28px;
+  flex-wrap: wrap;
+}
+
+.directory-header-content {
+  flex: 1;
+  min-width: 300px;
+}
+
+.dir-sub-tag {
+  font-size: 0.74rem;
+  font-weight: 800;
+  color: var(--gold-dark);
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  display: block;
+  margin-bottom: 4px;
+}
+
+.dir-main-title {
+  font-family: var(--font-serif);
+  font-size: 1.45rem;
   color: var(--navy-darkest);
+  font-weight: 700;
+  margin: 0 0 6px 0;
 }
 
-.filter-btn.active {
-  background: var(--navy-primary);
-  color: #ffffff;
-  border-color: var(--navy-primary);
-  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.15);
+.dir-desc {
+  font-size: 0.84rem;
+  color: var(--text-secondary);
+  margin: 0;
+  max-width: 640px;
 }
 
+/* Search Box in Directory */
 .search-box {
   position: relative;
-  min-width: 280px;
-  flex: 1;
-  max-width: 380px;
+  min-width: 290px;
+  max-width: 360px;
+  width: 100%;
 }
 
 .search-box input {
   width: 100%;
-  background: #ffffff;
+  background: var(--bg-subtle);
   border: 1px solid var(--border-medium);
   border-radius: var(--radius-xs);
   padding: 10px 40px 10px 14px;
   color: var(--text-primary);
-  font-size: 0.88rem;
+  font-size: 0.86rem;
   outline: none;
   transition: all var(--transition-fast);
 }
 
 .search-box input:focus {
-  border-color: var(--navy-primary);
-  box-shadow: 0 0 0 3px rgba(21, 35, 66, 0.1);
+  background: #ffffff;
+  border-color: var(--gold-primary);
+  box-shadow: 0 0 0 3px rgba(184, 134, 11, 0.15);
 }
 
 .search-icon {
@@ -2606,7 +2897,6 @@ h1, h2, h3, h4, h5, h6 {
   transform: translateY(-50%);
   color: var(--text-secondary);
   pointer-events: none;
-  font-size: 0.95rem;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -2615,54 +2905,156 @@ h1, h2, h3, h4, h5, h6 {
 .search-icon svg {
   width: 16px;
   height: 16px;
-  stroke: currentColor;
-  stroke-width: 2;
-  fill: none;
 }
 
-/* Partner Cards Grid */
+/* Filter Bar & Tabs */
+.partner-filter-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  padding-bottom: 24px;
+  margin-bottom: 28px;
+  border-bottom: 1px solid var(--border-light);
+  flex-wrap: wrap;
+}
+
+.filter-buttons {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.filter-btn {
+  background: var(--bg-subtle);
+  border: 1px solid var(--border-medium);
+  color: var(--navy-primary);
+  padding: 8px 16px;
+  border-radius: var(--radius-xs);
+  font-size: 0.82rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.filter-btn:hover {
+  background: #ffffff;
+  border-color: var(--gold-border-strong);
+  color: var(--gold-dark);
+}
+
+.filter-btn.active {
+  background: var(--navy-primary);
+  color: #ffffff;
+  border-color: var(--navy-primary);
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.18);
+}
+
+.registry-stats-badge {
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+  background: var(--bg-subtle);
+  border: 1px solid var(--border-light);
+  padding: 6px 14px;
+  border-radius: var(--radius-full);
+}
+
+.registry-stats-badge strong {
+  color: var(--navy-darkest);
+}
+
+/* ==========================================================================
+   4. Partner Directory Cards Grid
+   ========================================================================== */
+
 .partner-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
   gap: 16px;
-  margin-bottom: 24px;
+  margin-bottom: 32px;
 }
 
 .partner-card {
   background: #ffffff;
-  border: 1px solid var(--border-light);
-  border-radius: var(--radius-xs);
-  padding: 20px;
+  border: 1px solid var(--border-medium);
+  border-radius: var(--radius-sm);
+  padding: 18px 20px;
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 12px;
   transition: all var(--transition-fast);
   box-shadow: var(--shadow-xs);
+  position: relative;
 }
 
 .partner-card:hover {
-  border-color: var(--navy-primary);
+  border-color: var(--gold-primary);
   transform: translateY(-2px);
-  box-shadow: var(--shadow-sm);
+  box-shadow: 0 8px 20px rgba(15, 23, 42, 0.08);
 }
 
 .partner-card-header {
   display: flex;
+  align-items: center;
   justify-content: space-between;
+  gap: 12px;
+}
+
+.partner-monogram {
+  width: 38px;
+  height: 38px;
+  border-radius: var(--radius-xs);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.80rem;
+  font-weight: 900;
+  letter-spacing: 0.5px;
+  flex-shrink: 0;
+}
+
+.partner-monogram.authority,
+.partner-monogram.developer {
+  background: rgba(184, 134, 11, 0.12);
+  color: var(--gold-dark);
+  border: 1px solid var(--gold-border-strong);
+}
+
+.partner-monogram.consultant {
+  background: rgba(14, 116, 144, 0.10);
+  color: #0369a1;
+  border: 1px solid rgba(14, 116, 144, 0.25);
+}
+
+.partner-monogram.contractor {
+  background: rgba(30, 41, 59, 0.06);
+  color: var(--navy-darkest);
+  border: 1px solid var(--border-medium);
+}
+
+.partner-meta-top {
+  display: flex;
   align-items: center;
   gap: 8px;
 }
 
 .pt-badge {
-  font-size: 0.70rem;
-  font-weight: 700;
+  font-size: 0.68rem;
+  font-weight: 800;
   padding: 3px 8px;
   border-radius: var(--radius-xs);
   text-transform: uppercase;
-  letter-spacing: 0.5px;
+  letter-spacing: 0.4px;
   display: inline-flex;
   align-items: center;
-  gap: 4px;
+  gap: 5px;
+}
+
+.pt-badge.authority,
+.pt-badge.developer {
+  background: #fefce8;
+  color: #854d0e;
+  border: 1px solid #fef08a;
 }
 
 .pt-badge.consultant {
@@ -2672,23 +3064,33 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .pt-badge.contractor {
-  background: #fdfbf7;
-  color: var(--gold-dark);
-  border: 1px solid var(--gold-border-strong);
+  background: #f8fafc;
+  color: #334155;
+  border: 1px solid #e2e8f0;
 }
 
 .p-verified {
-  width: 16px;
-  height: 16px;
-  background: #dcfce7;
+  font-size: 0.68rem;
+  font-weight: 700;
+  color: #15803d;
+  background: #f0fdf4;
   border: 1px solid #bbf7d0;
-  color: #166534;
-  border-radius: 50%;
-  display: flex;
+  padding: 2px 7px;
+  border-radius: var(--radius-xs);
+  display: inline-flex;
   align-items: center;
-  justify-content: center;
-  font-size: 0.65rem;
-  font-weight: 900;
+  gap: 4px;
+}
+
+.p-verified svg {
+  color: #16a34a;
+}
+
+.partner-card-body {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  flex-grow: 1;
 }
 
 .partner-name {
@@ -2697,28 +3099,154 @@ h1, h2, h3, h4, h5, h6 {
   color: var(--navy-darkest);
   font-weight: 700;
   line-height: 1.35;
+  margin: 0;
 }
 
-.partner-category {
+.partner-scope-text {
   font-size: 0.78rem;
   color: var(--text-secondary);
+  line-height: 1.45;
+  margin: 0;
+  flex-grow: 1;
 }
 
-.partner-count-notice {
-  text-align: center;
-  font-size: 0.84rem;
+.partner-card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 8px;
+  border-top: 1px solid var(--border-light);
+  font-size: 0.72rem;
+}
+
+.partner-category-tag {
+  color: var(--navy-primary);
+  font-weight: 600;
+}
+
+.partner-loc-tag {
   color: var(--text-secondary);
-  margin-top: 16px;
 }
 
+/* ==========================================================================
+   5. Progressive Disclosure & Toggle Wrap
+   ========================================================================== */
+
+.directory-toggle-wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 16px;
+  border-top: 1px solid var(--border-light);
+}
+
+.directory-toggle-btn {
+  background: #ffffff;
+  border: 1.5px solid var(--gold-border-strong);
+  color: var(--navy-darkest);
+  font-size: 0.88rem;
+  font-weight: 800;
+  padding: 12px 28px;
+  border-radius: var(--radius-sm);
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  box-shadow: var(--shadow-xs);
+}
+
+.directory-toggle-btn:hover {
+  background: var(--navy-primary);
+  color: #ffffff;
+  border-color: var(--navy-primary);
+  box-shadow: 0 4px 14px rgba(15, 23, 42, 0.2);
+  transform: translateY(-2px);
+}
+
+.directory-toggle-btn svg {
+  width: 16px;
+  height: 16px;
+  transition: transform var(--transition-fast);
+}
+
+/* No Results State */
 .no-results {
   grid-column: 1 / -1;
   text-align: center;
-  padding: 40px;
-  background: #ffffff;
-  border-radius: var(--radius-xs);
+  padding: 48px 24px;
+  background: var(--bg-subtle);
+  border-radius: var(--radius-sm);
   border: 1px dashed var(--border-medium);
+}
+
+.no-results-icon {
+  margin-bottom: 12px;
+}
+
+.no-results h4 {
+  font-family: var(--font-serif);
+  font-size: 1.18rem;
+  color: var(--navy-darkest);
+  margin: 0 0 6px 0;
+}
+
+.no-results p {
+  font-size: 0.86rem;
   color: var(--text-secondary);
+  margin: 0;
+}
+
+/* ==========================================================================
+   Responsive Adaptations
+   ========================================================================== */
+
+@media (max-width: 992px) {
+  .featured-partners-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .directory-block-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .search-box {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 640px) {
+  .partners-section {
+    padding-block: 50px;
+  }
+
+  .featured-partners-block {
+    padding: 24px 18px;
+  }
+
+  .featured-partners-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .partner-directory-block {
+    padding: 24px 16px;
+  }
+
+  .partner-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .filter-buttons {
+    width: 100%;
+  }
+
+  .filter-btn {
+    flex: 1 1 auto;
+    text-align: center;
+    font-size: 0.78rem;
+    padding: 7px 10px;
+  }
 }
 
 
@@ -5901,58 +6429,267 @@ html[dir="rtl"] .wa-tooltip {
       </div>
     </section>
 
-    <!-- Clients, Consultants & Contractors Directory (79+ Partners) -->
+    <!-- Clients, Consultants & Contractors Directory (80+ Pre-Qualified Entities) -->
     <section class="section partners-section" id="partners">
       <div class="container">
         <div class="section-header">
-          <span class="section-sub">Trusted Network Across the UAE</span>
-          <h2 class="section-title">Our Consultants & Main Contractors</h2>
-          <p class="section-desc">Over three decades of successful collaborations with prestigious engineering consultancies, property developers, and tier-1 general contractors.</p>
+          <span class="section-sub" data-i18n="partner_sub">Pre-Qualified UAE Network</span>
+          <h2 class="section-title" data-i18n="partner_title">Consultants, Authorities & Main Contractors</h2>
+          <p class="section-desc" data-i18n="partner_desc">Over three decades of established pre-qualifications and technical execution with Dubai's statutory authorities, sovereign master developers, leading consultancies, and tier-1 general contractors.</p>
           <div class="gold-rule"></div>
         </div>
 
-        <!-- Authority Trust Strip -->
-        <div class="partners-trust-strip">
-          <div class="trust-item">
-            <span class="trust-icon"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></span>
-            <span>DEWA Golden Category Tier-1 Approved</span>
+        <!-- 1. Authority & Regulatory Accreditation Plaque Matrix -->
+        <div class="partners-accreditation-matrix">
+          <div class="accreditation-card">
+            <div class="acc-icon-wrap gold-trophy">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/>
+                <path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/>
+                <path d="M4 22h16"/>
+                <path d="M10 14.66V17c0 .55-.45 1-1 1H7v4h10v-4h-2c-.55 0-1-.45-1-1v-2.34"/>
+                <path d="M6 2h12v7a6 6 0 0 1-12 0V2z"/>
+              </svg>
+            </div>
+            <div class="acc-content">
+              <span class="acc-title">DEWA Golden Category</span>
+              <span class="acc-sub">Tier-1 Highest Regulatory Standing</span>
+            </div>
           </div>
-          <div class="trust-item">
-            <span class="trust-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>
-            <span>Dubai Municipality Certified</span>
+
+          <div class="accreditation-card">
+            <div class="acc-icon-wrap emerald-seal">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                <polyline points="9 12 11 14 15 10"/>
+              </svg>
+            </div>
+            <div class="acc-content">
+              <span class="acc-title">Dubai Municipality</span>
+              <span class="acc-sub">Certified Electrical & MEP Subcontractor</span>
+            </div>
           </div>
-          <div class="trust-item">
-            <span class="trust-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg></span>
-            <span>79+ Approved Consultancies & Contractors</span>
+
+          <div class="accreditation-card">
+            <div class="acc-icon-wrap sapphire-blueprint">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="2" y="7" width="20" height="14" rx="2"/>
+                <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/>
+              </svg>
+            </div>
+            <div class="acc-content">
+              <span class="acc-title">80+ Pre-Qualifications</span>
+              <span class="acc-sub">Active Approvals Across Consultancies</span>
+            </div>
           </div>
-          <div class="trust-item">
-            <span class="trust-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>
-            <span>100% Medlife Insured Engineering Workforce</span>
+
+          <div class="accreditation-card">
+            <div class="acc-icon-wrap safety-shield">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                <circle cx="9" cy="7" r="4"/>
+                <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+              </svg>
+            </div>
+            <div class="acc-content">
+              <span class="acc-title">100% Insured Workforce</span>
+              <span class="acc-sub">Medlife & Comprehensive HSE Coverage</span>
+            </div>
           </div>
         </div>
 
-        <!-- Filter Controls -->
-        <div class="partner-filter-bar">
-          <div class="filter-buttons" role="tablist">
-            <button class="filter-btn active" data-filter="all">All Partners (79+)</button>
-            <button class="filter-btn" data-filter="consultant">Consultants & Authorities (35)</button>
-            <button class="filter-btn" data-filter="contractor">Main Contractors (44)</button>
+        <!-- 2. Featured Authorities & Key Master Partners Showcase -->
+        <div class="featured-partners-block">
+          <div class="featured-block-header">
+            <div class="featured-badge-pill">
+              <svg viewBox="0 0 24 24" fill="currentColor" style="width:14px;height:14px;"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <span>Statutory Regulators & Master Developers</span>
+            </div>
+            <span class="featured-badge-sub">Premier sovereign authorities and landmark engineering consultancies with continuous technical collaboration</span>
           </div>
-          <div class="search-box">
-            <input type="search" id="partnerSearch" placeholder="Search consultants, contractors, developers..." aria-label="Search partners">
-            <span class="search-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-            </span>
+
+          <div class="featured-partners-grid">
+            <!-- 1. DEWA -->
+            <div class="featured-partner-card authority">
+              <div class="f-card-top">
+                <div class="f-monogram dewa">DEWA</div>
+                <div class="f-tags">
+                  <span class="f-type-badge authority">Government Authority</span>
+                  <span class="f-standing-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg> 1st Place Trophy</span>
+                </div>
+              </div>
+              <h3 class="f-partner-name">Dubai Electricity & Water Authority</h3>
+              <p class="f-partner-desc">Sovereign utility authority awarding Al Hashimi the Golden Category distinction for rapid first-pass SLD inspections and energization.</p>
+              <div class="f-card-footer">
+                <span class="f-scope-pill">48-Hr Priority Clearances</span>
+                <span class="f-loc">Dubai, UAE</span>
+              </div>
+            </div>
+
+            <!-- 2. Dubai Municipality -->
+            <div class="featured-partner-card municipal">
+              <div class="f-card-top">
+                <div class="f-monogram dm">DM</div>
+                <div class="f-tags">
+                  <span class="f-type-badge municipal">Municipal Authority</span>
+                  <span class="f-standing-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg> Certified Subcontractor</span>
+                </div>
+              </div>
+              <h3 class="f-partner-name">Dubai Municipality</h3>
+              <p class="f-partner-desc">Governing civic and building engineering permitting body with continuous compliance across structural MEP and public infrastructure.</p>
+              <div class="f-card-footer">
+                <span class="f-scope-pill">Civic & Building Permitting</span>
+                <span class="f-loc">Dubai, UAE</span>
+              </div>
+            </div>
+
+            <!-- 3. Emaar Properties -->
+            <div class="featured-partner-card developer">
+              <div class="f-card-top">
+                <div class="f-monogram emaar">EMAAR</div>
+                <div class="f-tags">
+                  <span class="f-type-badge developer">Master Developer</span>
+                  <span class="f-standing-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg> Pre-Approved</span>
+                </div>
+              </div>
+              <h3 class="f-partner-name">Emaar Property Management</h3>
+              <p class="f-partner-desc">Sovereign developer behind Downtown Dubai and master-planned communities; extensive MEP works in luxury residential and retail spaces.</p>
+              <div class="f-card-footer">
+                <span class="f-scope-pill">Luxury Communities & High-Rise</span>
+                <span class="f-loc">Dubai, UAE</span>
+              </div>
+            </div>
+
+            <!-- 4. Khatib & Alami -->
+            <div class="featured-partner-card consultant">
+              <div class="f-card-top">
+                <div class="f-monogram ka">K&A</div>
+                <div class="f-tags">
+                  <span class="f-type-badge consultant">Tier-1 Consultancy</span>
+                  <span class="f-standing-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg> Pre-Approved</span>
+                </div>
+              </div>
+              <h3 class="f-partner-name">Khatib & Alami Consolidated</h3>
+              <p class="f-partner-desc">Leading multidisciplinary international consultancy; collaboration across large-scale electrical substations and industrial facilities.</p>
+              <div class="f-card-footer">
+                <span class="f-scope-pill">Substations & Infrastructure</span>
+                <span class="f-loc">Regional / UAE</span>
+              </div>
+            </div>
+
+            <!-- 5. Holford Associates -->
+            <div class="featured-partner-card consultant">
+              <div class="f-card-top">
+                <div class="f-monogram ha">HA</div>
+                <div class="f-tags">
+                  <span class="f-type-badge consultant">International Consultant</span>
+                  <span class="f-standing-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg> Pre-Approved</span>
+                </div>
+              </div>
+              <h3 class="f-partner-name">Holford Associates Consultants</h3>
+              <p class="f-partner-desc">Renowned architectural and engineering firm; partnered on prominent commercial complexes and bespoke hospitality installations.</p>
+              <div class="f-card-footer">
+                <span class="f-scope-pill">Commercial & Hospitality MEP</span>
+                <span class="f-loc">Dubai, UAE</span>
+              </div>
+            </div>
+
+            <!-- 6. Bel-Yoahah -->
+            <div class="featured-partner-card consultant">
+              <div class="f-card-top">
+                <div class="f-monogram by">BY</div>
+                <div class="f-tags">
+                  <span class="f-type-badge consultant">Architectural & MEP</span>
+                  <span class="f-standing-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg> Pre-Approved</span>
+                </div>
+              </div>
+              <h3 class="f-partner-name">Bel-Yoahah Engineering Consultants</h3>
+              <p class="f-partner-desc">One of the UAE's earliest pioneer consultancies; three decades of joint execution on major residential complexes and commercial centers.</p>
+              <div class="f-card-footer">
+                <span class="f-scope-pill">Residential & Commercial</span>
+                <span class="f-loc">Dubai, UAE</span>
+              </div>
+            </div>
+
+            <!-- 7. Adnan Saffarini -->
+            <div class="featured-partner-card consultant">
+              <div class="f-card-top">
+                <div class="f-monogram as">AS</div>
+                <div class="f-tags">
+                  <span class="f-type-badge consultant">Tower & High-Rise</span>
+                  <span class="f-standing-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg> Pre-Approved</span>
+                </div>
+              </div>
+              <h3 class="f-partner-name">Adnan Saffarini Engineering Office</h3>
+              <p class="f-partner-desc">Renowned for high-rise towers and urban developments across Dubai and Sharjah; executing high-capacity power distribution networks.</p>
+              <div class="f-card-footer">
+                <span class="f-scope-pill">High-Rise Electrical Networks</span>
+                <span class="f-loc">Dubai, UAE</span>
+              </div>
+            </div>
+
+            <!-- 8. Al Shafar Contracting (ASGC) -->
+            <div class="featured-partner-card contractor">
+              <div class="f-card-top">
+                <div class="f-monogram asgc">ASGC</div>
+                <div class="f-tags">
+                  <span class="f-type-badge contractor">Tier-1 Main Contractor</span>
+                  <span class="f-standing-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg> Pre-Qualified</span>
+                </div>
+              </div>
+              <h3 class="f-partner-name">Al Shafar Contracting Co. (ASGC)</h3>
+              <p class="f-partner-desc">Major general contracting conglomerate delivering iconic public and private developments; collaborative turnkey MEP execution.</p>
+              <div class="f-card-footer">
+                <span class="f-scope-pill">Turnkey General Contracting</span>
+                <span class="f-loc">Dubai, UAE</span>
+              </div>
+            </div>
           </div>
         </div>
 
-        <!-- Partner Grid (Interactive) -->
-        <div class="partner-grid" id="partnerGrid">
-          <!-- Populated dynamically via JS from PARTNER_DATA -->
-        </div>
+        <!-- 3. The 80+ Pre-Approved Registry & Searchable Directory -->
+        <div class="partner-directory-block">
+          <div class="directory-block-header">
+            <div class="directory-header-content">
+              <span class="dir-sub-tag">Complete Pre-Qualification Registry</span>
+              <h3 class="dir-main-title">Approved Entity Directory (80+ Partners)</h3>
+              <p class="dir-desc">Explore our full registry of pre-approved engineering consultancies, authorities, and general contractors active across Dubai and the Northern Emirates.</p>
+            </div>
+            
+            <div class="search-box">
+              <span class="search-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+              </span>
+              <input type="search" id="partnerSearch" placeholder="Search by firm name (e.g., Emaar, Khatib, Simplex)..." aria-label="Search partners">
+            </div>
+          </div>
 
-        <div class="partner-count-notice" id="partnerCountNotice">
-          Showing 79 recognized engineering partners
+          <!-- Filter Navigation Tabs -->
+          <div class="partner-filter-bar">
+            <div class="filter-buttons" role="tablist">
+              <button class="filter-btn active" data-filter="all">All Entities (81)</button>
+              <button class="filter-btn" data-filter="authority">Authorities & Developers (3)</button>
+              <button class="filter-btn" data-filter="consultant">Engineering Consultancies (32)</button>
+              <button class="filter-btn" data-filter="contractor">Main Contractors (46)</button>
+            </div>
+            <div class="registry-stats-badge" id="partnerStatsBadge">
+              Showing 12 of 81 recognized entities
+            </div>
+          </div>
+
+          <!-- Dynamic Directory Grid -->
+          <div class="partner-grid" id="partnerGrid">
+            <!-- Rendered dynamically via JS from PARTNER_DATA -->
+          </div>
+
+          <!-- Progressive Disclosure Toggle -->
+          <div class="directory-toggle-wrap" id="directoryToggleWrap">
+            <button type="button" id="partnerDirectoryToggle" class="directory-toggle-btn">
+              <span id="partnerToggleText">View Complete Directory (81 Entities)</span>
+              <svg id="partnerToggleIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+          </div>
         </div>
       </div>
     </section>
@@ -6625,9 +7362,10 @@ const TRANSLATIONS = {
     partner_sub: "شبكة علاقات موثوقة في الإمارات",
     partner_title: "الاستشاريون والمقاولون المعتمدون",
     partner_desc: "أكثر من ثلاثة عقود من الشراكة الناجحة مع كبرى المكاتب الاستشارية والمطورين والمقاولين الرئيسيين في دبي.",
-    partner_filter_all: "جميع الشركاء (79+)",
-    partner_filter_cons: "الاستشاريون والهيئات (35)",
-    partner_filter_cont: "المقاولون الرئيسيون (44)",
+    partner_filter_all: "جميع الكيانات (81)",
+    partner_filter_auth: "الهيئات والمطورون (3)",
+    partner_filter_cons: "الاستشاريون الهندسيون (32)",
+    partner_filter_cont: "المقاولون الرئيسيون (46)",
     partner_search_ph: "ابحث باسم الاستشاري أو المقاول (مثال: إعمار، خطيب وعلمي، بل يوحاه)...",
 
     // Contact Section
@@ -6742,101 +7480,117 @@ if (typeof module !== 'undefined' && module.exports) {
  * Al Hashimi Electrical Installation Works LLC
  * Data Module: Approved Engineering Consultants, Government Authorities & Contractors
  * 
- * To add a new consultant or contractor in the future:
- * Add an object to the array:
- * { name: "Company Name", type: "consultant" | "contractor", category: "Category Label" }
+ * 81 Recognized Entities across Dubai & Northern Emirates (Est. 1988)
  */
 
 const PARTNER_DATA = [
-  // 35 Consultants & Authorities
-  { name: "Dubai Electricity and Water Authority (DEWA)", type: "consultant", category: "Government Authority" },
-  { name: "Dubai Municipality", type: "consultant", category: "Municipal Authority" },
-  { name: "Emaar Property Management", type: "consultant", category: "Master Developer" },
-  { name: "Khatib and Alami Consultant", type: "consultant", category: "Engineering Consultant" },
-  { name: "Bel-Yoahah Engineering Consultants", type: "consultant", category: "Engineering Consultant" },
-  { name: "Adnan Saffarini Engineering Consultants", type: "consultant", category: "Architect & Consultant" },
-  { name: "Holford Associates Consultants", type: "consultant", category: "International Consultant" },
-  { name: "Gulf Engineering Consultants", type: "consultant", category: "Engineering Consultant" },
-  { name: "New Arch Engineering Consultants", type: "consultant", category: "Engineering Consultant" },
-  { name: "F.A. Backer Consultant", type: "consultant", category: "Engineering Consultant" },
-  { name: "Ramesh & Associates Architect Consultants", type: "consultant", category: "Architectural Consultant" },
-  { name: "Al Mujassam Architects Consultants", type: "consultant", category: "Architectural Consultant" },
-  { name: "Abdulla & Associate Architects Consultants", type: "consultant", category: "Architectural Consultant" },
-  { name: "Al Shurooq Engineering Consultants", type: "consultant", category: "Engineering Consultant" },
-  { name: "Team 90 Engineering Consultants", type: "consultant", category: "Engineering Consultant" },
-  { name: "Anfal Engineering Consultants", type: "consultant", category: "Engineering Consultant" },
-  { name: "M.D. Bhatia & Bros. Consultants", type: "consultant", category: "Engineering Consultant" },
-  { name: "Chelsia Hotel Management", type: "consultant", category: "Hospitality Consultant" },
-  { name: "Civic Engineering Consultants", type: "consultant", category: "Civil & MEP Consultant" },
-  { name: "Paradise Engineering Consultant", type: "consultant", category: "Engineering Consultant" },
-  { name: "Al Majal Engineering Consultants", type: "consultant", category: "Engineering Consultant" },
-  { name: "Delta Engineering Consultants", type: "consultant", category: "Engineering Consultant" },
-  { name: "House of Experts Engineering Consultants", type: "consultant", category: "Engineering Consultant" },
-  { name: "Al Jabbri Engineering Consultants", type: "consultant", category: "Engineering Consultant" },
-  { name: "Al Rimal Engineering Consultants", type: "consultant", category: "Engineering Consultant" },
-  { name: "Abdul Rahim Engineering Consultants", type: "consultant", category: "Engineering Consultant" },
-  { name: "Al Waha Engineering Consultants", type: "consultant", category: "Engineering Consultant" },
-  { name: "Chawla Architects", type: "consultant", category: "Architectural Consultant" },
-  { name: "Al Thurath Engineering Consultants", type: "consultant", category: "Heritage & Engineering" },
-  { name: "Arab and Truck International Consultants", type: "consultant", category: "Specialized Consultant" },
-  { name: "Development Consulting", type: "consultant", category: "Project Development" },
-  { name: "Al Ghaith Engineering and Consultants", type: "consultant", category: "Engineering Consultant" },
-  { name: "Al Ajmi Engineering Consultants", type: "consultant", category: "Engineering Consultant" },
-  { name: "Al Masheeq Engineering Consultants", type: "consultant", category: "Engineering Consultant" },
-  { name: "Free Line Consultants", type: "consultant", category: "Design Consultant" },
+  // 1. Statutory Authorities & Master Developers
+  { name: "Dubai Electricity and Water Authority (DEWA)", type: "authority", category: "Government Utility Authority", short: "DEWA", featured: true, scope: "Golden Category Sovereign Licensor & 1st Place Trophy" },
+  { name: "Dubai Municipality", type: "authority", category: "Municipal & Permitting Authority", short: "DM", featured: true, scope: "Statutory Building Permitting & Engineering Clearances" },
+  { name: "Emaar Property Management", type: "developer", category: "Master Property Developer", short: "EMAAR", featured: true, scope: "Pre-Approved Subcontractor for Communities & High-Rise" },
 
-  // 44 Main Contractors
-  { name: "Al Khayat Contracting L.L.C", type: "contractor", category: "Main General Contractor" },
-  { name: "Al Shafar Contracting Co.", type: "contractor", category: "Tier-1 Main Contractor" },
-  { name: "Simplex Construction Co.", type: "contractor", category: "Building Contractor" },
-  { name: "Bin Ghalietha Building Contracting", type: "contractor", category: "Civil & Building" },
-  { name: "Accenture Building Contracting LLC", type: "contractor", category: "Building Contractor" },
-  { name: "Al Aflaj Contracting L.L.C", type: "contractor", category: "Main Contractor" },
-  { name: "Al Ishrak Contracting", type: "contractor", category: "General Contracting" },
-  { name: "Al Thurath Al Arabi Contracting", type: "contractor", category: "Building Contractor" },
-  { name: "Al Abdooli Contracting L.L.C", type: "contractor", category: "Main Contractor" },
-  { name: "Dani Construction L.L.C", type: "contractor", category: "Commercial Contractor" },
-  { name: "Al Milad Engineering Construction", type: "contractor", category: "Engineering Contracting" },
-  { name: "Al Hattab Contracting Co.", type: "contractor", category: "Main Contractor" },
-  { name: "Sumer Contracting L.L.C", type: "contractor", category: "Building Contractor" },
-  { name: "Teeb Contracting L.L.C", type: "contractor", category: "General Contracting" },
-  { name: "Al Watan Construction", type: "contractor", category: "Civil Construction" },
-  { name: "Inner Space Interior Design L.L.C", type: "contractor", category: "Fitout & Interior" },
-  { name: "Trident Technical Contracting L.L.C", type: "contractor", category: "Technical Contractor" },
-  { name: "Al Shaharco Contracting Co.", type: "contractor", category: "Contracting Company" },
-  { name: "Al Matawi Contracting Co.", type: "contractor", category: "Building Contracting" },
-  { name: "Al Jabbri Contracting Co.", type: "contractor", category: "General Contracting" },
-  { name: "Saleh Construction Co.", type: "contractor", category: "Main Contractor" },
-  { name: "Al Khushunidhi Contracting Co.", type: "contractor", category: "General Contracting" },
-  { name: "Emirates Sands Contracting", type: "contractor", category: "Building Contracting" },
-  { name: "Asiantec Building Contracting LLC", type: "contractor", category: "Main Contractor" },
-  { name: "Axis General Maintenance Contracting LLC", type: "contractor", category: "Maintenance & Contracting" },
-  { name: "Promo Electromechanical LLC", type: "contractor", category: "MEP Partner" },
-  { name: "Atlantas Technical Service LLC", type: "contractor", category: "Technical Services" },
-  { name: "Prasad Gupta Building Contracting LLC", type: "contractor", category: "Building Contracting" },
-  { name: "Orama Contracting LLC", type: "contractor", category: "General Contracting" },
-  { name: "Edif Contracting", type: "contractor", category: "Building Construction" },
-  { name: "Al Mas Design & Décor LLC", type: "contractor", category: "Interior & Fit-out" },
-  { name: "New System Engineering LLC", type: "contractor", category: "Engineering Systems" },
-  { name: "Dolf Technical Service LLC", type: "contractor", category: "Technical Services" },
-  { name: "WMI Contracting LLC", type: "contractor", category: "General Contracting" },
-  { name: "KKTS Technical Service LLC", type: "contractor", category: "Technical Contracting" },
-  { name: "Bin Hazam Contracting", type: "contractor", category: "Building Contracting" },
-  { name: "Jasaf Building Contracting LLC", type: "contractor", category: "Civil Construction" },
-  { name: "Green Bird Electromechanical LLC", type: "contractor", category: "Electromechanical" },
-  { name: "Ali Adnan General Maintenance LLC", type: "contractor", category: "General Maintenance" },
-  { name: "Bin Madegah Contracting", type: "contractor", category: "General Contracting" },
-  { name: "Blue Ocean Electromechanical Contracting LLC", type: "contractor", category: "Electromechanical" },
-  { name: "Mosaic Interior Design LLC", type: "contractor", category: "Design & Fitout" },
-  { name: "City Falcon Technical Service LLC", type: "contractor", category: "Technical Services" },
-  { name: "B.K.B. Engineering Services LLC", type: "contractor", category: "Engineering Services" },
-  { name: "Royal Edge Contracting LLC", type: "contractor", category: "Building Contractor" },
-  { name: "National Transport Contracting", type: "contractor", category: "Infrastructure & Transport" }
+  // 2. Prestigious Engineering Consultancies (32 Entities)
+  { name: "Khatib and Alami Consultant", type: "consultant", category: "Consolidated Engineering Consultant", short: "K&A", featured: true, scope: "Major Infrastructure, Substation & Commercial MEP" },
+  { name: "Bel-Yoahah Engineering Consultants", type: "consultant", category: "Architectural & Engineering Consultant", short: "BY", featured: true, scope: "Historic UAE Landmark Architectural & MEP Engineering" },
+  { name: "Adnan Saffarini Engineering Consultants", type: "consultant", category: "Architect & Engineering Consultant", short: "AS", featured: true, scope: "Landmark Residential Towers & High-Rise MEP" },
+  { name: "Holford Associates Consultants", type: "consultant", category: "International Architectural Consultant", short: "HA", featured: true, scope: "Commercial, Retail & Luxury Residential MEP" },
+  { name: "Gulf Engineering Consultants", type: "consultant", category: "Engineering Consultant", short: "GEC", scope: "Industrial Facilities & Commercial Buildings" },
+  { name: "New Arch Engineering Consultants", type: "consultant", category: "Engineering Consultant", short: "NA", scope: "Engineering Design & Technical Supervision" },
+  { name: "F.A. Backer Consultant", type: "consultant", category: "Engineering Consultant", short: "FAB", scope: "Civil, Structural & MEP Engineering" },
+  { name: "Ramesh & Associates Architect Consultants", type: "consultant", category: "Architectural Consultant", short: "R&A", scope: "Architectural Planning & MEP Design" },
+  { name: "Al Mujassam Architects Consultants", type: "consultant", category: "Architectural Consultant", short: "AMA", scope: "Architectural & Electromechanical Design" },
+  { name: "Abdulla & Associate Architects Consultants", type: "consultant", category: "Architectural Consultant", short: "AAA", scope: "Commercial & Residential Developments" },
+  { name: "Al Shurooq Engineering Consultants", type: "consultant", category: "Engineering Consultant", short: "ASE", scope: "Engineering & Technical Supervision" },
+  { name: "Team 90 Engineering Consultants", type: "consultant", category: "Engineering Consultant", short: "T90", scope: "Comprehensive Engineering Services" },
+  { name: "Anfal Engineering Consultants", type: "consultant", category: "Engineering Consultant", short: "AEC", scope: "Engineering Supervision & Approvals" },
+  { name: "M.D. Bhatia & Bros. Consultants", type: "consultant", category: "Engineering Consultant", short: "MDB", scope: "Industrial & Commercial Projects" },
+  { name: "Chelsia Hotel Management", type: "consultant", category: "Hospitality Consultant", short: "CHM", scope: "Hospitality & Leisure MEP Infrastructure" },
+  { name: "Civic Engineering Consultants", type: "consultant", category: "Civil & MEP Consultant", short: "CEC", scope: "Civil Infrastructure & MEP Systems" },
+  { name: "Paradise Engineering Consultant", type: "consultant", category: "Engineering Consultant", short: "PEC", scope: "Engineering Consultancy Services" },
+  { name: "Al Majal Engineering Consultants", type: "consultant", category: "Engineering Consultant", short: "AME", scope: "Commercial & Residential Engineering" },
+  { name: "Delta Engineering Consultants", type: "consultant", category: "Engineering Consultant", short: "DEC", scope: "Engineering & Infrastructure Design" },
+  { name: "House of Experts Engineering Consultants", type: "consultant", category: "Engineering Consultant", short: "HOE", scope: "Specialized Engineering Advisory" },
+  { name: "Al Jabbri Engineering Consultants", type: "consultant", category: "Engineering Consultant", short: "AJE", scope: "Engineering Consultancy Services" },
+  { name: "Al Rimal Engineering Consultants", type: "consultant", category: "Engineering Consultant", short: "ARE", scope: "Engineering Design & Permitting" },
+  { name: "Abdul Rahim Engineering Consultants", type: "consultant", category: "Engineering Consultant", short: "AREC", scope: "Architectural & MEP Solutions" },
+  { name: "Al Waha Engineering Consultants", type: "consultant", category: "Engineering Consultant", short: "AWE", scope: "Engineering & Supervision" },
+  { name: "Chawla Architects", type: "consultant", category: "Architectural Consultant", short: "CA", scope: "Architectural & MEP Coordination" },
+  { name: "Al Thurath Engineering Consultants", type: "consultant", category: "Heritage & Engineering", short: "ATE", scope: "Heritage Conservation & Technical MEP" },
+  { name: "Arab and Truck International Consultants", type: "consultant", category: "Specialized Consultant", short: "ATI", scope: "Industrial & Logistics Engineering" },
+  { name: "Development Consulting", type: "consultant", category: "Project Development", short: "DC", scope: "Project Planning & Approvals" },
+  { name: "Al Ghaith Engineering and Consultants", type: "consultant", category: "Engineering Consultant", short: "AGE", scope: "Engineering Design & Clearances" },
+  { name: "Al Ajmi Engineering Consultants", type: "consultant", category: "Engineering Consultant", short: "AAE", scope: "Engineering Services" },
+  { name: "Al Masheeq Engineering Consultants", type: "consultant", category: "Engineering Consultant", short: "MAS", scope: "Engineering Design & Supervision" },
+  { name: "Free Line Consultants", type: "consultant", category: "Design Consultant", short: "FLC", scope: "Architectural & Technical Design" },
+
+  // 3. Main General Contractors (46 Entities)
+  { name: "Al Shafar Contracting Co. (ASGC)", type: "contractor", category: "Tier-1 Main General Contractor", short: "ASGC", featured: true, scope: "Turnkey High-Rise, Commercial & Infrastructure MEP" },
+  { name: "Al Khayat Contracting L.L.C", type: "contractor", category: "Main General Contractor", short: "AKC", scope: "Commercial, Industrial & Substation Works" },
+  { name: "Simplex Construction Co.", type: "contractor", category: "Building Contractor", short: "SMP", scope: "Building Construction & MEP Installations" },
+  { name: "Bin Ghalietha Building Contracting", type: "contractor", category: "Civil & Building", short: "BGB", scope: "Residential & Commercial Developments" },
+  { name: "Accenture Building Contracting LLC", type: "contractor", category: "Building Contractor", short: "ABC", scope: "Turnkey Building Contracting" },
+  { name: "Al Aflaj Contracting L.L.C", type: "contractor", category: "Main Contractor", short: "AFC", scope: "Main Contracting & Electrical Works" },
+  { name: "Al Ishrak Contracting", type: "contractor", category: "General Contracting", short: "AIC", scope: "General Construction & Building Services" },
+  { name: "Al Thurath Al Arabi Contracting", type: "contractor", category: "Building Contractor", short: "ATA", scope: "Heritage & Modern Building Construction" },
+  { name: "Al Abdooli Contracting L.L.C", type: "contractor", category: "Main Contractor", short: "AAC", scope: "Civil Contracting & MEP Subcontracting" },
+  { name: "Dani Construction L.L.C", type: "contractor", category: "Commercial Contractor", short: "DNC", scope: "Commercial & Retail Facilities" },
+  { name: "Al Milad Engineering Construction", type: "contractor", category: "Engineering Contracting", short: "MEC", scope: "Engineering Construction Services" },
+  { name: "Al Hattab Contracting Co.", type: "contractor", category: "Main Contractor", short: "AHC", scope: "Building & Civil Construction" },
+  { name: "Sumer Contracting L.L.C", type: "contractor", category: "Building Contractor", short: "SMC", scope: "General Building Construction" },
+  { name: "Teeb Contracting L.L.C", type: "contractor", category: "General Contracting", short: "TBC", scope: "General Contracting Services" },
+  { name: "Al Watan Construction", type: "contractor", category: "Civil Construction", short: "AWC", scope: "Civil Engineering & Infrastructure" },
+  { name: "Inner Space Interior Design L.L.C", type: "contractor", category: "Fitout & Interior", short: "ISD", scope: "Corporate & Luxury Interior Fit-out" },
+  { name: "Trident Technical Contracting L.L.C", type: "contractor", category: "Technical Contractor", short: "TTC", scope: "Specialized Technical Contracting" },
+  { name: "Al Shaharco Contracting Co.", type: "contractor", category: "Contracting Company", short: "SHC", scope: "Building & General Contracting" },
+  { name: "Al Matawi Contracting Co.", type: "contractor", category: "Building Contracting", short: "AMC", scope: "Civil & Structural Construction" },
+  { name: "Al Jabbri Contracting Co.", type: "contractor", category: "General Contracting", short: "AJC", scope: "General Contracting Works" },
+  { name: "Saleh Construction Co.", type: "contractor", category: "Main Contractor", short: "SCC", scope: "Turnkey Building Contracting" },
+  { name: "Al Khushunidhi Contracting Co.", type: "contractor", category: "General Contracting", short: "AKN", scope: "General Building Works" },
+  { name: "Emirates Sands Contracting", type: "contractor", category: "Building Contracting", short: "ESC", scope: "Civil Contracting & MEP Services" },
+  { name: "Asiantec Building Contracting LLC", type: "contractor", category: "Main Contractor", short: "ATC", scope: "Commercial & Residential Contracting" },
+  { name: "Axis General Maintenance Contracting LLC", type: "contractor", category: "Maintenance & Contracting", short: "AXS", scope: "Facilities Management & Electromechanical" },
+  { name: "Promo Electromechanical LLC", type: "contractor", category: "MEP Partner", short: "PEM", scope: "Joint MEP Execution & Contracting" },
+  { name: "Atlantas Technical Service LLC", type: "contractor", category: "Technical Services", short: "ATS", scope: "Technical Systems & Maintenance" },
+  { name: "Prasad Gupta Building Contracting LLC", type: "contractor", category: "Building Contracting", short: "PGC", scope: "Building Construction Services" },
+  { name: "Orama Contracting LLC", type: "contractor", category: "General Contracting", short: "ORM", scope: "General Building Projects" },
+  { name: "Edif Contracting", type: "contractor", category: "Building Construction", short: "EDF", scope: "Building Construction & MEP" },
+  { name: "Al Mas Design & Décor LLC", type: "contractor", category: "Interior & Fit-out", short: "AMD", scope: "Interior Architecture & Lighting Fit-out" },
+  { name: "New System Engineering LLC", type: "contractor", category: "Engineering Systems", short: "NSE", scope: "Engineered Building Systems" },
+  { name: "Dolf Technical Service LLC", type: "contractor", category: "Technical Services", short: "DTS", scope: "Technical Installation Services" },
+  { name: "WMI Contracting LLC", type: "contractor", category: "General Contracting", short: "WMI", scope: "Building & Civil Construction" },
+  { name: "KKTS Technical Service LLC", type: "contractor", category: "Technical Contracting", short: "KTS", scope: "Technical Services & Fit-out" },
+  { name: "Bin Hazam Contracting", type: "contractor", category: "Building Contracting", short: "BHC", scope: "Commercial Building Contracting" },
+  { name: "Jasaf Building Contracting LLC", type: "contractor", category: "Civil Construction", short: "JBC", scope: "Civil Construction & Electromechanical" },
+  { name: "Green Bird Electromechanical LLC", type: "contractor", category: "Electromechanical", short: "GBE", scope: "Electromechanical Joint Contracting" },
+  { name: "Ali Adnan General Maintenance LLC", type: "contractor", category: "General Maintenance", short: "AAM", scope: "Building Services & Maintenance" },
+  { name: "Bin Madegah Contracting", type: "contractor", category: "General Contracting", short: "BMC", scope: "General Building Contracting" },
+  { name: "Blue Ocean Electromechanical Contracting LLC", type: "contractor", category: "Electromechanical", short: "BOE", scope: "Electromechanical Contracting" },
+  { name: "Mosaic Interior Design LLC", type: "contractor", category: "Design & Fitout", short: "MID", scope: "Interior Design & MEP Coordination" },
+  { name: "City Falcon Technical Service LLC", type: "contractor", category: "Technical Services", short: "CFT", scope: "Technical Installations & Commissioning" },
+  { name: "B.K.B. Engineering Services LLC", type: "contractor", category: "Engineering Services", short: "BKB", scope: "Engineering Services & Maintenance" },
+  { name: "Royal Edge Contracting LLC", type: "contractor", category: "Building Contractor", short: "REC", scope: "Building Construction & Fit-out" },
+  { name: "National Transport Contracting", type: "contractor", category: "Infrastructure & Transport", short: "NTC", scope: "Infrastructure & Utilities Support" }
 ];
+
+// Helper to resolve clean monogram if not explicitly defined
+function getPartnerMonogram(name, short) {
+  if (short) return short;
+  const cleaned = name.replace(/L\.L\.C|LLC|Co\.|&|and|\(|\)/gi, '').trim();
+  const words = cleaned.split(/\s+/).filter(w => w.length > 1);
+  if (words.length >= 2) {
+    return (words[0][0] + words[1][0]).toUpperCase();
+  }
+  return cleaned.slice(0, 3).toUpperCase();
+}
+
+// Attach helper
+if (typeof window !== 'undefined') {
+  window.getPartnerMonogram = getPartnerMonogram;
+}
 
 // Export for module systems (Node / Bundlers) while attaching to window for browsers
 if (typeof module !== 'undefined' && module.exports) {
-  module.exports = { PARTNER_DATA };
+  module.exports = { PARTNER_DATA, getPartnerMonogram };
 }
 
 
@@ -6964,6 +7718,7 @@ function cacheOriginalTexts() {
     { sel: '#partners .section-title', key: 'partner_title' },
     { sel: '#partners .section-desc', key: 'partner_desc' },
     { sel: '.filter-btn[data-filter="all"]', key: 'partner_filter_all' },
+    { sel: '.filter-btn[data-filter="authority"]', key: 'partner_filter_auth' },
     { sel: '.filter-btn[data-filter="consultant"]', key: 'partner_filter_cons' },
     { sel: '.filter-btn[data-filter="contractor"]', key: 'partner_filter_cont' },
 
@@ -7447,83 +8202,219 @@ if (typeof module !== 'undefined' && module.exports) {
 
 /**
  * Al Hashimi Electrical Installation Works LLC
- * Module: Approved Partners & Consultants Directory (Search & Filter)
+ * Module: Approved Partners & Consultants Directory (Executive Registry)
  */
 
 function initPartnerDirectory() {
   const grid = document.getElementById('partnerGrid');
   const searchInput = document.getElementById('partnerSearch');
   const filterBtns = document.querySelectorAll('.filter-btn');
-  const countNotice = document.getElementById('partnerCountNotice');
+  const statsBadge = document.getElementById('partnerStatsBadge');
+  const toggleBtn = document.getElementById('partnerDirectoryToggle');
+  const toggleWrap = document.getElementById('directoryToggleWrap');
+  const toggleText = document.getElementById('partnerToggleText');
+  const toggleIcon = document.getElementById('partnerToggleIcon');
 
   if (!grid || typeof PARTNER_DATA === 'undefined') return;
 
+  const DEFAULT_COLLAPSED_COUNT = 12;
+  let isExpanded = false;
   let currentFilter = 'all';
   let searchQuery = '';
 
+  function getTypeDetails(type) {
+    switch (type) {
+      case 'authority':
+        return {
+          label: 'Statutory Authority',
+          icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:12px;height:12px;"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>`
+        };
+      case 'developer':
+        return {
+          label: 'Master Developer',
+          icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:12px;height:12px;"><path d="M3 21h18"/><path d="M9 8h1"/><path d="M9 12h1"/><path d="M9 16h1"/><path d="M14 8h1"/><path d="M14 12h1"/><path d="M14 16h1"/><path d="M5 21V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16"/></svg>`
+        };
+      case 'contractor':
+        return {
+          label: 'Main Contractor',
+          icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:12px;height:12px;"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>`
+        };
+      case 'consultant':
+      default:
+        return {
+          label: 'Consulting Engineers',
+          icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:12px;height:12px;"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/></svg>`
+        };
+    }
+  }
+
+  function resolveMonogram(item) {
+    if (typeof getPartnerMonogram === 'function') {
+      return getPartnerMonogram(item.name, item.short);
+    }
+    return item.short || item.name.slice(0, 3).toUpperCase();
+  }
+
   function render() {
+    // Filter logic
     const filtered = PARTNER_DATA.filter(item => {
-      const matchesType = currentFilter === 'all' || item.type === currentFilter;
-      const matchesSearch = item.name.toLowerCase().includes(searchQuery) ||
-                            item.category.toLowerCase().includes(searchQuery);
+      let matchesType = true;
+      if (currentFilter === 'authority') {
+        matchesType = (item.type === 'authority' || item.type === 'developer');
+      } else if (currentFilter !== 'all') {
+        matchesType = (item.type === currentFilter);
+      }
+
+      const query = searchQuery.toLowerCase();
+      const matchesSearch = !query ||
+                            item.name.toLowerCase().includes(query) ||
+                            (item.category && item.category.toLowerCase().includes(query)) ||
+                            (item.scope && item.scope.toLowerCase().includes(query)) ||
+                            (item.short && item.short.toLowerCase().includes(query));
+
       return matchesType && matchesSearch;
     });
 
+    // Determine slice
+    const shouldSlice = !isExpanded && currentFilter === 'all' && !searchQuery;
+    const displayList = shouldSlice ? filtered.slice(0, DEFAULT_COLLAPSED_COUNT) : filtered;
+
     grid.innerHTML = '';
 
-    if (filtered.length === 0) {
+    if (displayList.length === 0) {
       grid.innerHTML = `
         <div class="no-results">
-          <p>No matching partners found for <strong>"${escapeHtml(searchQuery)}"</strong>.</p>
+          <div class="no-results-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:36px;height:36px;color:var(--gold-primary);"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          </div>
+          <h4>No Recognized Entities Found</h4>
+          <p>No pre-qualified partners match <strong>"${escapeHtml(searchQuery)}"</strong>.</p>
+          <button type="button" class="btn btn-secondary btn-sm reset-filter-btn" style="margin-top:14px;">Reset Search & Filters</button>
         </div>
       `;
+      const resetBtn = grid.querySelector('.reset-filter-btn');
+      if (resetBtn) {
+        resetBtn.addEventListener('click', () => {
+          if (searchInput) searchInput.value = '';
+          searchQuery = '';
+          currentFilter = 'all';
+          filterBtns.forEach(b => b.classList.toggle('active', b.getAttribute('data-filter') === 'all'));
+          render();
+        });
+      }
     } else {
       const fragment = document.createDocumentFragment();
-      filtered.forEach(item => {
+      displayList.forEach(item => {
         const card = document.createElement('div');
         card.className = `partner-card ${item.type}`;
         
-        const typeBadge = item.type === 'consultant' 
-          ? '<span class="pt-badge consultant"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:12px;height:12px;"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>Consultant / Authority</span>'
-          : '<span class="pt-badge contractor"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:12px;height:12px;"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>Main Contractor</span>';
+        const typeInfo = getTypeDetails(item.type);
+        const monogram = resolveMonogram(item);
 
         card.innerHTML = `
           <div class="partner-card-header">
-            ${typeBadge}
-            <span class="p-verified" title="Registered Partner"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" style="width:10px;height:10px;"><polyline points="20 6 9 17 4 12"/></svg></span>
+            <div class="partner-monogram ${item.type}">${escapeHtml(monogram)}</div>
+            <div class="partner-meta-top">
+              <span class="pt-badge ${item.type}">
+                ${typeInfo.icon}
+                <span>${escapeHtml(typeInfo.label)}</span>
+              </span>
+              <span class="p-verified" title="Verified Pre-Qualification">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" style="width:10px;height:10px;"><polyline points="20 6 9 17 4 12"/></svg>
+                <span>Approved</span>
+              </span>
+            </div>
           </div>
-          <h4 class="partner-name">${escapeHtml(item.name)}</h4>
-          <span class="partner-category">${escapeHtml(item.category)}</span>
+          <div class="partner-card-body">
+            <h4 class="partner-name">${escapeHtml(item.name)}</h4>
+            <p class="partner-scope-text">${escapeHtml(item.scope || item.category)}</p>
+            <div class="partner-card-footer">
+              <span class="partner-category-tag">${escapeHtml(item.category)}</span>
+              <span class="partner-loc-tag">Dubai, UAE</span>
+            </div>
+          </div>
         `;
         fragment.appendChild(card);
       });
       grid.appendChild(fragment);
     }
 
-    if (countNotice) {
-      countNotice.textContent = `Showing ${filtered.length} of ${PARTNER_DATA.length} recognized engineering partners`;
+    // Toggle button visibility & text
+    if (toggleWrap) {
+      if (searchQuery || currentFilter !== 'all' || filtered.length <= DEFAULT_COLLAPSED_COUNT) {
+        toggleWrap.style.display = 'none';
+      } else {
+        toggleWrap.style.display = 'flex';
+        if (toggleText) {
+          toggleText.textContent = isExpanded 
+            ? `Collapse Registry (${DEFAULT_COLLAPSED_COUNT} Featured)` 
+            : `View Complete Registry (${PARTNER_DATA.length} Entities)`;
+        }
+        if (toggleIcon) {
+          toggleIcon.style.transform = isExpanded ? 'rotate(180deg)' : 'rotate(0deg)';
+        }
+      }
+    }
+
+    // Stats badge update
+    if (statsBadge) {
+      if (searchQuery) {
+        statsBadge.innerHTML = `Found <strong>${filtered.length}</strong> matching entities for "<em>${escapeHtml(searchQuery)}</em>"`;
+      } else if (currentFilter !== 'all') {
+        const categoryName = currentFilter === 'authority' ? 'Authorities & Developers' :
+                             currentFilter === 'consultant' ? 'Engineering Consultancies' : 'Main Contractors';
+        statsBadge.innerHTML = `Showing all <strong>${filtered.length}</strong> recognized ${categoryName}`;
+      } else if (shouldSlice) {
+        statsBadge.innerHTML = `Showing <strong>${displayList.length}</strong> of <strong>${PARTNER_DATA.length}</strong> recognized entities (Pre-Qualified)`;
+      } else {
+        statsBadge.innerHTML = `Showing all <strong>${PARTNER_DATA.length}</strong> recognized engineering partners`;
+      }
     }
   }
 
+  // Filter Button Listeners
   filterBtns.forEach(btn => {
     btn.addEventListener('click', () => {
       filterBtns.forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
-      currentFilter = btn.getAttribute('data-filter');
+      currentFilter = btn.getAttribute('data-filter') || 'all';
+      // Automatically expand on specific category filter
+      if (currentFilter !== 'all') {
+        isExpanded = true;
+      }
       render();
     });
   });
 
+  // Search Input Listener
   if (searchInput) {
     searchInput.addEventListener('input', (e) => {
       searchQuery = e.target.value.toLowerCase().trim();
+      if (searchQuery) {
+        isExpanded = true;
+      }
       render();
+    });
+  }
+
+  // Toggle Button Listener
+  if (toggleBtn) {
+    toggleBtn.addEventListener('click', () => {
+      isExpanded = !isExpanded;
+      render();
+      if (!isExpanded) {
+        const directoryBlock = document.querySelector('.partner-directory-block');
+        if (directoryBlock) {
+          directoryBlock.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }
     });
   }
 
   render();
 }
 
+// Module export
 if (typeof module !== 'undefined' && module.exports) {
   module.exports = { initPartnerDirectory };
 }

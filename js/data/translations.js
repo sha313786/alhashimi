@@ -100,9 +100,10 @@ const TRANSLATIONS = {
     partner_sub: "شبكة علاقات موثوقة في الإمارات",
     partner_title: "الاستشاريون والمقاولون المعتمدون",
     partner_desc: "أكثر من ثلاثة عقود من الشراكة الناجحة مع كبرى المكاتب الاستشارية والمطورين والمقاولين الرئيسيين في دبي.",
-    partner_filter_all: "جميع الشركاء (79+)",
-    partner_filter_cons: "الاستشاريون والهيئات (35)",
-    partner_filter_cont: "المقاولون الرئيسيون (44)",
+    partner_filter_all: "جميع الكيانات (81)",
+    partner_filter_auth: "الهيئات والمطورون (3)",
+    partner_filter_cons: "الاستشاريون الهندسيون (32)",
+    partner_filter_cont: "المقاولون الرئيسيون (46)",
     partner_search_ph: "ابحث باسم الاستشاري أو المقاول (مثال: إعمار، خطيب وعلمي، بل يوحاه)...",
 
     // Contact Section

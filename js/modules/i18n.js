@@ -122,6 +122,7 @@ function cacheOriginalTexts() {
     { sel: '#partners .section-title', key: 'partner_title' },
     { sel: '#partners .section-desc', key: 'partner_desc' },
     { sel: '.filter-btn[data-filter="all"]', key: 'partner_filter_all' },
+    { sel: '.filter-btn[data-filter="authority"]', key: 'partner_filter_auth' },
     { sel: '.filter-btn[data-filter="consultant"]', key: 'partner_filter_cons' },
     { sel: '.filter-btn[data-filter="contractor"]', key: 'partner_filter_cont' },
 
