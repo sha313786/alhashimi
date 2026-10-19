@@ -1,96 +1,75 @@
 /* ==========================================================================
-   About Section & Executive Leadership
+   About Section - Leadership & Corporate Credentials
    ========================================================================== */
 
 .about-section {
-  background: var(--bg-primary);
-  position: relative;
+  background-color: #ffffff;
+  border-bottom: 1px solid var(--border-light);
 }
 
 .about-grid {
   display: grid;
   grid-template-columns: 1.15fr 0.85fr;
-  gap: 32px;
+  gap: 36px;
   align-items: stretch;
 }
 
 .about-card {
-  background: var(--bg-card);
-  border: 1px solid var(--border-subtle);
-  border-radius: var(--radius-lg);
-  padding: 42px;
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
+  background: #ffffff;
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
+  padding: 36px;
+  box-shadow: var(--shadow-xs);
   display: flex;
   flex-direction: column;
-  box-shadow: var(--shadow-sm);
-  transition: all var(--transition-normal);
-  position: relative;
-}
-
-.about-card:hover {
-  border-color: var(--border-highlight);
-  box-shadow: var(--shadow-md);
 }
 
 .intro-card {
-  background: linear-gradient(135deg, rgba(20, 29, 48, 0.85) 0%, rgba(11, 17, 30, 0.95) 100%);
-}
-
-.quote-icon {
-  font-family: var(--font-serif);
-  font-size: 5rem;
-  line-height: 0.8;
-  color: rgba(223, 155, 36, 0.18);
-  position: absolute;
-  top: 28px;
-  right: 32px;
-  user-select: none;
-  pointer-events: none;
+  background: var(--bg-subtle);
+  border-left: 4px solid var(--gold-primary);
 }
 
 .card-heading {
   font-family: var(--font-serif);
-  font-size: 1.6rem;
-  color: #fff;
-  margin-bottom: 20px;
-  letter-spacing: -0.2px;
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--navy-darkest);
+  margin-bottom: 16px;
 }
 
 .lead-text {
-  font-size: 1.15rem;
+  font-size: 1.05rem;
   font-weight: 600;
-  color: var(--gold-light);
-  margin-bottom: 20px;
+  color: var(--navy-primary);
+  margin-bottom: 16px;
   line-height: 1.65;
 }
 
 .intro-card p {
-  color: var(--text-secondary);
-  margin-bottom: 24px;
-  font-size: 0.98rem;
+  color: var(--text-body);
+  margin-bottom: 20px;
+  font-size: 0.95rem;
   line-height: 1.7;
 }
 
-/* Director Signature & Profile Card */
+/* Director Profile & Direct Line */
 .director-signature-with-photo {
   display: flex;
   align-items: center;
-  gap: 20px;
+  gap: 18px;
   margin-top: auto;
-  padding-top: 28px;
-  border-top: 1px solid var(--border-subtle);
+  padding-top: 24px;
+  border-top: 1px solid var(--border-medium);
   flex-wrap: wrap;
 }
 
 .director-avatar {
   position: relative;
-  width: 76px;
-  height: 76px;
+  width: 68px;
+  height: 68px;
   border-radius: 50%;
-  border: 2.5px solid var(--gold-primary);
+  border: 2px solid var(--gold-primary);
   flex-shrink: 0;
-  box-shadow: 0 0 20px rgba(223, 155, 36, 0.35);
   overflow: hidden;
 }
 
@@ -101,111 +80,86 @@
   object-position: top center;
 }
 
-.avatar-badge {
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  width: 24px;
-  height: 24px;
-  background: var(--gold-gradient);
-  color: #060911;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 0.82rem;
-  font-weight: 900;
-  border: 1.5px solid #060911;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
-  z-index: 2;
-}
-
 .director-details {
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 2px;
   flex: 1;
 }
 
 .sig-name {
   font-family: var(--font-serif);
-  font-size: 1.18rem;
+  font-size: 1.1rem;
   font-weight: 800;
-  color: #fff;
+  color: var(--navy-darkest);
 }
 
 .sig-title {
-  font-size: 0.85rem;
-  color: var(--gold-light);
-  font-weight: 600;
+  font-size: 0.82rem;
+  color: var(--gold-primary);
+  font-weight: 700;
 }
 
 .sig-award-note {
-  font-size: 0.78rem;
+  font-size: 0.76rem;
   color: var(--text-muted);
 }
 
 .director-actions {
   display: flex;
   align-items: center;
-  gap: 12px;
-  margin-top: 8px;
+  gap: 10px;
+  margin-top: 6px;
   flex-wrap: wrap;
 }
 
 .director-phone {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
-  background: rgba(223, 155, 36, 0.12);
-  border: 1px solid var(--gold-border);
-  color: var(--gold-light);
-  font-size: 0.82rem;
+  gap: 5px;
+  background: var(--bg-muted);
+  border: 1px solid var(--border-light);
+  color: var(--navy-darkest);
+  font-size: 0.80rem;
   font-weight: 700;
-  padding: 5px 12px;
-  border-radius: var(--radius-sm);
+  padding: 4px 10px;
+  border-radius: var(--radius-xs);
   transition: all var(--transition-fast);
 }
 
 .director-phone:hover {
-  background: rgba(223, 155, 36, 0.25);
-  border-color: var(--gold-light);
-  color: #fff;
-  transform: translateY(-1px);
+  background: var(--navy-darkest);
+  color: #ffffff;
 }
 
 .director-wa {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
-  background: rgba(37, 211, 102, 0.15);
-  border: 1px solid rgba(37, 211, 102, 0.35);
-  color: #4ade80;
-  font-size: 0.82rem;
+  gap: 5px;
+  background: #25d366;
+  color: #ffffff;
+  font-size: 0.80rem;
   font-weight: 700;
-  padding: 5px 12px;
-  border-radius: var(--radius-sm);
+  padding: 4px 10px;
+  border-radius: var(--radius-xs);
   transition: all var(--transition-fast);
 }
 
 .director-wa:hover {
-  background: rgba(37, 211, 102, 0.25);
-  border-color: #4ade80;
-  color: #fff;
-  transform: translateY(-1px);
+  filter: brightness(0.95);
 }
 
-/* Right Card: Registrations & Credentials */
+/* Right Card: Official Registrations */
 .credentials-card {
-  background: var(--bg-card);
+  background: #ffffff;
 }
 
 .reg-list {
   list-style: none;
   display: flex;
   flex-direction: column;
-  gap: 12px;
-  margin-block: 20px 28px;
+  gap: 10px;
+  margin-block: 18px 24px;
 }
 
 .reg-list li {
@@ -213,7 +167,7 @@
   justify-content: space-between;
   align-items: center;
   padding-block: 8px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  border-bottom: 1px solid var(--border-light);
   font-size: 0.88rem;
   gap: 12px;
 }
@@ -224,27 +178,27 @@
 }
 
 .reg-value {
-  color: var(--text-primary);
+  color: var(--text-heading);
   font-weight: 600;
   text-align: right;
 }
 
-/* Team Summary Box */
+/* Key Contacts Team Box */
 .team-summary-box {
-  background: rgba(8, 12, 22, 0.7);
-  border: 1px solid var(--border-subtle);
-  border-radius: var(--radius-md);
-  padding: 18px;
+  background: var(--bg-subtle);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-sm);
+  padding: 16px;
   margin-top: auto;
 }
 
 .team-sub {
-  font-size: 0.78rem;
+  font-size: 0.76rem;
   font-weight: 800;
   text-transform: uppercase;
-  letter-spacing: 1.2px;
-  color: var(--gold-light);
-  margin-bottom: 12px;
+  letter-spacing: 1px;
+  color: var(--navy-darkest);
+  margin-bottom: 10px;
 }
 
 .team-pill-list {
@@ -256,27 +210,22 @@
 .team-pill {
   display: flex;
   flex-direction: column;
-  padding: 8px 12px;
-  background: rgba(17, 26, 46, 0.5);
-  border: 1px solid rgba(255, 255, 255, 0.05);
-  border-radius: var(--radius-sm);
+  padding: 6px 10px;
+  background: #ffffff;
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-xs);
   font-size: 0.82rem;
 }
 
 .team-pill strong {
-  color: #fff;
+  color: var(--text-heading);
 }
 
 .team-pill span {
   color: var(--text-muted);
-  font-size: 0.76rem;
+  font-size: 0.74rem;
 }
 
 .team-pill.highlight {
-  border-color: var(--gold-border);
-  background: rgba(223, 155, 36, 0.08);
-}
-
-.team-pill.highlight strong {
-  color: var(--gold-light);
+  border-left: 3px solid var(--gold-primary);
 }

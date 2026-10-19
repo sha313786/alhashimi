@@ -1,28 +1,28 @@
 /* ==========================================================================
-   HSE Safety, Quality Assurance (QA/QC), Testimonials & FAQ
+   HSE Safety, Quality Assurance (QA/QC) & Technical FAQ
+   Authentic Corporate Architecture Style
    ========================================================================== */
 
 /* HSE & QA/QC Section */
 .safety-section {
-  background: var(--bg-primary);
-  border-bottom: 1px solid var(--border-subtle);
+  background: var(--bg-subtle);
+  border-bottom: 1px solid var(--border-light);
   position: relative;
+  padding-block: 80px;
 }
 
 .safety-grid {
   display: grid;
   grid-template-columns: 1.15fr 0.85fr;
-  gap: 36px;
+  gap: 32px;
   align-items: stretch;
 }
 
 .safety-card {
-  background: var(--bg-card);
-  border: 1px solid var(--border-subtle);
-  border-radius: var(--radius-lg);
-  padding: 40px;
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
+  background: #ffffff;
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-sm);
+  padding: 36px;
   display: flex;
   flex-direction: column;
   box-shadow: var(--shadow-sm);
@@ -33,20 +33,20 @@
   align-items: center;
   gap: 16px;
   margin-bottom: 24px;
-  padding-bottom: 18px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--border-light);
 }
 
 .shield-badge {
   font-family: var(--font-serif);
-  font-size: 1.1rem;
-  font-weight: 900;
-  color: #fff;
-  background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
-  border: 1.5px solid rgba(255, 255, 255, 0.2);
-  width: 54px;
-  height: 54px;
-  border-radius: var(--radius-sm);
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: #ffffff;
+  background: var(--navy-primary);
+  border: 1.5px solid var(--navy-darkest);
+  width: 50px;
+  height: 50px;
+  border-radius: var(--radius-xs);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -54,43 +54,42 @@
 }
 
 .shield-badge.gold-badge {
-  background: linear-gradient(135deg, #2a2012 0%, #16120b 100%);
+  background: var(--navy-darkest);
   border-color: var(--gold-primary);
   color: var(--gold-light);
-  box-shadow: 0 0 16px rgba(223, 155, 36, 0.25);
 }
 
 .card-top h3 {
   font-family: var(--font-serif);
-  font-size: 1.35rem;
-  color: #fff;
+  font-size: 1.25rem;
+  color: var(--navy-darkest);
 }
 
 /* Policy Accordion */
 .policy-accordion {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 10px;
 }
 
 .policy-item {
-  background: rgba(6, 9, 17, 0.7);
-  border: 1px solid rgba(255, 255, 255, 0.06);
-  border-radius: var(--radius-sm);
+  background: var(--bg-subtle);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-xs);
   overflow: hidden;
   transition: all var(--transition-fast);
 }
 
 .policy-item[open] {
-  border-color: var(--gold-border);
-  background: rgba(11, 17, 32, 0.9);
+  border-color: var(--navy-primary);
+  background: #ffffff;
 }
 
 .policy-item summary {
-  padding: 14px 18px;
-  font-size: 0.92rem;
+  padding: 12px 16px;
+  font-size: 0.88rem;
   font-weight: 700;
-  color: #fff;
+  color: var(--navy-darkest);
   cursor: pointer;
   list-style: none;
   display: flex;
@@ -102,43 +101,30 @@
   display: none;
 }
 
-.policy-item summary::after {
-  content: '+';
-  font-size: 1.2rem;
-  color: var(--gold-primary);
-  font-weight: 700;
-  transition: transform var(--transition-fast);
-}
-
-.policy-item[open] summary::after {
-  content: '−';
-  transform: rotate(180deg);
-}
-
 .policy-content {
-  padding: 0 18px 16px;
-  font-size: 0.86rem;
+  padding: 0 16px 14px;
+  font-size: 0.84rem;
   color: var(--text-secondary);
   line-height: 1.6;
 }
 
-/* QA/QC Content */
+/* QA Content */
 .qa-content {
   display: flex;
   flex-direction: column;
   gap: 18px;
-  height: 100%;
+  flex: 1;
 }
 
 .qa-block h4 {
   font-size: 0.92rem;
   font-weight: 700;
-  color: var(--gold-light);
+  color: var(--navy-darkest);
   margin-bottom: 4px;
 }
 
 .qa-block p {
-  font-size: 0.86rem;
+  font-size: 0.85rem;
   color: var(--text-secondary);
   line-height: 1.6;
 }
@@ -146,16 +132,16 @@
 .qa-metrics-row {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 10px;
+  gap: 12px;
   margin-top: auto;
   padding-top: 20px;
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  border-top: 1px solid var(--border-light);
 }
 
 .qa-metric-box {
-  background: rgba(6, 9, 17, 0.7);
-  border: 1px solid var(--border-subtle);
-  border-radius: var(--radius-sm);
+  background: var(--bg-subtle);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-xs);
   padding: 10px;
   text-align: center;
 }
@@ -163,117 +149,23 @@
 .m-val {
   display: block;
   font-family: var(--font-serif);
-  font-size: 1.1rem;
+  font-size: 1.15rem;
   font-weight: 800;
-  color: #fff;
+  color: var(--navy-darkest);
 }
 
 .m-lbl {
   font-size: 0.70rem;
-  color: var(--text-muted);
-}
-
-/* Testimonials Section */
-.testimonials-section {
-  background: var(--bg-secondary);
-  border-bottom: 1px solid var(--border-subtle);
-  position: relative;
-}
-
-.testimonials-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 28px;
-}
-
-.testimonial-card {
-  background: var(--bg-card);
-  border: 1px solid var(--border-subtle);
-  border-radius: var(--radius-lg);
-  padding: 32px 28px;
-  display: flex;
-  flex-direction: column;
-  box-shadow: var(--shadow-sm);
-  backdrop-filter: blur(14px);
-  transition: all var(--transition-normal);
-  position: relative;
-}
-
-.testimonial-card:hover {
-  transform: translateY(-4px);
-  border-color: var(--gold-border);
-  box-shadow: var(--shadow-md), var(--shadow-gold);
-}
-
-.testimonial-card.featured-testimonial {
-  border-color: var(--gold-border-strong);
-  background: linear-gradient(135deg, rgba(20, 29, 48, 0.85) 0%, rgba(13, 21, 39, 0.95) 100%);
-  box-shadow: 0 0 30px rgba(223, 155, 36, 0.15);
-}
-
-.t-stars {
-  color: var(--gold-primary);
-  font-size: 1.1rem;
-  letter-spacing: 2px;
-  margin-bottom: 16px;
-}
-
-.t-text {
-  font-size: 0.92rem;
   color: var(--text-secondary);
-  line-height: 1.7;
-  margin-bottom: 24px;
-  font-style: italic;
-  flex: 1;
-}
-
-.t-author {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  margin-top: auto;
-  padding-top: 18px;
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
-}
-
-.t-avatar {
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  background: #1e293b;
-  border: 1.5px solid rgba(255, 255, 255, 0.2);
-  color: #fff;
-  font-family: var(--font-serif);
-  font-size: 0.95rem;
-  font-weight: 800;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-}
-
-.t-avatar.gold {
-  background: var(--gold-gradient);
-  color: #060911;
-  border-color: var(--gold-light);
-  box-shadow: 0 0 12px rgba(223, 155, 36, 0.4);
-}
-
-.t-author strong {
-  display: block;
-  font-size: 0.92rem;
-  color: #fff;
-}
-
-.t-author span {
-  font-size: 0.78rem;
-  color: var(--text-muted);
+  font-weight: 600;
 }
 
 /* FAQ Section */
 .faq-section {
-  background: var(--bg-primary);
+  background: var(--bg-body);
   position: relative;
+  padding-block: 80px;
+  border-bottom: 1px solid var(--border-light);
 }
 
 .faq-accordion-wrap {
@@ -281,27 +173,28 @@
   margin-inline: auto;
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 14px;
 }
 
 .faq-item {
-  background: var(--bg-card);
-  border: 1px solid var(--border-subtle);
-  border-radius: var(--radius-md);
+  background: #ffffff;
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-xs);
   overflow: hidden;
   transition: all var(--transition-fast);
+  box-shadow: var(--shadow-xs);
 }
 
 .faq-item[open] {
-  border-color: var(--gold-border-strong);
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+  border-color: var(--navy-primary);
+  box-shadow: var(--shadow-sm);
 }
 
 .faq-item summary {
-  padding: 20px 24px;
-  font-size: 1.02rem;
+  padding: 18px 22px;
+  font-size: 0.98rem;
   font-weight: 700;
-  color: #fff;
+  color: var(--navy-darkest);
   cursor: pointer;
   list-style: none;
   display: flex;
@@ -319,8 +212,8 @@
 }
 
 .faq-arrow {
-  color: var(--gold-primary);
-  font-size: 1.3rem;
+  color: var(--gold-dark);
+  font-size: 1.2rem;
   font-weight: 700;
   flex-shrink: 0;
   transition: transform var(--transition-fast);
@@ -331,8 +224,14 @@
 }
 
 .faq-body {
-  padding: 0 24px 22px;
-  font-size: 0.92rem;
+  padding: 0 22px 20px;
+  font-size: 0.90rem;
   color: var(--text-secondary);
-  line-height: 1.7;
+  line-height: 1.65;
+}
+
+@media (max-width: 900px) {
+  .safety-grid {
+    grid-template-columns: 1fr;
+  }
 }

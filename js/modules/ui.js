@@ -173,7 +173,7 @@ function initStatCounters() {
     }
   }, { threshold: 0.3 });
 
-  const statsSection = document.querySelector('.stats-card-grid');
+  const statsSection = document.querySelector('.hero-stats-row, .stats-card-grid');
   if (statsSection) {
     observer.observe(statsSection);
   }
