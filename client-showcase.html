@@ -438,6 +438,10 @@ h1, h2, h3, h4, h5, h6 {
   border: 2px solid #ffffff;
 }
 
+[hidden] {
+  display: none !important;
+}
+
 .designed-tag {
   font-size: 0.76rem;
   color: #64748b;
@@ -454,6 +458,11 @@ h1, h2, h3, h4, h5, h6 {
   border-top-color: #ffffff;
   animation: btn-spin 0.8s linear infinite;
   margin-left: 8px;
+  vertical-align: middle;
+}
+
+.btn-loader[hidden] {
+  display: none !important;
 }
 
 @keyframes btn-spin {
@@ -9398,12 +9407,16 @@ function initContactForm() {
                         .map(cb => cb.value)
                         .join(', ');
 
+    const loader = submitBtn.querySelector('.btn-loader');
+    const labelSpan = submitBtn.querySelector('span:not(.btn-loader)');
     submitBtn.disabled = true;
-    submitBtn.querySelector('span').textContent = 'Encrypting & Dispatching Tender Scope...';
+    if (labelSpan) labelSpan.textContent = 'Encrypting & Dispatching Tender Scope...';
+    if (loader) loader.removeAttribute('hidden');
 
     setTimeout(() => {
       submitBtn.disabled = false;
-      submitBtn.querySelector('span').textContent = 'Submit Tender Inquiry';
+      if (labelSpan) labelSpan.textContent = 'Submit Tender Inquiry';
+      if (loader) loader.setAttribute('hidden', '');
 
       const waMsg = encodeURIComponent(
         `Hello Mr. Binoji,\n\nTender inquiry from ${fullName} (${company}):\n` +

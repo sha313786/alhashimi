@@ -27,12 +27,16 @@ function initContactForm() {
                         .map(cb => cb.value)
                         .join(', ');
 
+    const loader = submitBtn.querySelector('.btn-loader');
+    const labelSpan = submitBtn.querySelector('span:not(.btn-loader)');
     submitBtn.disabled = true;
-    submitBtn.querySelector('span').textContent = 'Encrypting & Dispatching Tender Scope...';
+    if (labelSpan) labelSpan.textContent = 'Encrypting & Dispatching Tender Scope...';
+    if (loader) loader.removeAttribute('hidden');
 
     setTimeout(() => {
       submitBtn.disabled = false;
-      submitBtn.querySelector('span').textContent = 'Submit Tender Inquiry';
+      if (labelSpan) labelSpan.textContent = 'Submit Tender Inquiry';
+      if (loader) loader.setAttribute('hidden', '');
 
       const waMsg = encodeURIComponent(
         `Hello Mr. Binoji,\n\nTender inquiry from ${fullName} (${company}):\n` +
