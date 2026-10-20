@@ -12,7 +12,7 @@
  */
 
 if (typeof document !== 'undefined') {
-  document.addEventListener('DOMContentLoaded', () => {
+  function startApp() {
     if (typeof initLanguageSwitcher === 'function') initLanguageSwitcher();
     if (typeof initLiveDubaiClock === 'function') initLiveDubaiClock();
     if (typeof initPartnerDirectory === 'function') initPartnerDirectory();
@@ -28,5 +28,11 @@ if (typeof document !== 'undefined') {
     if (typeof initBackToTop === 'function') initBackToTop();
     if (typeof initFileUploadPreview === 'function') initFileUploadPreview();
     if (typeof initScrollSpy === 'function') initScrollSpy();
-  });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', startApp);
+  } else {
+    startApp();
+  }
 }

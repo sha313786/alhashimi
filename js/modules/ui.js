@@ -44,7 +44,14 @@ function initRfqModal() {
   openButtons.forEach(btn => {
     btn.addEventListener('click', (e) => {
       e.preventDefault();
-      modal.showModal();
+      try {
+        if (!modal.open) {
+          if (typeof modal.showModal === 'function') modal.showModal();
+          else modal.setAttribute('open', '');
+        }
+      } catch (err) {
+        modal.setAttribute('open', '');
+      }
     });
   });
 

@@ -412,7 +412,9 @@ function initProjectPortfolio() {
     if (!adminModal) return;
     const isAuthed = sessionStorage.getItem('alhashimi_admin_auth') === 'true';
 
-    updateCloudSyncStatus();
+    try {
+      updateCloudSyncStatus();
+    } catch(e) {}
 
     if (isAuthed) {
       if (adminAuthView) adminAuthView.style.display = 'none';
@@ -429,21 +431,68 @@ function initProjectPortfolio() {
       if (adminPinError) adminPinError.style.display = 'none';
     }
 
-    adminModal.showModal();
+    try {
+      if (!adminModal.open) {
+        if (typeof adminModal.showModal === 'function') {
+          adminModal.showModal();
+        } else {
+          adminModal.setAttribute('open', '');
+          adminModal.style.display = 'block';
+        }
+      }
+    } catch (err) {
+      adminModal.setAttribute('open', '');
+      adminModal.style.display = 'block';
+    }
+  }
+
+  function closeAdmin() {
+    if (!adminModal) return;
+    try {
+      if (typeof adminModal.close === 'function') {
+        adminModal.close();
+      } else {
+        adminModal.removeAttribute('open');
+        adminModal.style.display = 'none';
+      }
+    } catch(e) {
+      adminModal.removeAttribute('open');
+      adminModal.style.display = 'none';
+    }
+    // Clean up hash from URL so clicking it again works!
+    if (window.location.hash === '#admin' || window.location.hash === '#manage' || window.location.hash === '#projects-admin' || window.location.hash === '#leads') {
+      try {
+        history.replaceState(null, document.title, window.location.pathname + window.location.search);
+      } catch(e) {}
+    }
   }
 
   if (openAdminBtn) openAdminBtn.addEventListener('click', openAdmin);
   if (footerAdminLink) footerAdminLink.addEventListener('click', openAdmin);
 
   // Private Non-Public Admin Triggers:
-  // 1. URL Hash trigger: visiting #admin or #manage-projects
-  function checkAdminHash() {
-    if (window.location.hash === '#admin' || window.location.hash === '#manage' || window.location.hash === '#projects-admin') {
+  // 1. URL Hash & Query Parameter triggers
+  function checkAdminTriggers() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const hasAdminParam = urlParams.get('admin') === 'true' || urlParams.get('admin') === '1';
+    const hasAdminHash = window.location.hash === '#admin' || window.location.hash === '#manage' || window.location.hash === '#projects-admin' || window.location.hash === '#leads';
+
+    if (hasAdminParam || hasAdminHash) {
       openAdmin();
     }
   }
-  checkAdminHash();
-  window.addEventListener('hashchange', checkAdminHash);
+  checkAdminTriggers();
+  window.addEventListener('hashchange', checkAdminTriggers);
+  window.addEventListener('load', checkAdminTriggers);
+
+  // Intercept any click on links with #admin or #manage
+  document.addEventListener('click', (e) => {
+    const anchor = e.target.closest('a[href*="#admin"], a[href*="#manage"], [data-admin-trigger]');
+    if (anchor) {
+      e.preventDefault();
+      openAdmin();
+    }
+  });
 
   // 2. Secret Keyboard Shortcut: Ctrl + Shift + A (or Cmd + Shift + A)
   window.addEventListener('keydown', (e) => {
@@ -472,13 +521,14 @@ function initProjectPortfolio() {
 
   // 4. Global window helper for console
   window.openProjectAdmin = openAdmin;
+  window.openAdmin = openAdmin;
 
-  if (closeAdminBtn && adminModal) {
-    closeAdminBtn.addEventListener('click', () => adminModal.close());
+  if (closeAdminBtn) closeAdminBtn.addEventListener('click', closeAdmin);
+  if (adminModal) {
     adminModal.addEventListener('click', (e) => {
       const rect = adminModal.getBoundingClientRect();
       if (e.clientX < rect.left || e.clientX > rect.right || e.clientY < rect.top || e.clientY > rect.bottom) {
-        adminModal.close();
+        closeAdmin();
       }
     });
   }
