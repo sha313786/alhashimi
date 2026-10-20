@@ -7,7 +7,7 @@
 
 const PARTNER_DATA = [
   // 1. Statutory Authorities & Master Developers
-  { name: "Dubai Electricity and Water Authority (DEWA)", type: "authority", category: "Government Utility Authority", short: "DEWA", featured: true, scope: "Golden Category Sovereign Licensor & 1st Place Trophy" },
+  { name: "Dubai Civil Defence (DCD)", type: "authority", category: "Statutory Safety & Fire Authority", short: "DCD", featured: true, scope: "Fire Alarm, Emergency Lighting & Central Battery Clearances" },
   { name: "Dubai Municipality", type: "authority", category: "Municipal & Permitting Authority", short: "DM", featured: true, scope: "Statutory Building Permitting & Engineering Clearances" },
   { name: "Emaar Property Management", type: "developer", category: "Master Property Developer", short: "EMAAR", featured: true, scope: "Pre-Approved Subcontractor for Communities & High-Rise" },
 

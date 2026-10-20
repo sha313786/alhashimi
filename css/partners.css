@@ -54,6 +54,12 @@
   height: 22px;
 }
 
+.acc-icon-wrap.ruby-seal {
+  background: rgba(225, 29, 72, 0.12);
+  color: #e11d48;
+  border: 1px solid rgba(225, 29, 72, 0.25);
+}
+
 .acc-icon-wrap.gold-trophy {
   background: rgba(184, 134, 11, 0.12);
   color: var(--gold-dark);
