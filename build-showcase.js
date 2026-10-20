@@ -114,6 +114,9 @@ const holderB64 = 'data:image/jpeg;base64,' + fs.readFileSync('dewa-award-holder
 const ceremonyB64 = 'data:image/jpeg;base64,' + fs.readFileSync('dewa-award-ceremony.jpg').toString('base64');
 const villaB64 = 'data:image/jpeg;base64,' + fs.readFileSync('project-luxury-villa.jpg').toString('base64');
 const complexB64 = 'data:image/jpeg;base64,' + fs.readFileSync('project-residential-complex.jpg').toString('base64');
+const fav32B64 = 'data:image/png;base64,' + fs.readFileSync('favicon-32x32.png').toString('base64');
+const appleB64 = 'data:image/png;base64,' + fs.readFileSync('apple-touch-icon.png').toString('base64');
+const svgB64 = 'data:image/svg+xml;base64,' + fs.readFileSync('favicon.svg').toString('base64');
 
 // 4. Gather HTML body
 let html = fs.readFileSync('index.html', 'utf8');
@@ -122,6 +125,11 @@ let html = fs.readFileSync('index.html', 'utf8');
 html = html.replace('<link rel="stylesheet" href="styles.css">', '<style>' + allCss + '</style>');
 
 // Replace images with base64 embedded data URIs for 100% portable offline viewing
+html = html.replace(/href="favicon\.svg\?v=2"/g, 'href="' + svgB64 + '"');
+html = html.replace(/href="favicon-32x32\.png\?v=2"/g, 'href="' + fav32B64 + '"');
+html = html.replace(/href="favicon-16x16\.png\?v=2"/g, 'href="' + fav32B64 + '"');
+html = html.replace(/href="favicon\.ico\?v=2"/g, 'href="' + fav32B64 + '"');
+html = html.replace(/href="apple-touch-icon\.png\?v=2"/g, 'href="' + appleB64 + '"');
 html = html.replace(/src="alhashimi-logo\.png"/g, 'src="' + logoB64 + '"');
 html = html.replace(/href="alhashimi-logo\.png"/g, 'href="' + logoB64 + '"');
 html = html.replace(/src="dewa-award-holder\.jpg"/g, 'src="' + holderB64 + '"');
