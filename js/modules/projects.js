@@ -192,19 +192,30 @@ function initProjectPortfolio() {
     `;
   }
 
-  // 3. Render any custom cards not yet in the DOM
+  // 3. Render any custom cards in the DOM (Newly added projects appear FIRST)
   function syncGridCards() {
     if (!grid || typeof PROJECT_CASE_STUDIES === 'undefined') return;
 
-    Object.keys(PROJECT_CASE_STUDIES).forEach(id => {
+    // Collect custom projects and sort newest first
+    const customKeys = Object.keys(PROJECT_CASE_STUDIES)
+      .filter(id => PROJECT_CASE_STUDIES[id] && PROJECT_CASE_STUDIES[id].isCustom)
+      .sort((a, b) => {
+        const timeA = new Date(PROJECT_CASE_STUDIES[a].createdAt || 0).getTime();
+        const timeB = new Date(PROJECT_CASE_STUDIES[b].createdAt || 0).getTime();
+        return timeB - timeA; // Newest first
+      });
+
+    // Prepend custom cards to the top of the grid in reverse order so the newest is at the very top
+    [...customKeys].reverse().forEach(id => {
       const data = PROJECT_CASE_STUDIES[id];
-      const existing = grid.querySelector(`[data-proj-id="${id}"]`);
-      if (!existing && data.isCustom) {
+      let card = grid.querySelector(`[data-proj-id="${id}"]`);
+      if (!card) {
         const temp = document.createElement('div');
         temp.innerHTML = buildCardHTML(id, data).trim();
-        const newCard = temp.firstElementChild;
-        grid.appendChild(newCard);
+        card = temp.firstElementChild;
       }
+      // Keep card at the top of the grid (newest project first)
+      grid.prepend(card);
     });
 
     // Update count in header
@@ -708,11 +719,22 @@ function initProjectPortfolio() {
     });
   }
 
-  // Render Projects in Manage Tab
+  // Render Projects in Manage Tab (Newest custom projects first)
   function renderManageList() {
     if (!adminProjList || typeof PROJECT_CASE_STUDIES === 'undefined') return;
 
-    const keys = Object.keys(PROJECT_CASE_STUDIES);
+    const keys = Object.keys(PROJECT_CASE_STUDIES).sort((a, b) => {
+      const projA = PROJECT_CASE_STUDIES[a];
+      const projB = PROJECT_CASE_STUDIES[b];
+      // Custom projects first
+      if (projA.isCustom && !projB.isCustom) return -1;
+      if (!projA.isCustom && projB.isCustom) return 1;
+      // Among custom projects, newest first
+      const timeA = new Date(projA.createdAt || 0).getTime();
+      const timeB = new Date(projB.createdAt || 0).getTime();
+      return timeB - timeA;
+    });
+
     if (adminActiveCount) adminActiveCount.textContent = keys.length;
 
     let html = '';
