@@ -2,4 +2,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://alhashimidxb.com/sitemap.xml
+Sitemap: https://alhashimillc.com/sitemap.xml
