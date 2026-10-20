@@ -220,6 +220,16 @@ function initProjectPortfolio() {
   // Initialize standard grid cards
   syncGridCards();
 
+  // Proactively remove any legacy admin buttons if present in cached DOM
+  const staleFooterLink = document.getElementById('footerAdminLink');
+  if (staleFooterLink) {
+    const parentLi = staleFooterLink.closest('li');
+    if (parentLi) parentLi.remove();
+    else staleFooterLink.remove();
+  }
+  const staleAdminBtn = document.getElementById('openAdminProjectBtn');
+  if (staleAdminBtn) staleAdminBtn.remove();
+
   // ==========================================================================
   // 6. Admin Project Management System
   // ==========================================================================

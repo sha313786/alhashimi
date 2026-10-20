@@ -97,6 +97,13 @@
   padding-left: 4px;
 }
 
+#footerAdminLink {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
 .footer-legal li {
   color: #94a3b8;
   line-height: 1.5;

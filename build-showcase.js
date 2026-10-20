@@ -122,7 +122,7 @@ const svgB64 = 'data:image/svg+xml;base64,' + fs.readFileSync('favicon.svg').toS
 let html = fs.readFileSync('index.html', 'utf8');
 
 // Replace external CSS link with inline <style>
-html = html.replace('<link rel="stylesheet" href="styles.css">', '<style>' + allCss + '</style>');
+html = html.replace(/<link rel="stylesheet" href="styles\.css(?:\?[^"]*)?">/, '<style>' + allCss + '</style>');
 
 // Replace images with base64 embedded data URIs for 100% portable offline viewing
 html = html.replace(/href="favicon\.svg\?v=2"/g, 'href="' + svgB64 + '"');
@@ -165,7 +165,7 @@ const jsFiles = [
 let allJs = jsFiles.join('\n\n');
 
 // Replace script tags at bottom with inline <script>
-const scriptTagsRegex = /<!-- Application Data Modules -->[\s\S]*?<!-- Main Application Coordinator -->[\s\S]*?<script src="js\/main\.js"><\/script>/;
+const scriptTagsRegex = /<!-- Application Data Modules -->[\s\S]*?<!-- Main Application Coordinator -->[\s\S]*?<script src="js\/main\.js(?:\?[^"]*)?"><\/script>/;
 html = html.replace(scriptTagsRegex, '<script>\n' + allJs + '\n</script>');
 
 // 6. Insert Client Showcase Banner right after <body>
