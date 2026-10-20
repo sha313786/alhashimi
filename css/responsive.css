@@ -193,12 +193,21 @@
     grid-template-columns: 1fr;
   }
 
-  .company-name {
-    font-size: 1.1rem;
+  .site-logo {
+    height: 40px;
   }
 
-  .company-sub {
-    font-size: 0.60rem;
+  .footer-logo-img {
+    height: 46px;
+  }
+
+  .brand-logo .company-sub {
+    font-size: 0.58rem;
+    letter-spacing: 0.4px;
+  }
+
+  .brand-logo .company-est {
+    display: none;
   }
 
   .hero-cta-group {

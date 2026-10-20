@@ -109,6 +109,7 @@ const showcaseBarCss = `
 allCss += '\n' + showcaseBarCss;
 
 // 3. Base64 Images
+const logoB64 = 'data:image/png;base64,' + fs.readFileSync('alhashimi-logo.png').toString('base64');
 const holderB64 = 'data:image/jpeg;base64,' + fs.readFileSync('dewa-award-holder.jpg').toString('base64');
 const ceremonyB64 = 'data:image/jpeg;base64,' + fs.readFileSync('dewa-award-ceremony.jpg').toString('base64');
 const villaB64 = 'data:image/jpeg;base64,' + fs.readFileSync('project-luxury-villa.jpg').toString('base64');
@@ -121,6 +122,8 @@ let html = fs.readFileSync('index.html', 'utf8');
 html = html.replace('<link rel="stylesheet" href="styles.css">', '<style>' + allCss + '</style>');
 
 // Replace images with base64 embedded data URIs for 100% portable offline viewing
+html = html.replace(/src="alhashimi-logo\.png"/g, 'src="' + logoB64 + '"');
+html = html.replace(/href="alhashimi-logo\.png"/g, 'href="' + logoB64 + '"');
 html = html.replace(/src="dewa-award-holder\.jpg"/g, 'src="' + holderB64 + '"');
 html = html.replace(/data-photo="dewa-award-holder\.jpg"/g, 'data-photo="' + holderB64 + '"');
 
