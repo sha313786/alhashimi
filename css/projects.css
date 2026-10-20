@@ -309,10 +309,10 @@
   }
 }
 
-/* Portfolio Header Bar & Admin Button */
+/* Portfolio Header Filter Bar */
 .portfolio-top-bar {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   flex-wrap: wrap;
   gap: 16px;

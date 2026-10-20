@@ -2537,10 +2537,10 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
-/* Portfolio Header Bar & Admin Button */
+/* Portfolio Header Filter Bar */
 .portfolio-top-bar {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   flex-wrap: wrap;
   gap: 16px;
@@ -6483,7 +6483,7 @@ html[dir="rtl"] .wa-tooltip {
           <div class="gold-rule"></div>
         </div>
 
-        <!-- Project Category Filters & Admin Controls -->
+        <!-- Project Category Filters -->
         <div class="portfolio-top-bar">
           <div class="portfolio-filter-tabs">
             <button class="port-filter-btn active" data-port="all">All Projects (<span id="allProjectsCount">6</span>)</button>
@@ -6492,10 +6492,6 @@ html[dir="rtl"] .wa-tooltip {
             <button class="port-filter-btn" data-port="industrial">Industrial Facilities</button>
             <button class="port-filter-btn" data-port="public">Mosques & Institutions</button>
           </div>
-          <button class="btn btn-admin-trigger" id="openAdminProjectBtn" type="button" aria-haspopup="dialog" title="Portfolio Project Administration">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="width:14px; height:14px;"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
-            <span>+ Add Project (Admin)</span>
-          </button>
         </div>
 
         <!-- Projects Grid -->
@@ -7540,7 +7536,6 @@ html[dir="rtl"] .wa-tooltip {
           <li><a href="#partners">Consultants & Main Contractors</a></li>
           <li><a href="#safety-quality">HSE Policy & 100% Medlife Insurance</a></li>
           <li><a href="#faq">Frequently Asked Questions</a></li>
-          <li><a href="javascript:void(0)" id="footerAdminLink" style="color:var(--gold-primary); font-size:0.80rem; opacity:0.85;">⚙️ Admin: Manage Projects</a></li>
         </ul>
       </div>
 
@@ -8731,6 +8726,44 @@ function initProjectPortfolio() {
 
   if (openAdminBtn) openAdminBtn.addEventListener('click', openAdmin);
   if (footerAdminLink) footerAdminLink.addEventListener('click', openAdmin);
+
+  // Private Non-Public Admin Triggers:
+  // 1. URL Hash trigger: visiting #admin or #manage-projects
+  function checkAdminHash() {
+    if (window.location.hash === '#admin' || window.location.hash === '#manage' || window.location.hash === '#projects-admin') {
+      openAdmin();
+    }
+  }
+  checkAdminHash();
+  window.addEventListener('hashchange', checkAdminHash);
+
+  // 2. Secret Keyboard Shortcut: Ctrl + Shift + A (or Cmd + Shift + A)
+  window.addEventListener('keydown', (e) => {
+    if ((e.ctrlKey || e.metaKey) && e.shiftKey && (e.key === 'A' || e.key === 'a')) {
+      e.preventDefault();
+      openAdmin();
+    }
+  });
+
+  // 3. Secret Triple-Click on footer copyright text
+  const copyrightText = document.querySelector('.footer-bottom p');
+  if (copyrightText) {
+    let clickTally = 0;
+    let clickTimer = null;
+    copyrightText.addEventListener('click', () => {
+      clickTally++;
+      clearTimeout(clickTimer);
+      if (clickTally >= 3) {
+        clickTally = 0;
+        openAdmin();
+      } else {
+        clickTimer = setTimeout(() => { clickTally = 0; }, 800);
+      }
+    });
+  }
+
+  // 4. Global window helper for console
+  window.openProjectAdmin = openAdmin;
 
   if (closeAdminBtn && adminModal) {
     closeAdminBtn.addEventListener('click', () => adminModal.close());

@@ -301,6 +301,44 @@ function initProjectPortfolio() {
   if (openAdminBtn) openAdminBtn.addEventListener('click', openAdmin);
   if (footerAdminLink) footerAdminLink.addEventListener('click', openAdmin);
 
+  // Private Non-Public Admin Triggers:
+  // 1. URL Hash trigger: visiting #admin or #manage-projects
+  function checkAdminHash() {
+    if (window.location.hash === '#admin' || window.location.hash === '#manage' || window.location.hash === '#projects-admin') {
+      openAdmin();
+    }
+  }
+  checkAdminHash();
+  window.addEventListener('hashchange', checkAdminHash);
+
+  // 2. Secret Keyboard Shortcut: Ctrl + Shift + A (or Cmd + Shift + A)
+  window.addEventListener('keydown', (e) => {
+    if ((e.ctrlKey || e.metaKey) && e.shiftKey && (e.key === 'A' || e.key === 'a')) {
+      e.preventDefault();
+      openAdmin();
+    }
+  });
+
+  // 3. Secret Triple-Click on footer copyright text
+  const copyrightText = document.querySelector('.footer-bottom p');
+  if (copyrightText) {
+    let clickTally = 0;
+    let clickTimer = null;
+    copyrightText.addEventListener('click', () => {
+      clickTally++;
+      clearTimeout(clickTimer);
+      if (clickTally >= 3) {
+        clickTally = 0;
+        openAdmin();
+      } else {
+        clickTimer = setTimeout(() => { clickTally = 0; }, 800);
+      }
+    });
+  }
+
+  // 4. Global window helper for console
+  window.openProjectAdmin = openAdmin;
+
   if (closeAdminBtn && adminModal) {
     closeAdminBtn.addEventListener('click', () => adminModal.close());
     adminModal.addEventListener('click', (e) => {
