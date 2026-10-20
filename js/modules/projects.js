@@ -1150,6 +1150,62 @@ if (typeof module !== 'undefined' && module.exports) {
       showToast('All inquiries cleared.');
     });
   }
+
+  // Web3Forms Email Bridge Configuration Subsystem
+  const web3FormsKeyInput = document.getElementById('web3FormsKeyInput');
+  const saveWeb3FormsKeyBtn = document.getElementById('saveWeb3FormsKeyBtn');
+  const emailBridgeStatus = document.getElementById('emailBridgeStatus');
+
+  function updateEmailBridgeUI(key) {
+    if (!web3FormsKeyInput || !emailBridgeStatus) return;
+    if (key) {
+      web3FormsKeyInput.value = key;
+      emailBridgeStatus.innerHTML = '<span style="color:#4ade80; font-weight:700;">✓ Active:</span> All website inquiries are automatically emailed to <strong>info@alhashimillc.com</strong> (forwarding to <strong>alhashimi1988@gmail.com</strong>).';
+    } else {
+      emailBridgeStatus.innerHTML = 'Free key setup (takes 10s): Open <a href="https://web3forms.com" target="_blank" rel="noopener noreferrer" style="color:var(--gold-light); text-decoration:underline;">web3forms.com</a> &rarr; enter <code>info@alhashimillc.com</code> &rarr; check your Gmail for the key.';
+    }
+  }
+
+  // Initial key load from config, localStorage, or Firestore
+  let activeWeb3Key = (window.EMAIL_CONFIG && window.EMAIL_CONFIG.web3FormsAccessKey) ||
+                      localStorage.getItem('alhashimi_web3forms_key') ||
+                      '';
+  updateEmailBridgeUI(activeWeb3Key);
+
+  if (db) {
+    db.collection('settings').doc('email_config').get().then(doc => {
+      if (doc.exists && doc.data().web3FormsAccessKey) {
+        const cloudKey = doc.data().web3FormsAccessKey;
+        activeWeb3Key = cloudKey;
+        if (window.EMAIL_CONFIG) window.EMAIL_CONFIG.web3FormsAccessKey = cloudKey;
+        localStorage.setItem('alhashimi_web3forms_key', cloudKey);
+        updateEmailBridgeUI(cloudKey);
+      }
+    }).catch(e => console.warn('Could not fetch cloud email settings:', e));
+  }
+
+  if (saveWeb3FormsKeyBtn) {
+    saveWeb3FormsKeyBtn.addEventListener('click', () => {
+      const newKey = web3FormsKeyInput ? web3FormsKeyInput.value.trim() : '';
+      if (!newKey) {
+        alert('Please enter or paste your Web3Forms Access Key.');
+        return;
+      }
+      activeWeb3Key = newKey;
+      if (window.EMAIL_CONFIG) window.EMAIL_CONFIG.web3FormsAccessKey = newKey;
+      localStorage.setItem('alhashimi_web3forms_key', newKey);
+      if (db) {
+        db.collection('settings').doc('email_config').set({
+          web3FormsAccessKey: newKey,
+          updatedAt: new Date().toISOString()
+        }).then(() => {
+          console.log('Web3Forms key saved to Cloud Firestore settings.');
+        }).catch(err => console.warn(err));
+      }
+      updateEmailBridgeUI(newKey);
+      showToast('Web3Forms email alerts activated!');
+    });
+  }
 }
 
 if (typeof module !== 'undefined' && module.exports) {

@@ -75,10 +75,10 @@ function initRfqModal() {
   });
 
   if (quickForm) {
-    quickForm.addEventListener('submit', (e) => {
+    quickForm.addEventListener('submit', async (e) => {
       e.preventDefault();
-      const name = document.getElementById('quickName').value;
-      const contact = document.getElementById('quickContact').value;
+      const name = (document.getElementById('quickName').value || '').trim();
+      const contact = (document.getElementById('quickContact').value || '').trim();
 
       // 1. Store callback lead in Google Cloud Firestore (Admin Leads Inbox)
       const leadData = {
@@ -97,9 +97,8 @@ function initRfqModal() {
 
       if (typeof firebase !== 'undefined' && firebase.apps && firebase.apps.length) {
         try {
-          firebase.firestore().collection('tender_inquiries').doc(leadData.id).set(leadData)
-            .then(() => console.log('Callback lead stored in Cloud Firestore:', leadData.id))
-            .catch(err => console.warn('Cloud callback save warning:', err));
+          await firebase.firestore().collection('tender_inquiries').doc(leadData.id).set(leadData);
+          console.log('Callback lead stored in Cloud Firestore:', leadData.id);
         } catch (e) {
           console.warn('Firebase callback lead error:', e);
         }
@@ -110,6 +109,31 @@ function initRfqModal() {
         storedLeads.unshift(leadData);
         localStorage.setItem('alhashimi_leads', JSON.stringify(storedLeads));
       } catch (e) {}
+
+      // Web3Forms Email Dispatch
+      const web3FormsKey = (window.EMAIL_CONFIG && window.EMAIL_CONFIG.web3FormsAccessKey) ||
+                           localStorage.getItem('alhashimi_web3forms_key') ||
+                           '';
+      if (web3FormsKey) {
+        try {
+          await fetch('https://api.web3forms.com/submit', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+            body: JSON.stringify({
+              access_key: web3FormsKey,
+              subject: `[URGENT CALLBACK] ${name || 'Prospective Client'} - ${contact}`,
+              from_name: 'Al Hashimi Fast Callback',
+              name: name || 'Prospective Client',
+              phone_or_email: contact,
+              details: 'Requested urgent callback from Managing Director Mr. Binoji K. Varghese within 2 hours.',
+              submitted_at: new Date().toLocaleString('en-US', { timeZone: 'Asia/Dubai' }) + ' (Dubai GST)'
+            })
+          });
+          console.log('Callback email dispatched successfully.');
+        } catch (err) {
+          console.warn('Callback Web3Forms error:', err);
+        }
+      }
       
       const waMsg = encodeURIComponent(`Hello Mr. Binoji, callback request from ${name} (${contact}) regarding MEP subcontract prequalification.`);
       const waLink = `https://wa.me/971528974123?text=${waMsg}`;
