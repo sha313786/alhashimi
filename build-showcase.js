@@ -147,6 +147,7 @@ const jsDataProjects = fs.readFileSync('js/data/projects.js', 'utf8')
   .replace('"project-residential-complex.jpg"', '"' + complexB64 + '"');
 
 const jsFiles = [
+  fs.readFileSync('js/config/firebase.js', 'utf8'),
   fs.readFileSync('js/utils.js', 'utf8'),
   fs.readFileSync('js/data/translations.js', 'utf8'),
   jsDataProjects,
@@ -165,7 +166,7 @@ const jsFiles = [
 let allJs = jsFiles.join('\n\n');
 
 // Replace script tags at bottom with inline <script>
-const scriptTagsRegex = /<!-- Application Data Modules -->[\s\S]*?<!-- Main Application Coordinator -->[\s\S]*?<script src="js\/main\.js(?:\?[^"]*)?"><\/script>/;
+const scriptTagsRegex = /<!-- (?:Cloud Sync Subsystem|Application Data Modules)[\s\S]*?<!-- Main Application Coordinator -->[\s\S]*?<script src="js\/main\.js(?:\?[^"]*)?"><\/script>/;
 html = html.replace(scriptTagsRegex, '<script>\n' + allJs + '\n</script>');
 
 // 6. Insert Client Showcase Banner right after <body>
