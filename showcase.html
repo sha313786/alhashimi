@@ -796,6 +796,26 @@ h1, h2, h3, h4, h5, h6 {
   margin-top: 8px;
 }
 
+.hero-cta-group .btn-outline {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  color: #ffffff;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  padding: 13px 22px;
+  font-size: 0.94rem;
+  font-weight: 600;
+  transition: all var(--transition-fast);
+}
+
+.hero-cta-group .btn-outline:hover {
+  background: rgba(255, 255, 255, 0.16);
+  border-color: var(--gold-light);
+  color: var(--gold-light);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+}
+
 /* Metric Stats Row */
 .hero-stats-row {
   display: grid;
@@ -1390,6 +1410,17 @@ h1, h2, h3, h4, h5, h6 {
   color: #ffffff;
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   position: relative;
+}
+
+.awards-section .section-title {
+  color: #ffffff !important;
+  font-family: var(--font-serif);
+}
+
+.awards-section .section-desc {
+  color: #cbd5e1 !important;
+  max-width: 820px;
+  margin-inline: auto;
 }
 
 .golden-holder-ribbon {
@@ -2614,10 +2645,10 @@ h1, h2, h3, h4, h5, h6 {
    ========================================================================== */
 
 .partners-section {
-  background: var(--bg-body);
+  background: var(--bg-subtle);
   border-bottom: 1px solid var(--border-light);
   position: relative;
-  padding-block: 80px;
+  padding-block: 88px;
 }
 
 /* ==========================================================================
@@ -4764,6 +4795,7 @@ h1, h2, h3, h4, h5, h6 {
   position: relative;
   z-index: 10;
   color: #cbd5e1;
+  box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.25);
 }
 
 .footer-inner {
@@ -5845,7 +5877,7 @@ html[dir="rtl"] .wa-tooltip {
     </section>
 
     <!-- DEWA Golden Category & Awards Showcase -->
-    <section class="section awards-section" id="awards">
+    <section class="section section-dark awards-section" id="awards">
       <div class="container">
         <div class="section-header">
           <div class="golden-holder-ribbon">
@@ -9623,11 +9655,12 @@ function initStatCounters() {
         const updateCount = () => {
           const step = Math.ceil(target / 35);
           count += step;
+          const suffix = target >= 35 && target < 500 ? '+' : target >= 500 ? '+' : target === 3 ? 'x' : '';
           if (count < target) {
-            numEl.textContent = `${count}${target >= 35 && target < 500 ? '+' : target >= 500 ? '+' : target === 3 ? 'x' : ''}`;
+            numEl.textContent = `${count.toLocaleString()}${suffix}`;
             setTimeout(updateCount, speed);
           } else {
-            numEl.textContent = `${target}${target >= 35 && target < 500 ? '+' : target >= 500 ? '+' : target === 3 ? 'x' : ''}`;
+            numEl.textContent = `${target.toLocaleString()}${suffix}`;
           }
         };
         updateCount();

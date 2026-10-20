@@ -161,11 +161,12 @@ function initStatCounters() {
         const updateCount = () => {
           const step = Math.ceil(target / 35);
           count += step;
+          const suffix = target >= 35 && target < 500 ? '+' : target >= 500 ? '+' : target === 3 ? 'x' : '';
           if (count < target) {
-            numEl.textContent = `${count}${target >= 35 && target < 500 ? '+' : target >= 500 ? '+' : target === 3 ? 'x' : ''}`;
+            numEl.textContent = `${count.toLocaleString()}${suffix}`;
             setTimeout(updateCount, speed);
           } else {
-            numEl.textContent = `${target}${target >= 35 && target < 500 ? '+' : target >= 500 ? '+' : target === 3 ? 'x' : ''}`;
+            numEl.textContent = `${target.toLocaleString()}${suffix}`;
           }
         };
         updateCount();

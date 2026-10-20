@@ -9,6 +9,17 @@
   position: relative;
 }
 
+.awards-section .section-title {
+  color: #ffffff !important;
+  font-family: var(--font-serif);
+}
+
+.awards-section .section-desc {
+  color: #cbd5e1 !important;
+  max-width: 820px;
+  margin-inline: auto;
+}
+
 .golden-holder-ribbon {
   display: inline-flex;
   align-items: center;

@@ -66,6 +66,26 @@
   margin-top: 8px;
 }
 
+.hero-cta-group .btn-outline {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  color: #ffffff;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  padding: 13px 22px;
+  font-size: 0.94rem;
+  font-weight: 600;
+  transition: all var(--transition-fast);
+}
+
+.hero-cta-group .btn-outline:hover {
+  background: rgba(255, 255, 255, 0.16);
+  border-color: var(--gold-light);
+  color: var(--gold-light);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+}
+
 /* Metric Stats Row */
 .hero-stats-row {
   display: grid;
