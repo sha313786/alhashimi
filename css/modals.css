@@ -361,3 +361,407 @@
   line-height: 1.6;
   margin-bottom: 18px;
 }
+
+/* ==========================================================================
+   Admin Project Manager Modal & Dashboard Styles
+   ========================================================================== */
+
+.admin-dialog {
+  max-width: 880px;
+  width: 95vw;
+}
+
+.admin-modal-content {
+  background: #0d172a;
+  border: 1px solid var(--gold-border);
+  border-radius: var(--radius-sm);
+  padding: 32px;
+  color: #f1f5f9;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.7);
+  position: relative;
+}
+
+.admin-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  padding-bottom: 16px;
+  margin-bottom: 20px;
+}
+
+.admin-modal-title-wrap {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.admin-modal-title-wrap h3 {
+  font-family: var(--font-sans);
+  color: #ffffff;
+  font-size: 1.30rem;
+  font-weight: 800;
+  margin: 0;
+  letter-spacing: -0.3px;
+}
+
+.admin-badge-pill {
+  background: var(--gold-gradient);
+  color: #0b0f19;
+  font-size: 0.70rem;
+  font-weight: 800;
+  padding: 3px 8px;
+  border-radius: var(--radius-full);
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+}
+
+.admin-modal-close {
+  background: transparent;
+  border: none;
+  color: #94a3b8;
+  font-size: 1.8rem;
+  cursor: pointer;
+  line-height: 1;
+  transition: color var(--transition-fast);
+}
+
+.admin-modal-close:hover {
+  color: #ffffff;
+}
+
+/* Security Auth View */
+.admin-auth-box {
+  max-width: 440px;
+  margin: 20px auto 10px;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  border-radius: var(--radius-sm);
+  padding: 32px 24px;
+}
+
+.admin-auth-icon {
+  width: 52px;
+  height: 52px;
+  margin: 0 auto 16px;
+  border-radius: 50%;
+  background: rgba(184, 134, 11, 0.15);
+  border: 1px solid var(--gold-border);
+  color: var(--gold-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.admin-auth-box h4 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 8px;
+}
+
+.admin-auth-box p {
+  font-size: 0.85rem;
+  color: #94a3b8;
+  margin-bottom: 20px;
+}
+
+.admin-pin-group {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  margin-bottom: 16px;
+}
+
+.admin-pin-input {
+  width: 180px;
+  text-align: center;
+  font-size: 1.4rem;
+  font-weight: 800;
+  letter-spacing: 6px;
+  background: #070d18;
+  border: 1px solid var(--border-medium);
+  border-radius: var(--radius-xs);
+  color: #ffffff;
+  padding: 10px 14px;
+  outline: none;
+}
+
+.admin-pin-input:focus {
+  border-color: var(--gold-primary);
+  box-shadow: 0 0 12px rgba(223, 155, 36, 0.3);
+}
+
+.admin-auth-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.admin-pin-hint {
+  font-size: 0.76rem;
+  color: var(--gold-light);
+  margin-top: 8px;
+}
+
+.admin-pin-error {
+  color: #f87171;
+  font-size: 0.82rem;
+  margin-top: 8px;
+  display: none;
+}
+
+/* Admin Dashboard Tabs */
+.admin-nav-tabs {
+  display: flex;
+  gap: 10px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.10);
+  margin-bottom: 24px;
+}
+
+.admin-tab-btn {
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid transparent;
+  color: #94a3b8;
+  font-size: 0.90rem;
+  font-weight: 700;
+  padding: 10px 16px;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.admin-tab-btn:hover {
+  color: #ffffff;
+}
+
+.admin-tab-btn.active {
+  color: var(--gold-light);
+  border-bottom-color: var(--gold-primary);
+}
+
+/* Admin Form Styles */
+.admin-form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+}
+
+.admin-full-col {
+  grid-column: 1 / -1;
+}
+
+.admin-form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.admin-form-group label {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #cbd5e1;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.admin-form-group label span.req {
+  color: var(--gold-light);
+}
+
+.admin-input,
+.admin-select,
+.admin-textarea {
+  background: #070d18;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: var(--radius-xs);
+  padding: 10px 14px;
+  color: #ffffff;
+  font-size: 0.90rem;
+  font-family: inherit;
+  outline: none;
+  transition: border-color var(--transition-fast);
+}
+
+.admin-input:focus,
+.admin-select:focus,
+.admin-textarea:focus {
+  border-color: var(--gold-primary);
+  box-shadow: 0 0 10px rgba(223, 155, 36, 0.25);
+}
+
+.admin-textarea {
+  resize: vertical;
+  min-height: 85px;
+  line-height: 1.5;
+}
+
+/* Image Upload & Preview Box */
+.admin-image-upload-wrap {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+}
+
+.admin-img-preview {
+  width: 90px;
+  height: 65px;
+  border: 1px dashed rgba(255, 255, 255, 0.25);
+  border-radius: var(--radius-xs);
+  background: #070d18;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.admin-img-preview img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.admin-img-preview span {
+  font-size: 0.68rem;
+  color: #64748b;
+  text-align: center;
+  padding: 4px;
+}
+
+.admin-form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 24px;
+  padding-top: 18px;
+  border-top: 1px solid rgba(255, 255, 255, 0.10);
+}
+
+/* Manage Projects Table */
+.admin-manage-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.admin-proj-list {
+  max-height: 280px;
+  overflow-y: auto;
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  border-radius: var(--radius-xs);
+}
+
+.admin-proj-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 16px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.02);
+  gap: 12px;
+}
+
+.admin-proj-row:last-child {
+  border-bottom: none;
+}
+
+.admin-proj-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.admin-proj-info strong {
+  font-size: 0.88rem;
+  color: #ffffff;
+}
+
+.admin-proj-info span {
+  font-size: 0.76rem;
+  color: #94a3b8;
+}
+
+.admin-proj-type-tag {
+  font-size: 0.70rem;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: var(--radius-full);
+}
+
+.admin-proj-type-tag.builtin {
+  background: rgba(148, 163, 184, 0.15);
+  color: #94a3b8;
+}
+
+.admin-proj-type-tag.custom {
+  background: rgba(223, 155, 36, 0.15);
+  color: var(--gold-light);
+  border: 1px solid var(--gold-border);
+}
+
+.btn-del-proj {
+  background: rgba(239, 68, 68, 0.15);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  color: #f87171;
+  padding: 5px 10px;
+  border-radius: var(--radius-xs);
+  font-size: 0.76rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.btn-del-proj:hover {
+  background: #ef4444;
+  color: #ffffff;
+}
+
+/* Code Export Box */
+.admin-export-block {
+  background: #070d18;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: var(--radius-xs);
+  padding: 18px;
+}
+
+.admin-export-block h4 {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 6px;
+}
+
+.admin-export-block p {
+  font-size: 0.80rem;
+  color: #94a3b8;
+  margin-bottom: 12px;
+}
+
+.admin-code-area {
+  width: 100%;
+  height: 120px;
+  background: #020610;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-xs);
+  color: #38bdf8;
+  font-family: 'Consolas', monospace;
+  font-size: 0.76rem;
+  padding: 10px;
+  resize: vertical;
+  outline: none;
+}
+
+.admin-export-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 768px) {
+  .admin-form-grid {
+    grid-template-columns: 1fr;
+  }
+}

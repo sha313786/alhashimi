@@ -4,13 +4,14 @@
  * 
  * To add a new project in the future:
  * 1. Add a new key (e.g. 7, 8, etc.) to PROJECT_CASE_STUDIES
- * 2. Fill in title, category, client, consultant, location, powerLoad, scope, status, image, and description
+ * 2. Fill in title, category, categoryKey, client, consultant, location, powerLoad, scope, status, image, and description
  */
 
 const PROJECT_CASE_STUDIES = {
   1: {
     title: "Palatial Luxury Villa Compound – Emirates Hills & Al Barsha",
     category: "Luxury Residential Compound",
+    categoryKey: "villa",
     client: "Prominent Private VIP Client",
     consultant: "Premier Architectural & Engineering Consultancy",
     location: "Emirates Hills / Al Barsha, Dubai",
@@ -23,6 +24,7 @@ const PROJECT_CASE_STUDIES = {
   2: {
     title: "Multi-Unit Commercial & Residential Complex – Deira / Port Saeed",
     category: "Commercial & Residential High-Rise",
+    categoryKey: "commercial",
     client: "Leading Property Development Group",
     consultant: "Bel-Yoahah Engineering Consultants",
     location: "Deira / Port Saeed, Dubai",
@@ -35,6 +37,7 @@ const PROJECT_CASE_STUDIES = {
   3: {
     title: "Heavy Logistics & Distribution Complex – Al Quoz & Dubai Industrial City",
     category: "Industrial Logistics Facility",
+    categoryKey: "industrial",
     client: "Major Logistics & Cold Chain Operator",
     consultant: "Gulf Engineering Consultants",
     location: "Al Quoz & Dubai Industrial City",
@@ -47,6 +50,7 @@ const PROJECT_CASE_STUDIES = {
   4: {
     title: "Grand Friday Mosque & Community Hall – Dubai Jurisdiction",
     category: "Religious & Community Public Architecture",
+    categoryKey: "public",
     client: "Dubai Islamic Affairs & Charitable Activities Department (IACAD)",
     consultant: "Al Thurath Engineering Consultants",
     location: "Dubai, United Arab Emirates",
@@ -59,6 +63,7 @@ const PROJECT_CASE_STUDIES = {
   5: {
     title: "Contemporary Twin Luxury Residences – Nad Al Sheba",
     category: "Private Luxury Villas",
+    categoryKey: "villa",
     client: "Private UAE National Family",
     consultant: "Adnan Saffarini Engineering Consultants",
     location: "Nad Al Sheba, Dubai",
@@ -71,6 +76,7 @@ const PROJECT_CASE_STUDIES = {
   6: {
     title: "G+4 Mixed-Use Commercial Center – Hor Al Anz",
     category: "Commercial & Retail Development",
+    categoryKey: "commercial",
     client: "Commercial Real Estate Directorate",
     consultant: "Civic Engineering Consultants",
     location: "Hor Al Anz / Deira, Dubai",

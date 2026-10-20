@@ -910,13 +910,19 @@
           <div class="gold-rule"></div>
         </div>
 
-        <!-- Project Category Filters -->
-        <div class="portfolio-filter-tabs">
-          <button class="port-filter-btn active" data-port="all">All Projects (6)</button>
-          <button class="port-filter-btn" data-port="villa">Luxury Villas</button>
-          <button class="port-filter-btn" data-port="commercial">Commercial & Mixed-Use</button>
-          <button class="port-filter-btn" data-port="industrial">Industrial Facilities</button>
-          <button class="port-filter-btn" data-port="public">Mosques & Institutions</button>
+        <!-- Project Category Filters & Admin Controls -->
+        <div class="portfolio-top-bar">
+          <div class="portfolio-filter-tabs">
+            <button class="port-filter-btn active" data-port="all">All Projects (<span id="allProjectsCount">6</span>)</button>
+            <button class="port-filter-btn" data-port="villa">Luxury Villas</button>
+            <button class="port-filter-btn" data-port="commercial">Commercial & Mixed-Use</button>
+            <button class="port-filter-btn" data-port="industrial">Industrial Facilities</button>
+            <button class="port-filter-btn" data-port="public">Mosques & Institutions</button>
+          </div>
+          <button class="btn btn-admin-trigger" id="openAdminProjectBtn" type="button" aria-haspopup="dialog" title="Portfolio Project Administration">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="width:14px; height:14px;"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+            <span>+ Add Project (Admin)</span>
+          </button>
         </div>
 
         <!-- Projects Grid -->
@@ -1730,6 +1736,166 @@
     </div>
   </dialog>
 
+  <!-- Modal Dialog 5: Portfolio Project Administration & Management Modal -->
+  <dialog class="modal-dialog admin-dialog" id="adminProjectModal" aria-labelledby="adminModalTitle">
+    <div class="modal-content admin-modal-content">
+      <div class="admin-modal-header">
+        <div class="admin-modal-title-wrap">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:20px;height:20px;color:var(--gold-light);"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+          <h3 id="adminModalTitle">Portfolio Administration</h3>
+          <span class="admin-badge-pill">Project Manager</span>
+        </div>
+        <button class="admin-modal-close" id="closeAdminModalBtn" aria-label="Close admin modal">&times;</button>
+      </div>
+
+      <!-- Security PIN Authorization View -->
+      <div id="adminAuthView" class="admin-auth-box">
+        <div class="admin-auth-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:26px;height:26px;"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+        </div>
+        <h4>Project Administration Access</h4>
+        <p>Enter the company authorization passcode to include, publish, or edit projects in the live portfolio.</p>
+        
+        <form id="adminPinForm" onsubmit="return false;">
+          <div class="admin-pin-group">
+            <input type="password" id="adminPinInput" class="admin-pin-input" maxlength="6" placeholder="••••" autocomplete="off">
+          </div>
+          <div class="admin-auth-actions">
+            <button type="submit" class="btn btn-gold btn-block" id="adminUnlockBtn">
+              <span>Unlock Admin Center</span>
+            </button>
+            <button type="button" class="btn btn-outline btn-block" id="adminDemoUnlockBtn" style="font-size:0.80rem;">
+              <span>Quick Unlock (Demo Mode)</span>
+            </button>
+          </div>
+          <div class="admin-pin-hint">&#9432; Default Authorization Passcode: <strong>1988</strong></div>
+          <div id="adminPinError" class="admin-pin-error">Invalid authorization passcode. Please try again.</div>
+        </form>
+      </div>
+
+      <!-- Authenticated Dashboard View -->
+      <div id="adminDashboardView" style="display:none;">
+        <div class="admin-nav-tabs">
+          <button class="admin-tab-btn active" id="adminTabAddBtn" type="button">➕ Include New Project</button>
+          <button class="admin-tab-btn" id="adminTabManageBtn" type="button">📁 Manage Active Projects (<span id="adminActiveCount">6</span>)</button>
+        </div>
+
+        <!-- Tab 1: Include New Project Form -->
+        <div id="adminPanelAdd" class="admin-panel">
+          <form id="addProjectForm" class="admin-form-grid" onsubmit="return false;">
+            <div class="admin-form-group">
+              <label for="projTitle">Project Title <span class="req">*</span></label>
+              <input type="text" id="projTitle" class="admin-input" placeholder="e.g. Al Wasl Luxury Medical Clinic" required>
+            </div>
+
+            <div class="admin-form-group">
+              <label for="projCategory">Category <span class="req">*</span></label>
+              <select id="projCategory" class="admin-select" required>
+                <option value="villa">Luxury Villas & Private Compounds</option>
+                <option value="commercial" selected>Commercial, Retail & High-Rise</option>
+                <option value="industrial">Industrial Facilities & Logistics</option>
+                <option value="public">Mosques & Public Institutions</option>
+              </select>
+            </div>
+
+            <div class="admin-form-group">
+              <label for="projLocation">Location in Dubai / UAE <span class="req">*</span></label>
+              <input type="text" id="projLocation" class="admin-input" placeholder="e.g. Al Wasl Road / Jumeirah, Dubai" required>
+            </div>
+
+            <div class="admin-form-group">
+              <label for="projPower">Connected Electrical Load <span class="req">*</span></label>
+              <input type="text" id="projPower" class="admin-input" placeholder="e.g. 2,200 kVA (3-Phase 415V)" required>
+            </div>
+
+            <div class="admin-form-group">
+              <label for="projScope">Scope of Works <span class="req">*</span></label>
+              <input type="text" id="projScope" class="admin-input" placeholder="e.g. 11kV Substation, SMDBs, Busbar Risers, Fire Alarm & Plumbing" required>
+            </div>
+
+            <div class="admin-form-group">
+              <label for="projClient">Client / Property Developer</label>
+              <input type="text" id="projClient" class="admin-input" placeholder="e.g. Private Healthcare Holdings / Emaar">
+            </div>
+
+            <div class="admin-form-group">
+              <label for="projConsultant">Engineering Consultant</label>
+              <input type="text" id="projConsultant" class="admin-input" placeholder="e.g. National Engineering Bureau (NEB)">
+            </div>
+
+            <div class="admin-form-group">
+              <label for="projStatus">DEWA Authority Status <span class="req">*</span></label>
+              <select id="projStatus" class="admin-select">
+                <option value="Completed & DEWA Energized" selected>Completed & DEWA Energized</option>
+                <option value="Under Construction • 11kV Stage">Under Construction • 11kV Stage</option>
+                <option value="DEWA NOC & Drawing Approval">DEWA NOC & Drawing Approval</option>
+                <option value="Commissioned & Handed Over">Commissioned & Handed Over</option>
+              </select>
+            </div>
+
+            <div class="admin-form-group admin-full-col">
+              <label>Project Photo or CAD Blueprint</label>
+              <div class="admin-image-upload-wrap">
+                <input type="file" id="projImageFile" accept="image/*" class="admin-input" style="flex:1;">
+                <div class="admin-img-preview" id="projImgPreview">
+                  <span>No Photo (Auto Blueprint)</span>
+                </div>
+              </div>
+              <input type="hidden" id="projImageData" value="">
+              <small style="color:#94a3b8; font-size:0.75rem; margin-top:4px;">Upload a local image (JPG/PNG). If omitted, an architectural CAD schematic blueprint will automatically be generated.</small>
+            </div>
+
+            <div class="admin-form-group admin-full-col">
+              <label for="projSummary">Card Summary (1-2 Sentences)</label>
+              <input type="text" id="projSummary" class="admin-input" placeholder="Brief technical summary shown on the project card face...">
+            </div>
+
+            <div class="admin-form-group admin-full-col">
+              <label for="projDescription">Full Case Study Technical Description <span class="req">*</span></label>
+              <textarea id="projDescription" class="admin-textarea" rows="3" placeholder="Detailed engineering overview displayed in the Case Study Modal..." required></textarea>
+            </div>
+
+            <div class="admin-form-actions admin-full-col">
+              <button type="button" class="btn btn-outline" id="clearProjectFormBtn">Clear Form</button>
+              <button type="submit" class="btn btn-gold" id="submitProjectBtn">
+                <span>+ Publish Project to Live Grid</span>
+              </button>
+            </div>
+          </form>
+        </div>
+
+        <!-- Tab 2: Manage Projects & Code Export -->
+        <div id="adminPanelManage" class="admin-panel" style="display:none;">
+          <div class="admin-manage-wrap">
+            <div>
+              <h4 style="font-size:0.95rem; margin-bottom:10px; color:#ffffff;">Active Project Registry</h4>
+              <div class="admin-proj-list" id="adminProjList">
+                <!-- Dynamically populated -->
+              </div>
+            </div>
+
+            <div class="admin-export-block">
+              <h4>Developer Code Export (for js/data/projects.js)</h4>
+              <p>To persist newly added projects permanently into the source code repository across all devices, copy this generated JavaScript code block into <code>js/data/projects.js</code>:</p>
+              <textarea id="adminExportCode" class="admin-code-area" readonly></textarea>
+              <div class="admin-export-actions">
+                <button type="button" class="btn btn-gold btn-sm" id="copyExportCodeBtn">
+                  <span>📋 Copy Code to Clipboard</span>
+                </button>
+                <button type="button" class="btn btn-outline btn-sm" id="downloadProjectsJsBtn">
+                  <span>💾 Download projects.js</span>
+                </button>
+                <button type="button" class="btn btn-outline btn-sm" id="resetCustomProjectsBtn" style="color:#f87171; border-color:rgba(248,113,113,0.3);">
+                  <span>↺ Clear Custom Projects</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </dialog>
+
   <!-- Persistent Floating WhatsApp & Contact Widget -->
   <div class="floating-contact-stack">
     <a href="https://wa.me/971528974123?text=Hello%20Mr.%20Binoji%2C%20I%20would%20like%20to%20inquire%20about%20an%20electrical%20or%20MEP%20subcontract%20for%20our%20project%20in%20Dubai." target="_blank" rel="noopener noreferrer" class="float-wa-btn" aria-label="Chat with Managing Director Binoji on WhatsApp">
@@ -1803,6 +1969,7 @@
           <li><a href="#partners">Consultants & Main Contractors</a></li>
           <li><a href="#safety-quality">HSE Policy & 100% Medlife Insurance</a></li>
           <li><a href="#faq">Frequently Asked Questions</a></li>
+          <li><a href="javascript:void(0)" id="footerAdminLink" style="color:var(--gold-primary); font-size:0.80rem; opacity:0.85;">⚙️ Admin: Manage Projects</a></li>
         </ul>
       </div>
 
