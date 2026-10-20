@@ -350,6 +350,12 @@ function initProjectPortfolio() {
   const clearLeadsBtn = document.getElementById('clearLeadsBtn');
 
   const addForm = document.getElementById('addProjectForm');
+  const editingProjectId = document.getElementById('editingProjectId');
+  const editModeNotice = document.getElementById('editModeNotice');
+  const editingProjectTitleText = document.getElementById('editingProjectTitleText');
+  const cancelEditProjectBtn = document.getElementById('cancelEditProjectBtn');
+  const cancelEditBtnBottom = document.getElementById('cancelEditBtnBottom');
+  const submitProjectBtn = document.getElementById('submitProjectBtn');
   const imageFileInput = document.getElementById('projImageFile');
   const imagePreview = document.getElementById('projImgPreview');
   const imageHidden = document.getElementById('projImageData');
@@ -652,13 +658,93 @@ function initProjectPortfolio() {
     });
   }
 
+  // Reset Add/Edit Form Mode
+  function resetAddFormMode() {
+    if (editingProjectId) editingProjectId.value = '';
+    if (addForm) addForm.reset();
+    if (imageHidden) imageHidden.value = '';
+    if (imagePreview) imagePreview.innerHTML = '<span>No Photo (Auto Blueprint)</span>';
+    if (editModeNotice) editModeNotice.style.display = 'none';
+    if (cancelEditBtnBottom) cancelEditBtnBottom.style.display = 'none';
+    if (tabAddBtn) tabAddBtn.textContent = '➕ Include New Project';
+    if (submitProjectBtn) {
+      const span = submitProjectBtn.querySelector('span');
+      if (span) span.textContent = '+ Publish Project to Live Grid';
+    }
+  }
+
   // Clear Form
   if (clearFormBtn && addForm) {
     clearFormBtn.addEventListener('click', () => {
-      addForm.reset();
+      resetAddFormMode();
+    });
+  }
+
+  if (cancelEditProjectBtn) {
+    cancelEditProjectBtn.addEventListener('click', () => {
+      resetAddFormMode();
+      switchAdminTab('manage');
+    });
+  }
+
+  if (cancelEditBtnBottom) {
+    cancelEditBtnBottom.addEventListener('click', () => {
+      resetAddFormMode();
+      switchAdminTab('manage');
+    });
+  }
+
+  // Edit Custom Project
+  function editCustomProject(id) {
+    if (typeof PROJECT_CASE_STUDIES === 'undefined' || !PROJECT_CASE_STUDIES[id]) return;
+    const p = PROJECT_CASE_STUDIES[id];
+
+    if (editingProjectId) editingProjectId.value = id;
+
+    const titleEl = document.getElementById('projTitle');
+    const catEl = document.getElementById('projCategory');
+    const locEl = document.getElementById('projLocation');
+    const powerEl = document.getElementById('projPower');
+    const scopeEl = document.getElementById('projScope');
+    const clientEl = document.getElementById('projClient');
+    const consEl = document.getElementById('projConsultant');
+    const statEl = document.getElementById('projStatus');
+    const sumEl = document.getElementById('projSummary');
+    const descEl = document.getElementById('projDescription');
+
+    if (titleEl) titleEl.value = p.title || '';
+    if (catEl) catEl.value = p.categoryKey || 'commercial';
+    if (locEl) locEl.value = p.location || '';
+    if (powerEl) powerEl.value = p.powerLoad || '';
+    if (scopeEl) scopeEl.value = p.scope || '';
+    if (clientEl) clientEl.value = p.client || '';
+    if (consEl) consEl.value = p.consultant || '';
+    if (statEl) statEl.value = p.status || 'Completed & DEWA Energized';
+    if (sumEl) sumEl.value = p.summary || '';
+    if (descEl) descEl.value = p.description || '';
+
+    if (p.image) {
+      if (imageHidden) imageHidden.value = p.image;
+      if (imagePreview) imagePreview.innerHTML = `<img src="${p.image}" alt="Preview">`;
+    } else {
       if (imageHidden) imageHidden.value = '';
       if (imagePreview) imagePreview.innerHTML = '<span>No Photo (Auto Blueprint)</span>';
-    });
+    }
+
+    if (editModeNotice) {
+      editModeNotice.style.display = 'flex';
+      if (editingProjectTitleText) editingProjectTitleText.textContent = p.title;
+    }
+    if (cancelEditBtnBottom) cancelEditBtnBottom.style.display = 'inline-block';
+    if (tabAddBtn) tabAddBtn.textContent = '✏️ Edit Project';
+    if (submitProjectBtn) {
+      const span = submitProjectBtn.querySelector('span');
+      if (span) span.textContent = '💾 Save Changes & Update Live';
+    }
+
+    switchAdminTab('add');
+    if (titleEl) setTimeout(() => titleEl.focus(), 150);
+    showToast(`Loaded "${p.title}" for editing.`);
   }
 
   // Category Names Map
@@ -669,7 +755,7 @@ function initProjectPortfolio() {
     public: 'Mosques & Public Architecture'
   };
 
-  // Submit & Publish New Project
+  // Submit & Publish / Update Project
   if (addForm) {
     addForm.addEventListener('submit', (e) => {
       e.preventDefault();
@@ -697,6 +783,90 @@ function initProjectPortfolio() {
       const finalDesc = description || (summary ? summary : `Turnkey electromechanical engineering, switchgear distribution, and statutory authority clearances executed to premier UAE technical standards by Al Hashimi Electrical Installation Works LLC.`);
       const finalSummary = summary || (finalDesc.length > 120 ? finalDesc.slice(0, 117) + '...' : finalDesc);
 
+      const editId = editingProjectId ? editingProjectId.value.trim() : '';
+
+      if (editId) {
+        // --- EDIT MODE: Update existing project ---
+        const existingProj = PROJECT_CASE_STUDIES[editId] || {};
+        const updatedProj = {
+          ...existingProj,
+          id: editId,
+          title: finalTitle,
+          category: CATEGORY_NAMES[categoryKey] || 'Commercial, Retail & High-Rise',
+          categoryKey: categoryKey,
+          client: finalClient,
+          consultant: finalConsultant,
+          location: finalLocation,
+          powerLoad: finalPower,
+          scope: finalScope,
+          status: finalStatus,
+          image: image || existingProj.image || null,
+          summary: finalSummary,
+          description: finalDesc,
+          isCustom: true,
+          updatedAt: new Date().toISOString()
+        };
+
+        // 1. Update in-memory data
+        PROJECT_CASE_STUDIES[editId] = updatedProj;
+
+        // 2. Persist to localStorage
+        try {
+          let customList = JSON.parse(localStorage.getItem('alhashimi_custom_projects') || '[]');
+          const idx = customList.findIndex(p => p.id === editId);
+          if (idx !== -1) {
+            customList[idx] = updatedProj;
+          } else {
+            customList.push(updatedProj);
+          }
+          localStorage.setItem('alhashimi_custom_projects', JSON.stringify(customList));
+        } catch (err) {
+          console.warn('Could not update in localStorage:', err);
+        }
+
+        // 2b. Persist to Cloud Database (Firebase Firestore)
+        if (db) {
+          db.collection('portfolio_projects').doc(editId).set(updatedProj, { merge: true })
+            .then(() => {
+              console.log('Project updated in Cloud Firestore globally:', updatedProj.title);
+            })
+            .catch((cloudErr) => {
+              console.warn('Cloud update error:', cloudErr);
+              showToast('Saved locally. Cloud sync warning: ' + cloudErr.message);
+            });
+        }
+
+        // 3. Update DOM Grid card
+        if (grid) {
+          const oldCard = grid.querySelector(`[data-proj-id="${editId}"]`);
+          const temp = document.createElement('div');
+          temp.innerHTML = buildCardHTML(editId, updatedProj).trim();
+          const newCard = temp.firstElementChild;
+          if (oldCard) {
+            grid.replaceChild(newCard, oldCard);
+          } else {
+            grid.prepend(newCard);
+          }
+
+          rebindCaseStudyButtons();
+          applyCurrentFilter();
+
+          newCard.classList.add('admin-card-pulse');
+          setTimeout(() => newCard.classList.remove('admin-card-pulse'), 3000);
+          setTimeout(() => {
+            newCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          }, 350);
+        }
+
+        resetAddFormMode();
+        renderManageList();
+
+        if (adminModal) adminModal.close();
+        showToast(`Project "${finalTitle}" updated & synced to Cloud globally!`);
+        return;
+      }
+
+      // --- CREATE MODE: New Project ---
       const newId = 'custom_' + Date.now();
       const newProj = {
         id: newId,
@@ -769,9 +939,7 @@ function initProjectPortfolio() {
       }
 
       // Reset form
-      addForm.reset();
-      if (imageHidden) imageHidden.value = '';
-      if (imagePreview) imagePreview.innerHTML = '<span>No Photo (Auto Blueprint)</span>';
+      resetAddFormMode();
 
       // Close modal & toast
       if (adminModal) adminModal.close();
@@ -809,6 +977,10 @@ function initProjectPortfolio() {
         ? '<span class="admin-proj-type-tag custom">Custom Admin</span>'
         : '<span class="admin-proj-type-tag builtin">Built-in Core</span>';
 
+      const editBtn = isCustom 
+        ? `<button type="button" class="btn-edit-proj" data-edit-id="${id}" title="Edit this custom project">✏️ Edit</button>`
+        : '';
+
       const deleteBtn = isCustom 
         ? `<button type="button" class="btn-del-proj" data-del-id="${id}" title="Remove this custom project">Delete</button>`
         : '<span style="font-size:0.72rem; color:#64748b;">Protected</span>';
@@ -819,8 +991,9 @@ function initProjectPortfolio() {
             <strong>${p.title}</strong>
             <span>${p.category} &bull; ${p.powerLoad} &bull; ${p.location}</span>
           </div>
-          <div style="display:flex; align-items:center; gap:10px;">
+          <div style="display:flex; align-items:center; gap:8px;">
             ${typeBadge}
+            ${editBtn}
             ${deleteBtn}
           </div>
         </div>
@@ -828,6 +1001,14 @@ function initProjectPortfolio() {
     });
 
     adminProjList.innerHTML = html;
+
+    // Attach edit listeners
+    adminProjList.querySelectorAll('.btn-edit-proj').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const editId = btn.getAttribute('data-edit-id');
+        editCustomProject(editId);
+      });
+    });
 
     // Attach delete listeners
     adminProjList.querySelectorAll('.btn-del-proj').forEach(btn => {

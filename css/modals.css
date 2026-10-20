@@ -701,6 +701,26 @@
   border: 1px solid var(--gold-border);
 }
 
+.btn-edit-proj {
+  background: rgba(223, 155, 36, 0.15);
+  border: 1px solid var(--gold-border);
+  color: var(--gold-light);
+  padding: 5px 10px;
+  border-radius: var(--radius-xs);
+  font-size: 0.76rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.btn-edit-proj:hover {
+  background: var(--gold-primary);
+  color: #000000;
+}
+
 .btn-del-proj {
   background: rgba(239, 68, 68, 0.15);
   border: 1px solid rgba(239, 68, 68, 0.3);
