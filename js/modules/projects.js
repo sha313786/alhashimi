@@ -465,37 +465,43 @@ function initProjectPortfolio() {
       e.preventDefault();
 
       const title = document.getElementById('projTitle').value.trim();
-      const categoryKey = document.getElementById('projCategory').value;
+      const categoryKey = document.getElementById('projCategory').value || 'commercial';
       const location = document.getElementById('projLocation').value.trim();
       const powerLoad = document.getElementById('projPower').value.trim();
       const scope = document.getElementById('projScope').value.trim();
-      const client = document.getElementById('projClient').value.trim() || 'Private Client / Developer';
-      const consultant = document.getElementById('projConsultant').value.trim() || 'Authority Registered Engineering Consultant';
-      const status = document.getElementById('projStatus').value;
+      const client = document.getElementById('projClient').value.trim();
+      const consultant = document.getElementById('projConsultant').value.trim();
+      const status = document.getElementById('projStatus').value || 'Completed & DEWA Energized';
       const image = imageHidden ? imageHidden.value : null;
       const summary = document.getElementById('projSummary').value.trim();
       const description = document.getElementById('projDescription').value.trim();
 
-      if (!title || !location || !powerLoad || !scope || !description) {
-        alert('Please fill out all mandatory fields (*).');
-        return;
-      }
+      // All fields are fully optional with smart engineering defaults
+      const finalTitle = title || 'Dubai Landmark Engineering Project';
+      const finalLocation = location || 'Dubai, United Arab Emirates';
+      const finalPower = powerLoad || 'High & Low Voltage Substation';
+      const finalScope = scope || 'Turnkey Electrical, Switchgear & MEP Installation';
+      const finalClient = client || 'Private Client / Developer';
+      const finalConsultant = consultant || 'Authority Registered Engineering Consultant';
+      const finalStatus = status || 'Completed & DEWA Energized';
+      const finalDesc = description || (summary ? summary : `Turnkey electromechanical engineering, switchgear distribution, and statutory authority clearances executed to premier UAE technical standards by Al Hashimi Electrical Installation Works LLC.`);
+      const finalSummary = summary || (finalDesc.length > 120 ? finalDesc.slice(0, 117) + '...' : finalDesc);
 
       const newId = 'custom_' + Date.now();
       const newProj = {
         id: newId,
-        title: title,
-        category: CATEGORY_NAMES[categoryKey] || 'Commercial Development',
+        title: finalTitle,
+        category: CATEGORY_NAMES[categoryKey] || 'Commercial, Retail & High-Rise',
         categoryKey: categoryKey,
-        client: client,
-        consultant: consultant,
-        location: location,
-        powerLoad: powerLoad,
-        scope: scope,
-        status: status,
+        client: finalClient,
+        consultant: finalConsultant,
+        location: finalLocation,
+        powerLoad: finalPower,
+        scope: finalScope,
+        status: finalStatus,
         image: image || null,
-        summary: summary || (description.length > 120 ? description.slice(0, 117) + '...' : description),
-        description: description,
+        summary: finalSummary,
+        description: finalDesc,
         isCustom: true,
         createdAt: new Date().toISOString()
       };
