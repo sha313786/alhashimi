@@ -72,6 +72,37 @@ function initRfqModal() {
       e.preventDefault();
       const name = document.getElementById('quickName').value;
       const contact = document.getElementById('quickContact').value;
+
+      // 1. Store callback lead in Google Cloud Firestore (Admin Leads Inbox)
+      const leadData = {
+        id: 'cb_' + Date.now(),
+        type: 'Fast Callback Request',
+        fullName: name || 'Prospective Client',
+        company: 'Fast Prequalification Lead',
+        email: contact && contact.includes('@') ? contact : '',
+        phone: contact,
+        projectType: 'Direct Callback',
+        connectedLoad: 'Pre-qualification Consultation',
+        scopes: 'Direct Engineering Callback (Within 2 Hours)',
+        details: 'Requested urgent callback from Managing Director Mr. Binoji K. Varghese',
+        createdAt: new Date().toISOString()
+      };
+
+      if (typeof firebase !== 'undefined' && firebase.apps && firebase.apps.length) {
+        try {
+          firebase.firestore().collection('tender_inquiries').doc(leadData.id).set(leadData)
+            .then(() => console.log('Callback lead stored in Cloud Firestore:', leadData.id))
+            .catch(err => console.warn('Cloud callback save warning:', err));
+        } catch (e) {
+          console.warn('Firebase callback lead error:', e);
+        }
+      }
+
+      try {
+        const storedLeads = JSON.parse(localStorage.getItem('alhashimi_leads') || '[]');
+        storedLeads.unshift(leadData);
+        localStorage.setItem('alhashimi_leads', JSON.stringify(storedLeads));
+      } catch (e) {}
       
       const waMsg = encodeURIComponent(`Hello Mr. Binoji, callback request from ${name} (${contact}) regarding MEP subcontract prequalification.`);
       const waLink = `https://wa.me/971528974123?text=${waMsg}`;

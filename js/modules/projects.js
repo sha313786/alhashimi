@@ -341,8 +341,13 @@ function initProjectPortfolio() {
 
   const tabAddBtn = document.getElementById('adminTabAddBtn');
   const tabManageBtn = document.getElementById('adminTabManageBtn');
+  const tabLeadsBtn = document.getElementById('adminTabLeadsBtn');
   const panelAdd = document.getElementById('adminPanelAdd');
   const panelManage = document.getElementById('adminPanelManage');
+  const panelLeads = document.getElementById('adminPanelLeads');
+  const adminLeadsCount = document.getElementById('adminLeadsCount');
+  const adminLeadsList = document.getElementById('adminLeadsList');
+  const clearLeadsBtn = document.getElementById('clearLeadsBtn');
 
   const addForm = document.getElementById('addProjectForm');
   const imageFileInput = document.getElementById('projImageFile');
@@ -520,23 +525,32 @@ function initProjectPortfolio() {
 
   // Switch Admin Tabs
   function switchAdminTab(tabName) {
+    if (tabAddBtn) tabAddBtn.classList.remove('active');
+    if (tabManageBtn) tabManageBtn.classList.remove('active');
+    if (tabLeadsBtn) tabLeadsBtn.classList.remove('active');
+
+    if (panelAdd) panelAdd.style.display = 'none';
+    if (panelManage) panelManage.style.display = 'none';
+    if (panelLeads) panelLeads.style.display = 'none';
+
     if (tabName === 'add') {
       if (tabAddBtn) tabAddBtn.classList.add('active');
-      if (tabManageBtn) tabManageBtn.classList.remove('active');
       if (panelAdd) panelAdd.style.display = 'block';
-      if (panelManage) panelManage.style.display = 'none';
-    } else {
-      if (tabAddBtn) tabAddBtn.classList.remove('active');
+    } else if (tabName === 'manage') {
       if (tabManageBtn) tabManageBtn.classList.add('active');
-      if (panelAdd) panelAdd.style.display = 'none';
       if (panelManage) panelManage.style.display = 'block';
       renderManageList();
       updateExportCode();
+    } else if (tabName === 'leads') {
+      if (tabLeadsBtn) tabLeadsBtn.classList.add('active');
+      if (panelLeads) panelLeads.style.display = 'block';
+      renderLeadsList();
     }
   }
 
   if (tabAddBtn) tabAddBtn.addEventListener('click', () => switchAdminTab('add'));
   if (tabManageBtn) tabManageBtn.addEventListener('click', () => switchAdminTab('manage'));
+  if (tabLeadsBtn) tabLeadsBtn.addEventListener('click', () => switchAdminTab('leads'));
 
   // Smart Canvas Image Resizer & Compressor (keeps uploads fast and under cloud limits)
   function compressImage(file, maxWidth = 1200, quality = 0.8) {
@@ -923,6 +937,167 @@ if (typeof module !== 'undefined' && module.exports) {
 
       renderManageList();
       showToast('Portfolio reset to default 6 projects.');
+    });
+  }
+
+  // ==========================================================================
+  // 7. Cloud Leads & Inquiry Management Subsystem
+  // ==========================================================================
+  let cachedLeads = [];
+
+  function initLeadsListener() {
+    // 1. Initial load from local cache for instant UI response
+    try {
+      cachedLeads = JSON.parse(localStorage.getItem('alhashimi_leads') || '[]');
+      if (adminLeadsCount) adminLeadsCount.textContent = cachedLeads.length;
+    } catch(e) {}
+
+    // 2. Real-time Cloud Firestore Listener for tender inquiries
+    if (db) {
+      try {
+        db.collection('tender_inquiries').orderBy('createdAt', 'desc').onSnapshot((snapshot) => {
+          const list = [];
+          snapshot.forEach(doc => {
+            const data = doc.data();
+            list.push({ ...data, id: doc.id });
+          });
+          cachedLeads = list;
+          try {
+            localStorage.setItem('alhashimi_leads', JSON.stringify(list));
+          } catch(e) {}
+          if (adminLeadsCount) adminLeadsCount.textContent = list.length;
+          if (panelLeads && panelLeads.style.display === 'block') {
+            renderLeadsList();
+          }
+        }, (err) => console.warn('Leads listener notice:', err));
+      } catch (err) {
+        console.warn('Could not attach leads listener:', err);
+      }
+    }
+  }
+
+  initLeadsListener();
+
+  function renderLeadsList() {
+    if (!adminLeadsList) return;
+
+    if (!cachedLeads || cachedLeads.length === 0) {
+      adminLeadsList.innerHTML = `
+        <div class="admin-leads-empty">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <path d="M22 17H2a3 3 0 0 0 3-3V9a7 7 0 0 1 14 0v5a3 3 0 0 0 3 3zm-8.27 4a2 2 0 0 1-3.46 0"/>
+          </svg>
+          <h4 style="color:#ffffff; margin-bottom:6px; font-size:1rem;">No Inquiries Received Yet</h4>
+          <p style="margin:0; font-size:0.82rem;">Any tender quote requests or direct callback inquiries submitted by visitors on the website will appear here in real-time!</p>
+        </div>
+      `;
+      return;
+    }
+
+    let html = '';
+    cachedLeads.forEach(lead => {
+      const isTender = lead.type && lead.type.includes('Tender');
+      const typeClass = isTender ? 'tender' : 'callback';
+      const cleanPhone = (lead.phone || '').replace(/[^0-9+]/g, '');
+      const waLink = cleanPhone ? `https://wa.me/${cleanPhone.replace('+', '')}` : '#';
+      const formattedDate = lead.createdAt ? new Date(lead.createdAt).toLocaleString('en-US', {
+        month: 'short', day: 'numeric', year: 'numeric',
+        hour: '2-digit', minute: '2-digit'
+      }) : 'Recent';
+
+      const esc = (txt) => {
+        if (!txt) return '';
+        if (typeof escapeHtml === 'function') return escapeHtml(txt);
+        return String(txt).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+      };
+
+      html += `
+        <div class="admin-lead-card" data-lead-id="${lead.id}">
+          <div class="admin-lead-header">
+            <span class="admin-lead-type ${typeClass}">${esc(lead.type || 'Tender Lead')}</span>
+            <span class="admin-lead-time">🕒 ${formattedDate}</span>
+          </div>
+          <div class="admin-lead-body">
+            <div class="admin-lead-field">
+              <strong>Client / Contact:</strong>
+              <span>${esc(lead.fullName || 'Anonymous')}</span>
+            </div>
+            <div class="admin-lead-field">
+              <strong>Organization / Entity:</strong>
+              <span>${esc(lead.company || 'Not specified')}</span>
+            </div>
+            <div class="admin-lead-field">
+              <strong>Mobile / WhatsApp:</strong>
+              <span style="color:#4ade80;">${esc(lead.phone || 'N/A')}</span>
+            </div>
+            <div class="admin-lead-field">
+              <strong>Official Email:</strong>
+              <span>${esc(lead.email || 'N/A')}</span>
+            </div>
+            <div class="admin-lead-field">
+              <strong>Classification & Load:</strong>
+              <span>${esc(lead.projectType || 'General')} &bull; ${esc(lead.connectedLoad || '')}</span>
+            </div>
+            <div class="admin-lead-field">
+              <strong>Required Scope:</strong>
+              <span>${esc(lead.scopes || 'Full MEP')}</span>
+            </div>
+          </div>
+          ${lead.details ? `<div class="admin-lead-details"><strong>Project Notes:</strong> ${esc(lead.details)}</div>` : ''}
+          <div class="admin-lead-actions">
+            ${cleanPhone ? `<a href="tel:${cleanPhone}" class="btn-lead-action btn-lead-call">📞 Call Client</a>` : ''}
+            ${cleanPhone ? `<a href="${waLink}" target="_blank" rel="noopener noreferrer" class="btn-lead-action btn-lead-wa">💬 WhatsApp</a>` : ''}
+            ${lead.email && lead.email.includes('@') ? `<a href="mailto:${lead.email}" class="btn-lead-action btn-lead-email">✉️ Send Email</a>` : ''}
+            <button type="button" class="btn-lead-action btn-lead-del" data-del-lead="${lead.id}">Delete</button>
+          </div>
+        </div>
+      `;
+    });
+
+    adminLeadsList.innerHTML = html;
+
+    // Attach delete listeners
+    adminLeadsList.querySelectorAll('.btn-lead-del').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const leadId = btn.getAttribute('data-del-lead');
+        deleteLead(leadId);
+      });
+    });
+  }
+
+  function deleteLead(id) {
+    if (!confirm('Remove this inquiry from your inbox?')) return;
+
+    cachedLeads = cachedLeads.filter(l => l.id !== id);
+    try {
+      localStorage.setItem('alhashimi_leads', JSON.stringify(cachedLeads));
+    } catch(e) {}
+
+    if (db) {
+      db.collection('tender_inquiries').doc(id).delete()
+        .then(() => console.log('Lead removed from Cloud Firestore:', id))
+        .catch(err => console.warn(err));
+    }
+
+    if (adminLeadsCount) adminLeadsCount.textContent = cachedLeads.length;
+    renderLeadsList();
+    showToast('Inquiry removed from inbox.');
+  }
+
+  // Clear all leads button
+  if (clearLeadsBtn) {
+    clearLeadsBtn.addEventListener('click', () => {
+      if (!confirm('Clear all received leads from your inbox?')) return;
+      if (db) {
+        db.collection('tender_inquiries').get().then(snap => {
+          snap.forEach(d => d.ref.delete());
+        }).catch(e => console.warn(e));
+      }
+      cachedLeads = [];
+      localStorage.removeItem('alhashimi_leads');
+      if (adminLeadsCount) adminLeadsCount.textContent = '0';
+      renderLeadsList();
+      showToast('All inquiries cleared.');
     });
   }
 }

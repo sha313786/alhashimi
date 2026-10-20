@@ -35,6 +35,36 @@ function initContactForm() {
 
     setTimeout(() => {
       submitBtn.disabled = false;
+      // 1. Store lead in Google Cloud Firestore (Admin Leads Inbox)
+      const leadData = {
+        id: 'lead_' + Date.now(),
+        type: 'Tender Scope & Quotation',
+        fullName: fullName || 'Prospective Partner',
+        company: company || 'Not specified',
+        email: email || 'Not specified',
+        phone: phone || 'Not specified',
+        projectType: projectType || 'Commercial / High-Rise',
+        connectedLoad: load,
+        scopes: scopes || 'Full Turnkey MEP',
+        details: details || 'Tender scope submitted via website quotation portal',
+        createdAt: new Date().toISOString()
+      };
+
+      if (typeof firebase !== 'undefined' && firebase.apps && firebase.apps.length) {
+        try {
+          firebase.firestore().collection('tender_inquiries').doc(leadData.id).set(leadData)
+            .then(() => console.log('Tender lead stored in Cloud Firestore:', leadData.id))
+            .catch(err => console.warn('Cloud lead save warning:', err));
+        } catch (e) {
+          console.warn('Firebase lead store error:', e);
+        }
+      }
+
+      try {
+        const storedLeads = JSON.parse(localStorage.getItem('alhashimi_leads') || '[]');
+        storedLeads.unshift(leadData);
+        localStorage.setItem('alhashimi_leads', JSON.stringify(storedLeads));
+      } catch (e) {}
       if (labelSpan) labelSpan.textContent = 'Submit Tender Inquiry';
       if (loader) loader.setAttribute('hidden', '');
 

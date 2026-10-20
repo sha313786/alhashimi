@@ -1781,6 +1781,7 @@
         <div class="admin-nav-tabs">
           <button class="admin-tab-btn active" id="adminTabAddBtn" type="button">➕ Include New Project</button>
           <button class="admin-tab-btn" id="adminTabManageBtn" type="button">📁 Manage Active Projects (<span id="adminActiveCount">6</span>)</button>
+          <button class="admin-tab-btn" id="adminTabLeadsBtn" type="button">📩 Received Inquiries (<span id="adminLeadsCount" style="color:var(--gold-light); font-weight:800;">0</span>)</button>
         </div>
 
         <!-- Tab 1: Include New Project Form -->
@@ -1893,6 +1894,23 @@
                 </button>
               </div>
             </div>
+          </div>
+        </div>
+
+        <!-- Tab 3: Received Inquiries & Quotation Leads -->
+        <div id="adminPanelLeads" class="admin-panel" style="display:none;">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px; flex-wrap:wrap; gap:10px; border-bottom:1px solid rgba(255,255,255,0.08); padding-bottom:10px;">
+            <div>
+              <h4 style="margin:0; color:#fff; font-size:1.05rem; font-weight:700;">Live Tender & Callback Inquiries</h4>
+              <p style="margin:4px 0 0; color:#94a3b8; font-size:0.80rem;">Client leads captured across all website forms in real-time via Cloud</p>
+            </div>
+            <button type="button" class="btn btn-outline btn-sm" id="clearLeadsBtn" style="color:#f87171; border-color:rgba(248,113,113,0.3); font-size:0.75rem;">
+              <span>Clear All Leads</span>
+            </button>
+          </div>
+
+          <div id="adminLeadsList" class="admin-leads-list">
+            <!-- Dynamic Lead Cards injected here -->
           </div>
         </div>
       </div>
@@ -2016,25 +2034,25 @@
   <!-- Cloud Sync Subsystem (Firebase Firestore) -->
   <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
-  <script src="js/config/firebase.js?v=5.1"></script>
+  <script src="js/config/firebase.js?v=6.0"></script>
 
   <!-- Application Data Modules -->
-  <script src="js/utils.js?v=5.1"></script>
-  <script src="js/data/translations.js?v=5.1"></script>
-  <script src="js/data/projects.js?v=5.1"></script>
-  <script src="js/data/partners.js?v=5.1"></script>
+  <script src="js/utils.js?v=6.0"></script>
+  <script src="js/data/translations.js?v=6.0"></script>
+  <script src="js/data/projects.js?v=6.0"></script>
+  <script src="js/data/partners.js?v=6.0"></script>
 
   <!-- Application Subsystem Modules -->
-  <script src="js/modules/i18n.js?v=5.1"></script>
-  <script src="js/modules/clock.js?v=5.1"></script>
-  <script src="js/modules/calculator.js?v=5.1"></script>
-  <script src="js/modules/projects.js?v=5.1"></script>
-  <script src="js/modules/credentials.js?v=5.1"></script>
-  <script src="js/modules/partners.js?v=5.1"></script>
-  <script src="js/modules/rfq.js?v=5.1"></script>
-  <script src="js/modules/ui.js?v=5.1"></script>
+  <script src="js/modules/i18n.js?v=6.0"></script>
+  <script src="js/modules/clock.js?v=6.0"></script>
+  <script src="js/modules/calculator.js?v=6.0"></script>
+  <script src="js/modules/projects.js?v=6.0"></script>
+  <script src="js/modules/credentials.js?v=6.0"></script>
+  <script src="js/modules/partners.js?v=6.0"></script>
+  <script src="js/modules/rfq.js?v=6.0"></script>
+  <script src="js/modules/ui.js?v=6.0"></script>
 
   <!-- Main Application Coordinator -->
-  <script src="js/main.js?v=5.1"></script>
+  <script src="js/main.js?v=6.0"></script>
 </body>
 </html>
