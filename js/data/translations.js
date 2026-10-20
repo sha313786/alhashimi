@@ -16,7 +16,7 @@ const TRANSLATIONS = {
     // Header & Navigation
     company_name: "الهاشمي",
     company_sub: "للتركيبات الكهربائية ذ.م.م",
-    company_est: "الفئة الذهبية لكهرباء دبي • تأسست 1988",
+    company_est: "مقاول كهروميكانيكي معتمد • دبي، الإمارات",
     nav_about: "نبذة عنا",
     nav_awards: "★ الفئة الذهبية",
     nav_scope: "نطاق الأعمال",

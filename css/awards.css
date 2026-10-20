@@ -382,6 +382,26 @@
   color: #64748b;
 }
 
+.matrix-action-row {
+  display: flex;
+  justify-content: center;
+  margin-top: 32px;
+}
+
+.ceremony-venue-note {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--gold-light);
+  margin-top: 14px;
+  padding: 8px 14px;
+  background: rgba(223, 155, 36, 0.08);
+  border: 1px solid rgba(223, 155, 36, 0.22);
+  border-radius: var(--radius-sm);
+}
+
 /* Badges & Accents in Awards */
 .ribbon-star,
 .tag-gold-star {
